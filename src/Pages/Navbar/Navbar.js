@@ -17,7 +17,7 @@ const Navbar = () => {
         </>
     return (
         <header className='shadow-lg sticky top-0 z-50 bg-white ' >
-            <div className=" container px-6 flex py-3 m-auto ">
+            <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
                     <p className='text-2xl'>ICONIC</p>
                 </div >
@@ -65,7 +65,7 @@ const Navbar = () => {
                 </div>
             </div >
             <hr className='border-gray-100' />
-            <div className="container m-auto menu menu-compact ">
+            <div className="container px-6 m-auto menu menu-compact ">
                 <ul className="flex overflow-auto hide-scrollbar py-2">
                     {navitems}
                 </ul>

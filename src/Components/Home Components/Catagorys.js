@@ -21,10 +21,11 @@ const Catagorys = () => {
     ]
 
     return (
-        <div className="container px-6 m-auto mb-5">
-            <div className="grid grid-cols-4 gap-2 md:gap-4 ">
+        <div className="container px-9 m-auto mb-5 ">
+            <div className="grid grid-cols-4 gap-2 md:gap-4  group">
                 {Catagorys.map((catagory, i) =>
-                    <div className="" key={i}>
+                    <div className="cursor-pointer group-hover:blur-sm  
+              hover:!blur-none group-hover:scale-[0.85] hover:!scale-100  duration-300" key={i}>
                         <img src={catagory.PhotoUrl} height="300px" alt="" />
                     </div>
                 )}

@@ -4,7 +4,7 @@ import Shop from './Shop';
 
 const Shops = () => {
     return (
-        <div className='container px-6 m-auto '>
+        <div className='container px-9 m-auto '>
             <div className="py-4">
                 <div className="flex justify-between mb-4">
                     <p className=" font-bold text-2xl">Shops</p>

@@ -10,13 +10,14 @@ const Home = () => {
     return (
         <div className='bg-slate-100  '>
 
+
             <Hreo />
             <Catagorys />
             <Shops />
             <Products />
             <Footer />
-
         </div>
+
     );
 };
 

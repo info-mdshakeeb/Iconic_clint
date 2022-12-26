@@ -10,7 +10,7 @@ const Shops = () => {
                     <p className=" font-bold text-2xl">Shops</p>
                     <Button value={'See More'}></Button>
                 </div>
-                <ul className='grid grid-cols-2 gap-4 lg:grid-cols-6 sm:grid-cols-4 '>
+                <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6  '>
                     <Shop />
                 </ul>
             </div>

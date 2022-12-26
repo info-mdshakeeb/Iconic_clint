@@ -3,7 +3,7 @@ import React from 'react';
 const Shop = () => {
     const datas = [
         {
-            banadName: 'Mens World for COD',
+            banadName: 'Mens World',
             brandLocation: {
                 road: '68',
                 city: 'Palton',
@@ -13,7 +13,7 @@ const Shop = () => {
 
         },
         {
-            banadName: 'Samsung Smart Plaza Bashundhara City For PNP',
+            banadName: 'Samsung Smart Plaza Bashundhara City',
             brandLocation: {
                 road: '',
                 city: '',
@@ -22,7 +22,7 @@ const Shop = () => {
             brandImg: 'https://media.e-valy.com/cms/brands/logo/d6f8dbe8-c79c-4160-a99e-4c9fb8758a61'
 
         }, {
-            banadName: 'One Plus Official For CBD',
+            banadName: 'One Plus Official',
             brandLocation: {
                 road: '',
                 city: '',
@@ -31,7 +31,7 @@ const Shop = () => {
             brandImg: 'https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2'
 
         }, {
-            banadName: 'Nabil Enterprise For CBD',
+            banadName: 'Nabil Enterprise',
             brandLocation: {
                 road: '',
                 city: '',
@@ -41,7 +41,7 @@ const Shop = () => {
 
         },
         {
-            banadName: 'Jamuna Electronics For COD',
+            banadName: 'Jamuna Electronics ',
             brandLocation: {
                 road: '',
                 city: '',
@@ -51,7 +51,7 @@ const Shop = () => {
 
         },
         {
-            banadName: 'Oppo Official Store For PNP',
+            banadName: 'Oppo Official Store',
             brandLocation: {
                 road: '',
                 city: '',
@@ -74,7 +74,7 @@ const Shop = () => {
                                 src={data.brandImg} alt="" />
                         </div>
                         <div className="h-[50px] w-full ">
-                            <p className='font-medium text-center  hover:underline'>{data?.banadName.length > 30 ? data?.banadName.slice(0, 30) + '...' : data?.banadName}</p>
+                            <p className='lg:font-medium text-center hover:underline'>{data?.banadName.length > 30 ? data?.banadName.slice(0, 20) + '...' : data?.banadName}</p>
                         </div>
                     </a>
 

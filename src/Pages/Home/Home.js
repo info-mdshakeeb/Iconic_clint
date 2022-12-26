@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '../../Components/Footer';
 import Catagorys from '../../Components/Home Components/Catagorys';
 import Hreo from '../../Components/Home Components/Hreo';
+import Shops from '../../Components/Home Components/Shops';
 
 const Home = () => {
 
@@ -10,6 +11,7 @@ const Home = () => {
 
             <Hreo />
             <Catagorys />
+            <Shops />
             <Footer />
 
         </div>

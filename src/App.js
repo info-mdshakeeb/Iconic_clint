@@ -6,7 +6,7 @@ import { AuthUser } from './Context/UserContext';
 import { router } from './Routes/Routers';
 
 function App() {
-  const { user, loading } = useContext(AuthUser)
+  const { loading } = useContext(AuthUser)
 
   if (loading) return <div className="flex justify-center h-screen items-center">
     <img src={Loading} height='300px' width='300px' alt="" />

@@ -22,13 +22,14 @@ const UserContext = ({ children }) => {
             }
         )
     useEffect(() => {
-        const unsuscribe = onAuthStateChanged(auth,
-            currentUser => {
-                // setUser(currentUser)
-                setLoading(false)
-            })
+        const unsuscribe = onAuthStateChanged(auth, currentUser => {
+            // console.log(currentUser.displayName);
+            setLoading(false)
+            setUser(currentUser)
+
+        })
         return () => unsuscribe()
-    })
+    }, [])
     const authInfo = {
         user, setUser,
         loading, setLoading,

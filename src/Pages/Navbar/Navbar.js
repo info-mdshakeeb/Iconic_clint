@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthUser } from '../../Context/UserContext';
 
 const Navbar = () => {
-    const { user } = useContext(AuthUser)
+    const { user, loading } = useContext(AuthUser)
     console.log(user);
 
     const navitems =
@@ -42,15 +42,15 @@ const Navbar = () => {
                     <div className="dropdown ">
                         <label tabIndex={1}
                             className=" transition-colors md:hover:bg-gray-50">
-                            <div className={`flex items-center ${user && "btn btn-ghost"} `}>
+                            <div className={`flex items-center ${user?.uid && "btn btn-ghost"} `}>
                                 <BiUser className='text-2xl mr-2' />
-                                {user ?
-                                    <div className=" ">{user}</div> :
+                                {user?.uid ?
+                                    <div className=" ">{user.displayName}</div> :
                                     <div className=''><Link to='/login'>Login</Link></div>
                                 }
                             </div>
                         </label>
-                        {user &&
+                        {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box ">
                                 <li>
                                     <a className="justify-between">

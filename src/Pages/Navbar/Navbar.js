@@ -4,17 +4,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthUser } from '../../Context/UserContext';
 
 const Navbar = () => {
-    const { user, loading } = useContext(AuthUser)
-    console.log(user);
+    const { user } = useContext(AuthUser)
 
-    const navitems =
-        <>
-            <li><NavLink to='/home'>Home</NavLink></li>
-            <li><NavLink to='/shops'>Shops</NavLink></li>
-            <li><NavLink to='/order'>Order</NavLink></li>
-            <li><NavLink to='/delivaryaddress'>Delivary Address</NavLink></li>
-            <li><NavLink to='/addphone'>Add Phone Number</NavLink></li>
-        </>
     return (
         <header className='shadow-lg sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -67,9 +58,17 @@ const Navbar = () => {
             <hr className='border-gray-100' />
             <div className="container px-6 m-auto menu menu-compact ">
                 <ul className="flex overflow-auto hide-scrollbar py-2">
-                    {navitems}
+                    <li><NavLink to='/home'>Home</NavLink></li>
+                    <li><NavLink to='/shops'>Shops</NavLink></li>
+                    <li><NavLink to='/order'>Order</NavLink></li>
+                    <div className="navbar-center hidden lg:flex">
+                        <li><NavLink to='/delivaryaddress'>Delivary Address</NavLink></li>
+                        <li><NavLink to='/addphone'>Add Phone Number</NavLink></li>
+                    </div>
+
                 </ul>
             </div>
+
 
         </header >
 

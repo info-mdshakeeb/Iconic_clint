@@ -51,7 +51,7 @@ const Shop = () => {
 
         },
         {
-            banadName: 'Oppo Official Store',
+            banadName: 'Oppo Official Store For PNP',
             brandLocation: {
                 road: '',
                 city: '',
@@ -66,7 +66,7 @@ const Shop = () => {
 
         <>
             {datas.map((data, i) =>
-                <div className="inline-flex flex-col items-center justify-center w-full h-full bg-white rounded-md shadow-sm  " key={i}>
+                <div className="inline-flex flex-col items-center justify-center w-full h-full bg-white rounded-md shadow-sm hover:scale-[1.08] duration-200  " key={i}>
 
                     <a href="/" className='p-4' >
                         <div className="h-[135px] " >

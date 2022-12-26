@@ -1,11 +1,17 @@
-import React, { useContext } from 'react';
-import { AuthUser } from '../../Context/UserContext';
+import React from 'react';
+import Footer from '../../Components/Footer';
+import Catagorys from '../../Components/Home Components/Catagorys';
+import Hreo from '../../Components/Home Components/Hreo';
 
 const Home = () => {
-    const { name } = useContext(AuthUser)
+
     return (
-        <div>
-            home
+        <div className='bg-slate-100  '>
+
+            <Hreo />
+            <Catagorys />
+            <Footer />
+
         </div>
     );
 };

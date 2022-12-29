@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user } = useContext(AuthUser)
 
     return (
-        <header className='shadow-lg sticky top-0 z-50 bg-white ' >
+        <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
                     <p className='text-2xl'>ICONIC</p>

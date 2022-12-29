@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../Hooks/Button';
-import Product from './Product';
+import PrimaryButton from '../share/Buttons/PrimaryButton';
+import ProductCard from '../share/Cart/ProductCard';
 
 const Products = () => {
     return (
@@ -8,10 +8,10 @@ const Products = () => {
             <div className="py-4">
                 <div className="flex justify-between mb-4">
                     <p className=" font-bold text-2xl">Products</p>
-                    <Button value={'See More'}></Button>
+                    <PrimaryButton>See more</PrimaryButton>
                 </div>
                 <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4  '>
-                    <Product />
+                    <ProductCard />
                 </ul>
             </div>
             <div className="text-center py-5">

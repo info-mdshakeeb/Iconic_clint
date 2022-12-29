@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PrimaryButton from '../share/Buttons/PrimaryButton';
-import ProductCard from '../share/Cart/ProductCard';
+import ProductCard from '../../Components/share/Cart/ProductCard';
 
-const Products = () => {
+const ProductsDetails = () => {
     const products = [
         {
             name: 'Microwear W26+ Pro Smartwatch - Black',
@@ -37,33 +35,31 @@ const Products = () => {
         },
     ]
     return (
-        <div className='container px-3 md:px-9 m-auto '>
-            <div className="py-4">
-                <div className="flex justify-between mb-4">
-                    <p className="font-bold text-2xl">Products</p>
-                    <PrimaryButton> <Link to='/products'>See more</Link></PrimaryButton>
+        <div className="bg-slate-50">
+            <div className='h-full min-h-[calc(100vh_-_400px)] container px-3 md:px-9 mx-auto '>
+                <div className="py-4">
+                    <div className="flex gap-4 p-4 bg-white rounded shadow">
+                        <div className="">
+                            <div className="">
+                                <img src="https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2" height="120px" width="120px" alt="" />
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <p className='text-xl'>One Plus Official For CBD
+                            </p>
+                            <p className='text-gray-600'>Sel Rose N Dale, 116 Kazi Nazrul Islam Avenue, Banglamotor, Dhaka-1205, Dhaka, Dhaka</p>
+                        </div>
+                    </div>
+                    <br />
+                    <div className="mb-4 font-bold text-2xl ">Products</div>
+                    <ProductCard
+                        products={products}
+                    />
                 </div>
-                <ProductCard
-                    products={products}
-                />
-            </div>
-            <div className="text-center py-5">
-                <Link to='/products'>
-                    <button className="relative group overflow-hidden px-4 h-8 rounded-md bg-gradient-to-r from-gray-700 via-gray-800 to-black
-                      before:absolute 
-                      before:inset-0 
-                      before:bg-black
-                      before:scale-y-[0.1] 
-                      before:origin-bottom
-                      before:transition
-                      before:duration-300
-                      hover:before:scale-y-100
-                      ">
-                        <span className="relative uppercase text-base text-white">Load More</span>
-                    </button></Link>
             </div>
         </div>
+
     );
 };
 
-export default Products;
+export default ProductsDetails;

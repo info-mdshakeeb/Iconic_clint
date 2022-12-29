@@ -25,7 +25,7 @@ const Product = ({ products }) => {
                                 ৳ 80</div>
                         </div>
                     </a> */}
-                    <Link to={`/products/${i}`}>
+                    <Link to={`/products/${i}`} key={i}>
                         <div className="flex flex-col items-center justify-center w-full h-full bg-white rounded-md shadow-md">
                             <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
                                 <div className="h-auto w-auto">

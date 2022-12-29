@@ -30,7 +30,7 @@ const Catagorys = () => {
         <div className="container px-3 md:px-9 m-auto mb-5 ">
             <div className="grid grid-cols-5 md:grid-cols-5 gap-1 lg:gap-4  group">
                 {Catagorys.map((catagory, i) =>
-                    <Link to={`/shops/${i}`}>
+                    <Link to={`/shops/catagory/${i}`} key={i}>
                         <div className="cursor-pointer group-hover:blur-sm  
               hover:!blur-none group-hover:scale-[0.92] hover:!scale-100  duration-300" key={i}>
                             <img src={catagory.PhotoUrl} height="300px" alt="" />

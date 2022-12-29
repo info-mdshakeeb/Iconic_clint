@@ -62,8 +62,8 @@ const Navbar = () => {
                     <li><NavLink to='/shops'>Shops</NavLink></li>
                     <li><NavLink to='/order'>Order</NavLink></li>
                     <div className="navbar-center hidden lg:flex">
+                        <li><NavLink to='/products'>Products</NavLink></li>
                         <li><NavLink to='/delivaryaddress'>Delivary Address</NavLink></li>
-                        <li><NavLink to='/addphone'>Add Phone Number</NavLink></li>
                     </div>
 
                 </ul>

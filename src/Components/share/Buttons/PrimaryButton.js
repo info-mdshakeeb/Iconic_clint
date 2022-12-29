@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({ children }) => {
+const PrimaryButton = ({ children }) => {
     // console.log(button);
     return (
         <button className="relative group overflow-hidden px-4  rounded-full flex space-x-2 items-center bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:to-blue-700">
@@ -15,4 +15,4 @@ const Button = ({ children }) => {
     );
 };
 
-export default Button;
+export default PrimaryButton;

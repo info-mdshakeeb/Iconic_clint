@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PrimaryButton from '../share/Buttons/PrimaryButton';
 import ProductCard from '../share/Cart/ProductCard';
 
-const Products = () => {
+const ProductsSection = () => {
     const products = [
         {
             name: 'Microwear W26+ Pro Smartwatch - Black',
@@ -66,4 +66,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default ProductsSection;

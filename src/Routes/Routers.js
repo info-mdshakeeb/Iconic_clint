@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeNav from "../Layout/HomeNav";
 import Catagory from "../Pages/Catagory/Catagory";
-import ShopsDetails from "../Pages/Details/ShopsDetails";
+import ProductDetail from "../Pages/Details/ProductDetail";
+import ShopDetails from "../Pages/Details/ShopDetails";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Products from "../Pages/Products/Products";
 import Shops from "../Pages/Shpos/Shops";
+
 
 
 export const router = createBrowserRouter([{
@@ -15,7 +17,8 @@ export const router = createBrowserRouter([{
         { path: '/', element: <Home /> },
         { path: '/home', element: <Home /> },
         { path: '/products', element: <Products /> },
-        { path: '/shops/:id', element: <ShopsDetails /> },
+        { path: '/products/:id', element: <ProductDetail /> },
+        { path: '/shops/:id', element: <ShopDetails /> },
         { path: '/shops', element: <Shops /> },
         { path: '/shops/catagory/:id', element: <Catagory /> },
     ]

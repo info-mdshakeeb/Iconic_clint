@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Shop = ({ datas }) => {
+const ShopCard = ({ datas }) => {
 
     return (
         <ul className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6  '>
@@ -21,12 +21,9 @@ const Shop = ({ datas }) => {
                 </Link>
             )}
         </ul>
-
-
-
     );
 };
 
-export default Shop;
+export default ShopCard;
 
 

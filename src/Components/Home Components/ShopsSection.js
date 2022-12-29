@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../share/Buttons/PrimaryButton';
+import PrimaryButton from '../share/Buttons/PrimaryButton';
 import ShopCard from '../share/Cart/ShopCard';
 
-const Shops = () => {
+const ShopsSection = () => {
     const datas = [
         {
             banadName: 'Mens World',
@@ -70,7 +70,7 @@ const Shops = () => {
             <div className="py-4">
                 <div className="flex justify-between mb-4">
                     <p className=" font-bold text-2xl">Shops</p>
-                    <Button><Link to='/shops'>see more</Link></Button>
+                    <PrimaryButton><Link to='/shops'>see more</Link></PrimaryButton>
                 </div>
                 <ShopCard
                     datas={datas} />
@@ -79,4 +79,4 @@ const Shops = () => {
     );
 };
 
-export default Shops;
+export default ShopsSection;

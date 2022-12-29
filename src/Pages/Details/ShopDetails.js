@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductCard from '../../Components/share/Cart/ProductCard';
+import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
-const ProductsDetails = () => {
+const ShopDetails = () => {
     const products = [
         {
             name: 'Microwear W26+ Pro Smartwatch - Black',
@@ -35,31 +36,27 @@ const ProductsDetails = () => {
         },
     ]
     return (
-        <div className="bg-slate-50">
-            <div className='h-full min-h-[calc(100vh_-_400px)] container px-3 md:px-9 mx-auto '>
-                <div className="py-4">
-                    <div className="flex gap-4 p-4 bg-white rounded shadow">
-                        <div className="">
-                            <div className="">
-                                <img src="https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2" height="120px" width="120px" alt="" />
-                            </div>
-                        </div>
-                        <div className="flex-1">
-                            <p className='text-xl'>One Plus Official For CBD
-                            </p>
-                            <p className='text-gray-600'>Sel Rose N Dale, 116 Kazi Nazrul Islam Avenue, Banglamotor, Dhaka-1205, Dhaka, Dhaka</p>
-                        </div>
+        <BodyTemplate>
+            <div className="flex gap-4 p-4 bg-white rounded shadow">
+                <div className="">
+                    <div className="">
+                        <img src="https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2" height="120px" width="120px" alt="" />
                     </div>
-                    <br />
-                    <div className="mb-4 font-bold text-2xl ">Products</div>
-                    <ProductCard
-                        products={products}
-                    />
+                </div>
+                <div className="flex-1">
+                    <p className='text-xl'>One Plus Official For CBD
+                    </p>
+                    <p className='text-gray-600'>Sel Rose N Dale, 116 Kazi Nazrul Islam Avenue, Banglamotor, Dhaka-1205, Dhaka, Dhaka</p>
                 </div>
             </div>
-        </div>
+            <br />
+            <div className="mb-4 font-bold text-2xl ">Products</div>
+            <ProductCard
+                products={products}
+            />
+        </BodyTemplate>
 
     );
 };
 
-export default ProductsDetails;
+export default ShopDetails;

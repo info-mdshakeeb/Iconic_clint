@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Catagorys = () => {
+const CatagorysSection = () => {
     const Catagorys = [
         {
             name: 'Cdb',
@@ -42,4 +42,4 @@ const Catagorys = () => {
     );
 };
 
-export default Catagorys;
+export default CatagorysSection;

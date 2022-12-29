@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Product = ({ products }) => {
+const ProductCard = ({ products }) => {
 
     return (
-
         <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4  '>
             {products?.map((product, i) =>
                 <div className="flex flex-col items-center justify-center w-full h-full bg-white rounded-md shadow-sm  " key={i}>
@@ -54,4 +53,4 @@ const Product = ({ products }) => {
     );
 };
 
-export default Product;
+export default ProductCard;

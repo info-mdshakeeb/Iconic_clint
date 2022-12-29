@@ -14,7 +14,7 @@ import "swiper/css/pagination";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const Hreo = () => {
+const HreoSection = () => {
     return (
         <div className='container px-3 md:px-9 h-full m-auto mb-4'>
             <Swiper
@@ -74,4 +74,4 @@ const Hreo = () => {
     );
 };
 
-export default Hreo;
+export default HreoSection;

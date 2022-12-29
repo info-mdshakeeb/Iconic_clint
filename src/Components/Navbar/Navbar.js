@@ -10,7 +10,7 @@ const Navbar = () => {
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
-                    <p className='text-2xl'>ICONIC</p>
+                    <a href='/' className='text-2xl font-bold text-gray-800 transition-colors duration-300  hover:text-gray-700'>ICONIC</a>
                 </div >
                 <div className="flex items-center gap-4 md:gap-12">
                     <div className="dropdown">

@@ -16,7 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Hreo = () => {
     return (
-        <div className='container px-9 h-full m-auto mb-4'>
+        <div className='container px-3 md:px-9 h-full m-auto mb-4'>
             <Swiper
 
                 spaceBetween={30}

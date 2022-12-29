@@ -44,13 +44,13 @@ const Navbar = () => {
                         {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box ">
                                 <li>
-                                    <a className="justify-between">
+                                    <a href='/' className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </a>
                                 </li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><a href='/'>Settings</a></li>
+                                <li><a href='/'>Logout</a></li>
                             </ul>}
                     </div>
                 </div>

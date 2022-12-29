@@ -48,7 +48,19 @@ const Products = () => {
                 />
             </div>
             <div className="text-center py-5">
-                <Link to='/products'><button className='btn  mx-auto btn-sm'>See More</button></Link>
+                <Link to='/products'>
+                    <button class="relative group overflow-hidden px-4 h-8 rounded-md bg-gradient-to-r from-gray-700 via-gray-800 to-black
+                      before:absolute 
+                      before:inset-0 
+                      before:bg-black
+                      before:scale-y-[0.1] 
+                      before:origin-bottom
+                      before:transition
+                      before:duration-300
+                      hover:before:scale-y-100
+                      ">
+                        <span class="relative uppercase text-base text-white">Load More</span>
+                    </button></Link>
             </div>
         </div>
     );

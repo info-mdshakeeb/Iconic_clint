@@ -40,8 +40,8 @@ const Products = () => {
         <div className='container px-3 md:px-9 m-auto '>
             <div className="py-4">
                 <div className="flex justify-between mb-4">
-                    <p className=" font-bold text-2xl">Products</p>
-                    <PrimaryButton> <Link to='/products'>See more</Link> </PrimaryButton>
+                    <p className="font-bold text-2xl">Products</p>
+                    <PrimaryButton> <Link to='/products'>See more</Link></PrimaryButton>
                 </div>
                 <ProductCard
                     products={products}

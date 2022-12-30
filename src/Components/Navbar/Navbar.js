@@ -60,10 +60,10 @@ const Navbar = () => {
                 <ul className="flex overflow-auto hide-scrollbar py-2">
                     <li><NavLink to='/home'>Home</NavLink></li>
                     <li><NavLink to='/shops'>Shops</NavLink></li>
-                    <li><NavLink to='/order'>Order</NavLink></li>
+                    <li><NavLink to='/orders'>Orders</NavLink></li>
                     <div className="navbar-center hidden lg:flex">
                         <li><NavLink to='/products'>Products</NavLink></li>
-                        <li><NavLink to='/delivaryaddress'>Delivary Address</NavLink></li>
+                        <li><NavLink to='/add-address'>Delivary Address</NavLink></li>
                     </div>
 
                 </ul>

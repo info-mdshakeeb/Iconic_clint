@@ -2,7 +2,7 @@ import React from 'react';
 
 const SecondaryButton = ({ children }) => {
     return (
-        <button class="relative group px-8  bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 text-sm  py-3  w-full  text-white
+        <button className="relative group px-8  bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 text-sm  py-3  w-full  text-white
         before:absolute 
         before:inset-0 
         before:bg-blue-700
@@ -13,7 +13,7 @@ const SecondaryButton = ({ children }) => {
         hover:before:scale-x-100
         hover:before:origin-left
 ">
-            <span class="relative uppercase text-base text-white">{children}</span>
+            <span className="relative uppercase text-base text-white">{children}</span>
         </button>
     );
 };

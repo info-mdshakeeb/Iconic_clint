@@ -1,11 +1,14 @@
 import Lottie from 'lottie-react';
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import signUp from '../../assets/Lotti/signUp.json';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { AuthUser } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
+
 const Login = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { successMessage, errorMessage } = AlartMessage()
     const { loginEmail, GoogleLogin } = useContext(AuthUser)
     const heandelGoogleSignIn = () => {
@@ -13,36 +16,47 @@ const Login = () => {
             .then(result => successMessage('login successfull'))
             .catch(error => errorMessage(error))
     }
+    const onSubmit = data => {
+        loginEmail(data.email, data.password)
+            .then(re => successMessage("login Successfull"))
+            .catch(err => errorMessage(err.message))
+    }
     return (
-
         <div className="flex justify-center min-h-screen">
             <div className="hidden  lg:flex lg:w-2/5 mx-auto ">
                 <Lottie animationData={signUp} loop={true} />
             </div>
             <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md ">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">ICONIC</h1>
-                <form className="mt-6">
-                    <div>
-                        <label htmlFor="username" className="block text-sm text-gray-800">Email</label>
-                        <input type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                <form onSubmit={handleSubmit(onSubmit)}
+                    className="mt-6">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input type="text" placeholder="email" className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.email ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                            {...register("email", { required: 'Email must required' })}
+                        />
+                        {errors.email && <span className="label-text text-red-400">{errors?.email.message}</span>}
                     </div>
+
 
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block text-sm text-gray-800 ">Password</label>
                             <a href="/" className="text-xs text-gray-600  hover:underline">Forget Password?</a>
                         </div>
-
-                        <input type="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 -300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input type="text" placeholder="password" className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.password ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                            {...register("password", { required: 'password must required' })}
+                        />
+                        {errors.password && <span className="label-text text-red-400">{errors?.password.message}</span>}
                     </div>
-
                     <div className="mt-6">
                         <SecondaryButton >
                             Sign In
                         </SecondaryButton>
                     </div>
                 </form>
-
                 <div className="flex items-center justify-between mt-4">
                     <span className="w-1/5 border-b  lg:w-1/5"></span>
                     <p className="text-xs text-center text-gray-500 uppercase  ">

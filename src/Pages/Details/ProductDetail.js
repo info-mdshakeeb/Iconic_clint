@@ -41,14 +41,13 @@ const ProductDetail = () => {
                             </dl>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className="my-6">
                 <p className='mb-3 text-base text-semibold'>Buy Form</p>
             </div>
-            <div className="flex gap-4 pb-1 overflow-x-auto flex-nowrap hide-scrollbar lg:grid lg:grid-cols-4">
-                <div className="p-4 bg-white shadow min-w-[300px] lg:min-w-full">
+            <div className="flex gap-4 pb-1 overflow-x-auto flex-nowrap hide-scrollbar lg:grid lg:grid-cols-2">
+                <div className="p-4 bg-white shadow w-full md:max-w-[400px] min-w-[300px]">
                     <div className="flex gap-2 mb-2">
                         <div className="">
                             <a href="/" className="">

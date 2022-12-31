@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import Loading from './assets/Library-2.gif';
-import { useFirebaseInfo } from './Context/UserContext';
 import { router } from './Routes/Routers';
 
 
 function App() {
-  const { loading, user } = useFirebaseInfo()
+
   const [loadingM, setLoadingM] = useState(false);
 
   useEffect(() => {

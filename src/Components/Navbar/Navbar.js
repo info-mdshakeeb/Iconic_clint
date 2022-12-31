@@ -53,14 +53,16 @@ const Navbar = () => {
                             </div>
                         </label>
                         {user?.uid &&
-                            <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box ">
+                            <ul tabIndex={1} className="menu menu-compact dropdown-content md:w-32 lg:w-36 xl:w-52 shadow bg-base-100 rounded-box ">
                                 <li>
-                                    <a href='/' className="justify-between">
+                                    <Link className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li><a href='/'>Settings</a></li>
+                                <hr />
+                                <li><Link to="/orders">OrderS</Link></li>
+                                <hr />
                                 <li><p onClick={() => heandelLogout()}>{loading ?
                                     <PrimaryLoading
                                         color={"#FFFFFF"}

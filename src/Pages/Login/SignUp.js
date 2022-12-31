@@ -31,7 +31,7 @@ const SignUp = () => {
         const user = {
             name, email, password
         }
-        // console.log(user);
+        console.log(user);
         CreateUserEP(data.email, data.Password)
             .then(rs =>
                 updateProfilePic(data.firstName)

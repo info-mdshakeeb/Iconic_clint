@@ -1,7 +1,7 @@
 import Lottie from 'lottie-react';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import signUp from '../../assets/Lotti/signUp.json';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { AuthUser } from '../../Context/UserContext';
@@ -9,16 +9,28 @@ import AlartMessage from '../../Hooks/AlartMessage';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
+
     const { successMessage, errorMessage } = AlartMessage()
     const { loginEmail, GoogleLogin } = useContext(AuthUser)
     const heandelGoogleSignIn = () => {
         GoogleLogin()
-            .then(result => successMessage('login successfull'))
+            .then(result => {
+                successMessage('login successfull')
+                navigate(from, { replace: true })
+            })
             .catch(error => errorMessage(error))
     }
+
     const onSubmit = data => {
         loginEmail(data.email, data.password)
-            .then(re => successMessage("login Successfull"))
+            .then(re => {
+                successMessage("login Successfull")
+
+            })
             .catch(err => errorMessage(err.message))
     }
     return (

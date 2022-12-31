@@ -1,11 +1,42 @@
 import Lottie from 'lottie-react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
 import signUp from '../../assets/Lotti/signUp.json';
-import PrimaryButton from '../../Components/share/Buttons/PrimaryButton';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
+import { AuthUser } from '../../Context/UserContext';
+import AlartMessage from '../../Hooks/AlartMessage';
 
 const SignUp = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+    navigate(from, { replace: true })
+
+    const { successMessage, errorMessage } = AlartMessage()
+    const { GoogleLogin, CreateUserEP } = useContext(AuthUser)
+    const onSubmit = (data) => {
+        const user = {
+            name: data.firstName + data.lastName,
+            email: data.email,
+            password: data.Password
+        }
+        console.log(user);
+        CreateUserEP(data.email, data.Password)
+            .then(rs =>
+                successMessage("successfully Create Accourt")
+            )
+            .catch(err => errorMessage(err.message))
+    }
+    const heandelGoogleSignIn = () => {
+        GoogleLogin()
+            .then(rs =>
+                successMessage("successfully login")
+            )
+            .catch(err => errorMessage(err.message))
+    }
     return (
         <section className="">
             <div className="flex justify-center min-h-screen">
@@ -20,69 +51,60 @@ const SignUp = () => {
                         <p className="mt-4 text-gray-500 ">
                             Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                         </p>
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 ">
 
-                        <div className="mt-6">
-                            <h1 className="text-gray-500 ">Select type of account</h1>
-
-                            <div className="mt-3 md:flex md:items-center md:-mx-2">
-                                <button className="flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-
-                                    <span className="mx-2">
-                                        client
-                                    </span>
-                                </button>
-
-                                <button className="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2   focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-
-                                    <span className="mx-2">
-                                        worker
-                                    </span>
-                                </button>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">First Name</span>
+                                </label>
+                                <input type="text" placeholder="md" className={`block w-full px-5 py-3 mt-2 text-gray-700 bg-white border rounded-lg ${errors.firstName ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                                    {...register("firstName", { required: 'First Name must required' })}
+                                />
+                                {errors.firstName && <span className="label-text text-red-400">{errors?.firstName.message}</span>}
                             </div>
-                        </div>
-
-                        <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">First Name</label>
-                                <input type="text" placeholder="John" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">Last name</label>
-                                <input type="text" placeholder="Snow" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Last Name</span>
+                                </label>
+                                <input type="text" placeholder="shakeeb" className={`block w-full px-5 py-3 mt-2 text-gray-700 bg-white border rounded-lg ${errors.lastName ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                                    {...register("lastName", { required: 'Last Name must required' })}
+                                />
+                                {errors.lastName && <span className="label-text text-red-400">{errors?.lastName.message}</span>}
                             </div>
 
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">Phone number</label>
-                                <input type="text" placeholder="XXX-XX-XXXX-XXX" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="text" placeholder="shakeeb@example.com" className={`block w-full px-5 py-3 mt-2 text-gray-700 bg-white border rounded-lg ${errors.email ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                                    {...register("email", { required: 'Email must required' })}
+                                />
+                                {errors.email && <span className="label-text text-red-400">{errors?.email.message}</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="text" placeholder="XXX-XXX-XX-XXX" className={`block w-full px-5 py-3 mt-2 text-gray-700 bg-white border rounded-lg ${errors.Password ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                                    {...register("Password", { required: 'Password must required', minLength: 6 })}
+                                />
+                                {errors.Password && <span className="label-text text-red-400">{errors?.Password.message}</span>}
                             </div>
 
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">Email address</label>
-                                <input type="email" placeholder="johnsnow@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            <div className=' py-3 mt-4'>
+                                <div className=""><SecondaryButton>SignUp</SecondaryButton>
+                                </div>
                             </div>
 
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">Password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 ">Confirm password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg     focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-                            <div className="w-1/2"><SecondaryButton>SignUp</SecondaryButton>
-
-                            </div>
-                            <div className=" flex items-end">
-                                <Link to='/login'><PrimaryButton>Already have Account go to Login</PrimaryButton></Link>
-                            </div>
                         </form>
+                        <div className="py-3 mt-4 w-1/2"
+                            onClick={() => heandelGoogleSignIn()}>
+                            <SecondaryButton>
+                                SignUp With Google
+                            </SecondaryButton>
+                        </div>
                     </div>
                 </div>
             </div>

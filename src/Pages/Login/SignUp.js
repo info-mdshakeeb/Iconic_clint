@@ -1,44 +1,57 @@
 import Lottie from 'lottie-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import signUp from '../../assets/Lotti/signUp.json';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { AuthUser } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 
 const SignUp = () => {
+    const { GoogleLogin, CreateUserEP, updateProfilePic } = useContext(AuthUser)
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { successMessage, errorMessage } = AlartMessage()
+    const [loadingL, setLoadingL] = useState(false);
+    const [loadingG, setLoadingG] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
-    const { successMessage, errorMessage } = AlartMessage()
-    const { GoogleLogin, CreateUserEP } = useContext(AuthUser)
     const onSubmit = (data) => {
+        setLoadingL(true);
+        const name = data.firstName + data.lastName;
+        const email = data.email;
+        const password = data.Password;
+
         const user = {
-            name: data.firstName + data.lastName,
-            email: data.email,
-            password: data.Password
+            name, email, password
         }
-        console.log(user);
+        // console.log(user);
         CreateUserEP(data.email, data.Password)
-            .then(rs => {
-                successMessage("successfully Create Accourt")
-                navigate(from, { replace: true })
-            }
-            )
-            .catch(err => errorMessage(err.message))
+            .then(rs =>
+                updateProfilePic(data.firstName)
+                    .then(res => {
+                        successMessage("successfully login")
+                        navigate(from, { replace: true })
+                    }).catch(err => {
+                        errorMessage(err.message)
+                        setLoadingL(false)
+                    })
+            ).catch(err => {
+                errorMessage(err.message)
+                setLoadingL(false)
+            })
     }
     const heandelGoogleSignIn = () => {
+        setLoadingG(true)
         GoogleLogin()
             .then(rs => {
                 successMessage("successfully login")
                 navigate(from, { replace: true })
-            }
-            )
-            .catch(err => {
+            }).catch(err => {
+                setLoadingG(false)
                 errorMessage(err.message)
             })
     }
@@ -97,17 +110,24 @@ const SignUp = () => {
                                 />
                                 {errors.Password && <span className="label-text text-red-400">{errors?.Password.message}</span>}
                             </div>
-
                             <div className=' py-3 mt-4'>
-                                <div className=""><SecondaryButton>SignUp</SecondaryButton>
+                                <div className="">
+                                    <SecondaryButton>
+                                        {loadingL ? <PrimaryLoading
+                                            color={"#FFFFFF"}
+                                            height={'20'}
+                                        /> : "  SignUp"}
+                                    </SecondaryButton>
                                 </div>
                             </div>
-
                         </form>
                         <div className="py-3 mt-4 w-1/2"
                             onClick={() => heandelGoogleSignIn()}>
                             <SecondaryButton>
-                                SignUp With Google
+                                {loadingG ? <PrimaryLoading
+                                    color={"#FFFFFF"}
+                                    height={'20'}
+                                /> : "  SignUp With Google"}
                             </SecondaryButton>
                         </div>
                     </div>

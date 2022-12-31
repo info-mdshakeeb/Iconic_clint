@@ -2,9 +2,19 @@ import React, { useContext } from 'react';
 import { BiUser } from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import { AuthUser } from '../../Context/UserContext';
+import AlartMessage from '../../Hooks/AlartMessage';
+import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Navbar = () => {
-    const { user } = useContext(AuthUser)
+    const { user, logout, loading, setLoading } = useContext(AuthUser)
+    const { successMessage } = AlartMessage()
+    const heandelLogout = () => {
+        setLoading(true)
+        logout().then(re => {
+            successMessage('Logout Done')
+            setLoading(false)
+        })
+    }
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -49,7 +59,12 @@ const Navbar = () => {
                                     </a>
                                 </li>
                                 <li><a href='/'>Settings</a></li>
-                                <li><a href='/'>Logout</a></li>
+                                <li><p onClick={() => heandelLogout()}>{loading ?
+                                    <PrimaryLoading
+                                        color={"#FFFFFF"}
+                                        height={'16'}
+                                    />
+                                    : " Logout"}</p></li>
                             </ul>}
                     </div>
                 </div>

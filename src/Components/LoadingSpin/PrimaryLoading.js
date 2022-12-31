@@ -3,7 +3,6 @@ import { ScaleLoader } from "react-spinners";
 
 const PrimaryLoading = ({ height, color }) => {
 
-
     return (
         <ScaleLoader color={color}
             height={height}

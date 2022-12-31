@@ -5,7 +5,6 @@ import { AuthUser } from '../../Context/UserContext';
 
 const Navbar = () => {
     const { user } = useContext(AuthUser)
-
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -36,7 +35,7 @@ const Navbar = () => {
                             <div className={`flex items-center ${user?.uid && "btn btn-ghost"} `}>
                                 <BiUser className='text-2xl mr-2' />
                                 {user?.uid ?
-                                    <div className=" ">{user.displayName}</div> :
+                                    <div className=" ">{user?.displayName}</div> :
                                     <div className=''><Link to='/login'>Login</Link></div>
                                 }
                             </div>

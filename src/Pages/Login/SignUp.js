@@ -13,7 +13,6 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
-    navigate(from, { replace: true })
 
     const { successMessage, errorMessage } = AlartMessage()
     const { GoogleLogin, CreateUserEP } = useContext(AuthUser)
@@ -25,17 +24,23 @@ const SignUp = () => {
         }
         console.log(user);
         CreateUserEP(data.email, data.Password)
-            .then(rs =>
+            .then(rs => {
                 successMessage("successfully Create Accourt")
+                navigate(from, { replace: true })
+            }
             )
             .catch(err => errorMessage(err.message))
     }
     const heandelGoogleSignIn = () => {
         GoogleLogin()
-            .then(rs =>
+            .then(rs => {
                 successMessage("successfully login")
+                navigate(from, { replace: true })
+            }
             )
-            .catch(err => errorMessage(err.message))
+            .catch(err => {
+                errorMessage(err.message)
+            })
     }
     return (
         <section className="">

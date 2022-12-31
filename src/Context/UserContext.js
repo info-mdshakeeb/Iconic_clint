@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { app } from "../Configuration/Firebase.config";
 
 
@@ -41,5 +41,10 @@ const UserContext = ({ children }) => {
         </AuthUser.Provider>
     );
 };
+
+export const useFirebaseInfo = () => {
+    const context = useContext(AuthUser);
+    return context
+}
 
 export default UserContext;

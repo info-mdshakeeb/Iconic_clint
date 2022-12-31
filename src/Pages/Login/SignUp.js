@@ -1,26 +1,29 @@
 import Lottie from 'lottie-react';
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import signUp from '../../assets/Lotti/signUp.json';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
-import { AuthUser } from '../../Context/UserContext';
+import { useLoading } from '../../Context/UseLoading';
+import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
+import { END_SIGNUP_GOOGLE, END_SIGNUP_MAIL, START_SIGNUP_GOOGLE, START_SIGNUP_MAIL } from '../../state/ActionType/actionType';
 
 const SignUp = () => {
-    const { GoogleLogin, CreateUserEP, updateProfilePic } = useContext(AuthUser)
+    const { GoogleLogin, CreateUserEP, updateProfilePic } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { successMessage, errorMessage } = AlartMessage()
-    const [loadingL, setLoadingL] = useState(false);
-    const [loadingG, setLoadingG] = useState(false);
+    const { state, dispatch } = useLoading();
+    // console.log(state);
+
 
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
     const onSubmit = (data) => {
-        setLoadingL(true);
+        dispatch({ type: START_SIGNUP_MAIL })
         const name = data.firstName + data.lastName;
         const email = data.email;
         const password = data.Password;
@@ -35,24 +38,28 @@ const SignUp = () => {
                     .then(res => {
                         successMessage("successfully login")
                         navigate(from, { replace: true })
+                        dispatch({ type: END_SIGNUP_MAIL })
                     }).catch(err => {
                         errorMessage(err.message)
-                        setLoadingL(false)
+                        dispatch({ type: END_SIGNUP_MAIL })
+
                     })
             ).catch(err => {
                 errorMessage(err.message)
-                setLoadingL(false)
+                dispatch({ type: END_SIGNUP_MAIL })
             })
     }
     const heandelGoogleSignIn = () => {
-        setLoadingG(true)
+
+        dispatch({ type: START_SIGNUP_GOOGLE })
         GoogleLogin()
             .then(rs => {
                 successMessage("successfully login")
                 navigate(from, { replace: true })
+                dispatch({ type: END_SIGNUP_GOOGLE })
             }).catch(err => {
-                setLoadingG(false)
                 errorMessage(err.message)
+                dispatch({ type: END_SIGNUP_GOOGLE })
             })
     }
     return (
@@ -113,7 +120,7 @@ const SignUp = () => {
                             <div className=' py-3 mt-4'>
                                 <div className="">
                                     <SecondaryButton>
-                                        {loadingL ? <PrimaryLoading
+                                        {state?.SignUpMail ? <PrimaryLoading
                                             color={"#FFFFFF"}
                                             height={'20'}
                                         /> : "  SignUp"}
@@ -124,7 +131,7 @@ const SignUp = () => {
                         <div className="py-3 mt-4 w-1/2"
                             onClick={() => heandelGoogleSignIn()}>
                             <SecondaryButton>
-                                {loadingG ? <PrimaryLoading
+                                {state?.SignUpGoogle ? <PrimaryLoading
                                     color={"#FFFFFF"}
                                     height={'20'}
                                 /> : "  SignUp With Google"}

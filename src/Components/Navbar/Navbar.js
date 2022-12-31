@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BiUser } from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
-import { AuthUser } from '../../Context/UserContext';
+import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Navbar = () => {
-    const { user, logout, loading, setLoading } = useContext(AuthUser)
+    const { user, logout, loading, setLoading } = useFirebaseInfo()
+    // console.log(user);
     const { successMessage } = AlartMessage()
     const heandelLogout = () => {
         setLoading(true)
@@ -15,6 +16,7 @@ const Navbar = () => {
             setLoading(false)
         })
     }
+
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">

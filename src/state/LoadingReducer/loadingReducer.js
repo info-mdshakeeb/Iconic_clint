@@ -3,10 +3,8 @@ import { END_LOGIN_GOOGLE, END_LOGIN_MAIL, END_SIGNUP_GOOGLE, END_SIGNUP_MAIL, S
 export const initialState = {
     LoginGoogle: false,
     LoginMail: false,
-
     SignUpMail: false,
     SignUpGoogle: false,
-
     loadingAuthUser: false,
 };
 export const loadingReducer = (state, action) => {

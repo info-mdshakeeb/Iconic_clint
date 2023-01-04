@@ -1,39 +1,39 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link } from 'react-router-dom';
+import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const CatagorysSection = () => {
-    const Catagorys = [
-        {
-            name: 'Cdb',
-            PhotoUrl: "https://media.e-valy.com/cms/brands/logo/1aa5948f-690c-44cb-972b-62d399e50e33"
-        },
-        {
-            name: 'Cod',
-            PhotoUrl: "https://media.e-valy.com/cms/brands/logo/d4cfcd8b-12d8-4c84-89ac-75d2dba81066"
-        },
-
-        {
-            name: 'Pnp',
-            PhotoUrl: "https://media.e-valy.com/cms/brands/logo/04ee8988-486c-4466-8de6-b18b2c102567"
-        },
-        {
-            name: 'FnF',
-            PhotoUrl: "https://media.e-valy.com/cms/brands/logo/7469b60b-c4f8-4b28-a0b9-796a4be25fdc"
-        },
-        {
-            name: 'Express',
-            PhotoUrl: "https://media.e-valy.com/cms/brands/logo/255008bf-84c6-4b1a-9005-c5acb25f27c7"
-        },
-
-    ]
+    const url = `http://localhost:2100/catagories`;
+    const { data: Catagorys = [], isLoading, refetch } = useQuery({
+        queryKey: [''],
+        queryFn: async () => {
+            const res = await fetch(url)
+            const data = await res.json()
+            return data.data
+        }
+    })
+    if (isLoading) return <div className="flex justify-center items-center w-full h-[200px]">
+        <PrimaryLoading />
+    </div>
+    refetch()
     return (
         <div className="container px-3 md:px-9 m-auto mb-5 ">
             <div className="grid grid-cols-5 md:grid-cols-5 gap-1 lg:gap-4  group">
-                {Catagorys.map((catagory, i) =>
+                {Catagorys?.map((catagory, i) =>
                     <Link to={`/shops/catagory/${i}`} key={i}>
                         <div className="cursor-pointer group-hover:blur-sm  
               hover:!blur-none group-hover:scale-[0.92] hover:!scale-100  duration-300" key={i}>
-                            <img src={catagory.PhotoUrl} height="300px" alt="" />
+                            <LazyLoadImage
+                                className=''
+                                alt={catagory.PhotoUrl}
+                                src={catagory.PhotoUrl}
+                                effect="blur"
+                                placeholderSrc={catagory.PhotoUrl}
+                            />
+                            {/* <img src={catagory.PhotoUrl} height="300px" alt="" /> */}
                         </div>
                     </Link>
                 )}

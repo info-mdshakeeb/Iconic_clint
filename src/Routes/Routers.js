@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardNav from "../Layout/DashboardNav";
 import HomeNav from "../Layout/HomeNav";
 import Address from "../Pages/Address/Address";
 import Catagory from "../Pages/Catagory/Catagory";
@@ -27,9 +28,18 @@ export const router = createBrowserRouter([{
         { path: '/shops', element: <Shops /> },
         { path: '/shops/catagory/:id', element: <Catagory /> },
         { path: '/add-address', element: <Address /> },
-        { path: '/orders', element: <PrivateRouters><Order /></PrivateRouters> },
-        { path: '/profile', element: <PrivateRouters><Profile /></PrivateRouters> },
+
+
     ]
+},
+{
+    path: '/dashboard',
+    element: <PrivateRouters><DashboardNav /></PrivateRouters>,
+    children: [
+        { path: '/dashboard/profile', element: <Profile /> },
+        { path: '/dashboard/orders', element: <Order /> },
+    ]
+
 },
 { path: '/login', element: <Login /> },
 { path: '/resister', element: <SignUp /> },

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
-import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const Profile = () => {
@@ -11,7 +10,7 @@ const Profile = () => {
         console.log(data);
     }
     return (
-        <BodyTemplate>
+        <div className="w-full ">
             <div className="max-w-2xl m-auto mt-4">
                 <p className='mb-4 font-bold text-xl'>Profile</p>
                 <div className="p-4 mb-10 bg-white shadow">
@@ -41,12 +40,11 @@ const Profile = () => {
                                 Update
                             </SecondaryButton>
                         </div>
-
                     </form>
                 </div>
             </div>
+        </div>
 
-        </BodyTemplate>
     );
 };
 

@@ -70,13 +70,13 @@ const Navbar = () => {
                         {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content md:w-32 lg:w-36 xl:w-52 shadow bg-base-100 rounded-box ">
                                 <li>
-                                    <Link to="/profile" className="justify-between">
+                                    <Link to="/dashboard/profile" className="justify-between">
                                         Profile
 
                                     </Link>
                                 </li>
                                 <hr />
-                                <li><Link to="/orders">OrderS</Link></li>
+                                <li><Link to="/dashboard/orders">Orders</Link></li>
                                 <hr />
                                 <li><p onClick={() => heandelLogout()}>{loading ?
                                     <PrimaryLoading
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <ul className="flex overflow-auto hide-scrollbar py-2">
                     <li><NavLink to='/home'>Home</NavLink></li>
                     <li><NavLink to='/shops'>Shops</NavLink></li>
-                    <li><NavLink to='/orders'>Orders</NavLink></li>
+                    <li><NavLink to='/dashboard/orders'>Orders</NavLink></li>
                     <div className="navbar-center hidden lg:flex">
                         <li><NavLink to='/products'>Products</NavLink></li>
                         <li><NavLink to='/add-address'>Delivary Address</NavLink></li>

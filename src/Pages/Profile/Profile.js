@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useFirebaseInfo } from '../../Context/UserContext';
@@ -6,9 +6,11 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const Profile = () => {
     const { user } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [seller, getSeller] = useState(false)
 
+    // console.log(seller);
     const onSubmit = data => {
-
+        // console.log(data);
     }
     return (
         <div className="w-full">
@@ -33,8 +35,17 @@ const Profile = () => {
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="text" defaultValue={user?.email} disabled className="block  w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg cursor-not-allowed  "
-                                {...register("email")}
                             />
+                        </div>
+                        <div className="form-control pt-3 md:w-60">
+                            <label className="cursor-pointer label">
+                                <span className="text "
+                                >UnLock Seller Form</span>
+                                <input onClick={() => getSeller(!seller)}
+                                    type="checkbox" className="checkbox checkbox-warning"
+                                    {...register("check")}
+                                />
+                            </label>
                         </div>
                         <div className="mt-4">
                             <SecondaryButton>

@@ -9,6 +9,7 @@ const DashboardNav = () => {
     const navlink = [
         { name: "Account", link: '/dashboard/profile' },
         { name: "My orders", link: '/dashboard/orders' },
+        { name: "Seller Form", link: '/dashboard/sellerForm' },
     ]
 
     return (

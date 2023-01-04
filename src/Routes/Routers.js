@@ -10,8 +10,9 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import Order from "../Pages/Order/Order";
 import Products from "../Pages/Products/Products";
+import Profile from "../Pages/Profile/Profile";
 import Shops from "../Pages/Shpos/Shops";
-
+import PrivateRouters from "./PrivateRouters";
 
 
 export const router = createBrowserRouter([{
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([{
         { path: '/shops', element: <Shops /> },
         { path: '/shops/catagory/:id', element: <Catagory /> },
         { path: '/add-address', element: <Address /> },
-        { path: '/orders', element: <Order /> },
+        { path: '/orders', element: <PrivateRouters><Order /></PrivateRouters> },
+        { path: '/profile', element: <PrivateRouters><Profile /></PrivateRouters> },
     ]
 },
 { path: '/login', element: <Login /> },

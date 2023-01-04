@@ -1,22 +1,37 @@
 import React from 'react';
 import { BiUser } from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { useFirebaseInfo } from '../../Context/UserContext';
-import AlartMessage from '../../Hooks/AlartMessage';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Navbar = () => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
-    // console.log(user);
-    const { successMessage } = AlartMessage()
     const heandelLogout = () => {
         setLoading(true)
-        logout().then(re => {
-            successMessage('Logout Done')
-            setLoading(false)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: `Logout`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logout().then(re => {
+                    setLoading(false)
+                    Swal.fire({
+                        icon: 'success',
+                        title: `LogOut SuccessFull`,
+                        showConfirmButton: false, timer: 1500
+                    })
+                })
+            } else {
+                setLoading(false)
+            }
         })
     }
-
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -55,9 +70,9 @@ const Navbar = () => {
                         {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content md:w-32 lg:w-36 xl:w-52 shadow bg-base-100 rounded-box ">
                                 <li>
-                                    <Link className="justify-between">
+                                    <Link to="/profile" className="justify-between">
                                         Profile
-                                        <span className="badge">New</span>
+
                                     </Link>
                                 </li>
                                 <hr />
@@ -86,8 +101,6 @@ const Navbar = () => {
 
                 </ul>
             </div>
-
-
         </header >
 
     );

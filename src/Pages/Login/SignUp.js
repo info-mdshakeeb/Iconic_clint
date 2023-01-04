@@ -42,7 +42,6 @@ const SignUp = () => {
                     }).catch(err => {
                         errorMessage(err.message)
                         dispatch({ type: END_SIGNUP_MAIL })
-
                     })
             ).catch(err => {
                 errorMessage(err.message)

@@ -20,7 +20,7 @@ const Login = () => {
     // console.log(state);
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/'
 
     const heandelGoogleSignIn = () => {
         dispatch({ type: START_LOGIN_GOOGLE })
@@ -38,6 +38,7 @@ const Login = () => {
         dispatch({ type: START_LOGIN_MAIL })
         loginEmail(data.email, data.password)
             .then(re => {
+                navigate(from, { replace: true })
                 successMessage("login Successfull")
                 dispatch({ type: END_LOGIN_MAIL })
             })

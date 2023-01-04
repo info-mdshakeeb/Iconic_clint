@@ -9,6 +9,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
+import AddToCart from "../Pages/Order/AddToCart";
 import Order from "../Pages/Order/Order";
 import Products from "../Pages/Products/Products";
 import Profile from "../Pages/Profile/Profile";
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([{
         { path: '/shops', element: <Shops /> },
         { path: '/shops/catagory/:id', element: <Catagory /> },
         { path: '/add-address', element: <Address /> },
+        { path: '/addtocart', element: <PrivateRouters><AddToCart /></PrivateRouters> },
     ]
 },
 {
@@ -39,7 +41,6 @@ export const router = createBrowserRouter([{
         { path: '/dashboard/orders', element: <Order /> },
         { path: '/dashboard/sellerForm', element: <RequestForSeller /> },
     ]
-
 },
 { path: '/login', element: <Login /> },
 { path: '/resister', element: <SignUp /> },

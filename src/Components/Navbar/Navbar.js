@@ -92,13 +92,12 @@ const Navbar = () => {
                 <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
                     <li><NavLink to='/home'>Home</NavLink></li>
                     <li><NavLink to='/shops'>Shops</NavLink></li>
-                    <li><NavLink to='/dashboard/card'>Card</NavLink></li>
-                    <label htmlFor="my-drawer-2" className="lg:hidden ml-3">Open drawer</label>
+                    <li><NavLink to='/addtocart'>Card</NavLink></li>
+                    <label htmlFor="my-drawer-2" className="lg:hidden ml-3">Side Nav</label>
                     <div className="navbar-center hidden lg:flex">
                         <li><NavLink to='/products'>Products</NavLink></li>
                         <li><NavLink to='/add-address'>Delivary Address</NavLink></li>
                     </div>
-
                 </ul>
             </div>
         </header >

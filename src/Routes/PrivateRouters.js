@@ -10,7 +10,7 @@ const PrivateRouters = ({ children }) => {
     const location = useLoading()
     console.log(location.state);
     if (loading) {
-        return <BodyTemplate py={8}>
+        return <BodyTemplate >
             <PrimaryLoading
                 color={"#0000FF"}
             />

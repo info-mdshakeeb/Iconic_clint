@@ -1,3 +1,4 @@
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import { router } from './Routes/Routers';

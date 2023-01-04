@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import { Link } from 'react-router-dom';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
@@ -26,14 +25,7 @@ const CatagorysSection = () => {
                     <Link to={`/shops/catagory/${i}`} key={i}>
                         <div className="cursor-pointer group-hover:blur-sm  
               hover:!blur-none group-hover:scale-[0.92] hover:!scale-100  duration-300" key={i}>
-                            <LazyLoadImage
-                                className=''
-                                alt={catagory.PhotoUrl}
-                                src={catagory.PhotoUrl}
-                                effect="blur"
-                                placeholderSrc={catagory.PhotoUrl}
-                            />
-                            {/* <img src={catagory.PhotoUrl} height="300px" alt="" /> */}
+                            <img src={catagory.PhotoUrl} height="300px" alt="" />
                         </div>
                     </Link>
                 )}

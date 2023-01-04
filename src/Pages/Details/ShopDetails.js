@@ -36,7 +36,7 @@ const ShopDetails = () => {
         },
     ]
     return (
-        <BodyTemplate py={8}>
+        <BodyTemplate >
             <div className="flex gap-4 p-4 bg-white rounded shadow">
                 <div className="">
                     <div className="">

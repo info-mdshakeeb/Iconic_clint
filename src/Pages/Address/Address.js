@@ -7,7 +7,7 @@ import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 const Address = () => {
     const [closeModal, setCloseModal] = useState(false)
     return (
-        <BodyTemplate py={4}>
+        <BodyTemplate >
             <div className="max-w-2xl py-4 m-auto">
                 <div className="mb-5">
                     <div className="flex justify-between items-center h-9  ">

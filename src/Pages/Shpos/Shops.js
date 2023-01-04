@@ -66,6 +66,7 @@ const ShopsAll = () => {
     return (
         <TemplateCPS
             type={'Shops'}
+            py={8}
         >
             <ShopCard
                 datas={datas} />

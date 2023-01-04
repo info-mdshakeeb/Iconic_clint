@@ -6,13 +6,12 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const Profile = () => {
     const { user } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const pathname = window.location.pathname
-    console.log(pathname);
+
     const onSubmit = data => {
 
     }
     return (
-        <div className="w-full ">
+        <div className="w-full">
             <div className="max-w-2xl m-auto mt-4">
                 <p className='mb-4 font-bold text-xl'>Profile</p>
                 <div className="p-4 mb-10 bg-white shadow">
@@ -24,10 +23,10 @@ const Profile = () => {
                             <label className="label">
                                 <span className="label-text">Full Name</span>
                             </label>
-                            <input type="text" defaultValue={user?.displayName} className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.email ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
+                            <input type="text" defaultValue={user?.displayName} className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.name ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
                                 {...register("name", { required: 'Name must required' })}
                             />
-                            {errors.email && <span className="label-text text-red-400">{errors?.email.message}</span>}
+                            {errors.name && <span className="label-text text-red-400">{errors?.name.message}</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">

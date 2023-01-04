@@ -6,11 +6,10 @@ import BodyTemplate from '../Components/share/Template/BodyTemplate';
 
 const DashboardNav = () => {
 
-    const navlink =
-        <>
-            <li><NavLink to='/dashboard/profile'>Account</NavLink></li>
-            <li><NavLink to="/dashboard/orders">My orders</NavLink></li>
-        </>
+    const navlink = [
+        { name: "Account", link: '/dashboard/profile' },
+        { name: "My orders", link: '/dashboard/orders' },
+    ]
 
     return (
         <div className="">
@@ -22,15 +21,15 @@ const DashboardNav = () => {
                         <Outlet></Outlet>
                     </div>
                     <div className="drawer-side ">
-                        <label htmlFor="my-drawer-2 border" className="drawer-overlay bg-fuchsia-50  "></label>
-                        <ul className="menu p-4 w-60 text-base-content  bg-base-100 lg:bg-none ">
-                            {navlink}
+                        <label htmlFor="my-drawer-2 border" className="drawer-overlay "></label>
+                        <ul className="menu p-4 w-60 text-base-content  bg-base-100 lg:bg-slate-50 ">
+                            {navlink.map((link, i) =>
+                                <li key={i}><NavLink className="shadow my-1" to={link?.link}>{link?.name}</NavLink></li>
+                            )}
                         </ul>
                     </div>
                 </div>
             </BodyTemplate>
-
-
             <Footer />
         </div>
 

@@ -68,9 +68,9 @@ const Navbar = () => {
                             </div>
                         </label>
                         {user?.uid &&
-                            <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 rounded-box ">
+                            <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 ">
                                 <li>
-                                    <Link to="/dashboard/profile" className="justify-between">
+                                    <Link to="/dashboard/profile" className="">
                                         Profile
                                     </Link>
                                 </li>
@@ -102,7 +102,6 @@ const Navbar = () => {
                 </ul>
             </div>
         </header >
-
     );
 };
 

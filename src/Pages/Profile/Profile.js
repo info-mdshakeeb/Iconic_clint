@@ -6,8 +6,10 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const Profile = () => {
     const { user } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const pathname = window.location.pathname
+    console.log(pathname);
     const onSubmit = data => {
-        console.log(data);
+
     }
     return (
         <div className="w-full ">

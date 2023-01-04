@@ -1,10 +1,10 @@
 import React from 'react';
 
-const BodyTemplate = ({ children }) => {
+const BodyTemplate = ({ children, py }) => {
     return (
         <div className="bg-slate-50">
             <div className='h-full min-h-[calc(100vh_-_400px)] container px-3 md:px-9 mx-auto '>
-                <div className="py-8">
+                <div className={`py-${py}`}>
                     {children}
                 </div>
             </div>

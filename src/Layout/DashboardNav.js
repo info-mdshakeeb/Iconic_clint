@@ -12,25 +12,20 @@ const DashboardNav = () => {
             <li><NavLink to="/dashboard/orders">My orders</NavLink></li>
         </>
 
-
-
     return (
         <div className="">
             <Navbar />
             <BodyTemplate>
-                <div className="drawer drawer-mobile h-auto">
+                <div className="drawer drawer-mobile h-auto ">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content ">
                         <Outlet></Outlet>
-
-                        {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                     </div>
                     <div className="drawer-side ">
-                        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                        <ul className="menu p-4 w-60 text-base-content">
+                        <label htmlFor="my-drawer-2 border" className="drawer-overlay bg-fuchsia-50  "></label>
+                        <ul className="menu p-4 w-60 text-base-content  bg-base-100 lg:bg-none ">
                             {navlink}
                         </ul>
-
                     </div>
                 </div>
             </BodyTemplate>

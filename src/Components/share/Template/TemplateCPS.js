@@ -3,7 +3,7 @@ import { ImSearch } from 'react-icons/im';
 import BodyTemplate from './BodyTemplate';
 const ShopsAndProduct = ({ type, children }) => {
     return (
-        <BodyTemplate>
+        <BodyTemplate py={8}>
             <div className="flex flex-col mb-8 md:items-center md:justify-between md:flex-row">
                 <p className='font-medium text-2xl py-4 md:py-0'>{type}</p>
                 <div className="flex border">

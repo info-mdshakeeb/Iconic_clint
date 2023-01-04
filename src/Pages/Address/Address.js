@@ -3,7 +3,7 @@ import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const Address = () => {
     return (
-        <BodyTemplate>
+        <BodyTemplate py={8}>
 
         </BodyTemplate>
     );

@@ -68,11 +68,10 @@ const Navbar = () => {
                             </div>
                         </label>
                         {user?.uid &&
-                            <ul tabIndex={1} className="menu menu-compact dropdown-content md:w-32 lg:w-36 xl:w-52 shadow bg-base-100 rounded-box ">
+                            <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 rounded-box ">
                                 <li>
                                     <Link to="/dashboard/profile" className="justify-between">
                                         Profile
-
                                     </Link>
                                 </li>
                                 <hr />
@@ -90,10 +89,11 @@ const Navbar = () => {
             </div >
             <hr className='border-gray-100' />
             <div className="container px-6 m-auto menu menu-compact ">
-                <ul className="flex overflow-auto hide-scrollbar py-2">
+                <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
                     <li><NavLink to='/home'>Home</NavLink></li>
                     <li><NavLink to='/shops'>Shops</NavLink></li>
-                    <li><NavLink to='/dashboard/orders'>Orders</NavLink></li>
+                    <li><NavLink to='/dashboard/card'>Card</NavLink></li>
+                    <label htmlFor="my-drawer-2" className="lg:hidden ml-3">Open drawer</label>
                     <div className="navbar-center hidden lg:flex">
                         <li><NavLink to='/products'>Products</NavLink></li>
                         <li><NavLink to='/add-address'>Delivary Address</NavLink></li>

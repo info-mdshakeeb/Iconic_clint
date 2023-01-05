@@ -18,7 +18,6 @@ function App() {
   // if (!user) return <div className="flex justify-center h-screen items-center">
   //   <img src={Loading} height='300px' width='300px' alt="" />
   // </div>
-
   return (
     <div className="">
       <RouterProvider router={router} />

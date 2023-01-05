@@ -8,7 +8,7 @@ import { useFirebaseInfo } from '../Context/UserContext';
 
 const DashboardNav = () => {
     const { user } = useFirebaseInfo()
-    const { data: useR = [], isLoading, refetch } = useQuery({
+    const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
             const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)

@@ -45,7 +45,6 @@ const Navbar = () => {
             }
         })
     }
-    if (isLoading) return <>k</>
     refetch()
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >

@@ -69,8 +69,9 @@ const Profile = () => {
                         <div className="form-control pt-3 md:w-60">
 
                             <label className="cursor-pointer label">
-                                <span className="text "
-                                >UnLock Seller Form</span>
+                                {useR?.role === 'seller' ? undefined :
+                                    <span className="text "
+                                    >UnLock Seller Form</span>}
                                 {useR?.role === 'seller' ?
                                     <input onClick={() => getSeller(!seller)}
                                         type="checkbox" checked className="checkbox checkbox-warning hidden"
@@ -80,8 +81,6 @@ const Profile = () => {
                                         {...register("check")}
                                     />}
                             </label>
-
-
                         </div>
                         <div className="mt-4">
                             <SecondaryButton>

@@ -13,7 +13,7 @@ import AddToCart from "../Pages/Order/AddToCart";
 import Order from "../Pages/Order/Order";
 import Products from "../Pages/Products/Products";
 import Profile from "../Pages/Profile/Profile";
-import RequestForSeller from "../Pages/Seller/RequestForSeller";
+import SellerShop from "../Pages/Seller/SellerShop";
 import Shops from "../Pages/Shpos/Shops";
 import PrivateRouters from "./PrivateRouters";
 
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([{
     children: [
         { path: '/dashboard/profile', element: <Profile /> },
         { path: '/dashboard/orders', element: <Order /> },
-        { path: '/dashboard/sellerForm', element: <RequestForSeller /> },
+        { path: '/dashboard/sellerForm', element: <SellerShop /> },
     ]
 },
 { path: '/login', element: <Login /> },

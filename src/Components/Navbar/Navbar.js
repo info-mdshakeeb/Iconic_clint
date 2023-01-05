@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BiUser } from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
@@ -7,6 +8,18 @@ import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Navbar = () => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
+    // console.log(user);
+
+    const { data: useR = [], isLoading, refetch } = useQuery({
+        queryKey: ['useR', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
+            const data = await res.json()
+            return data.data[0]
+        }
+    })
+    // console.log(useR);
+
     const heandelLogout = () => {
         setLoading(true)
         Swal.fire({
@@ -32,6 +45,8 @@ const Navbar = () => {
             }
         })
     }
+    if (isLoading) return <>k</>
+    refetch()
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -62,7 +77,7 @@ const Navbar = () => {
                             <div className={`flex items-center ${user?.uid && "btn btn-ghost"} `}>
                                 <BiUser className='text-2xl mr-2' />
                                 {user?.uid ?
-                                    <div className=" ">{user?.displayName}</div> :
+                                    <div className=" ">{useR?.name}</div> :
                                     <div className=''><Link to='/login'>Login</Link></div>
                                 }
                             </div>

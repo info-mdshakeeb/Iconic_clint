@@ -6,7 +6,6 @@ import { app } from "../Configuration/Firebase.config";
 export const AuthUser = createContext();
 const auth = getAuth(app);
 const provaider = new GoogleAuthProvider();
-
 const UserContext = ({ children }) => {
     const [user, setUser] = useState('')
     const [loading, setLoading] = useState(true)
@@ -28,6 +27,8 @@ const UserContext = ({ children }) => {
         })
         return () => unsuscribe()
     }, [])
+    // console.log(user.email);
+
     const authInfo = {
         user, setUser,
         loading, setLoading,

@@ -1,16 +1,28 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar/Navbar';
 import BodyTemplate from '../Components/share/Template/BodyTemplate';
+import { useFirebaseInfo } from '../Context/UserContext';
 
 const DashboardNav = () => {
+    const { user } = useFirebaseInfo()
+    const { data: useR = [], isLoading, refetch } = useQuery({
+        queryKey: ['useR', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
+            const data = await res.json()
+            return data.data[0]
+        }
+    })
+    // console.log(useR);
 
     const navLink =
         <>
             <li ><NavLink className="shadow my-1" to='/dashboard/profile'>Account</NavLink></li>
             <li ><NavLink className="shadow my-1" to='/dashboard/orders'>My orders</NavLink></li>
-            <li ><NavLink className="shadow my-1" to='/dashboard/sellerForm'>Seller Form</NavLink></li>
+            {useR?.role === ('seller' || 'admin') && <li ><NavLink className="shadow my-1" to='/dashboard/sellerForm'>Seller Form</NavLink></li>}
         </>
     return (
         <div className="">

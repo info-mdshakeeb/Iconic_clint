@@ -5,7 +5,6 @@ import { router } from './Routes/Routers';
 
 
 function App() {
-
   // const [loadingM, setLoadingM] = useState(false);
 
   // useEffect(() => {

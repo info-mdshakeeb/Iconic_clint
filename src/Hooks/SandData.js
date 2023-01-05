@@ -1,5 +1,5 @@
-export const SandData = (url, method, body) => {
 
+export const SandData = (url, method, body) => {
     fetch(url, {
         method: method,
         headers: {

@@ -1,15 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 
-export const LoadData = (urL) => {
-    // console.log(urL);
-    const { data = [], isLoading, refetch } = useQuery({
-        queryKey: [''],
-        queryFn: async () => {
-            const res = await fetch(urL)
-            const data = await res.json()
-            return data.data
-        }
-    })
-    return { data, isLoading, refetch }
+export const LoadData = async () => {
+    const res = await fetch(`http://localhost:2100/catagories`)
+    const data = await res.json()
+    return data.data
 };
 

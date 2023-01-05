@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-
-export const FatchData = (urL) => {
+export const LoadData = (urL) => {
     // console.log(urL);
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: [''],

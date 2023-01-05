@@ -1,20 +1,17 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { FatchData } from '../../Hooks/FatchData';
+import { LoadData } from '../../Hooks/LoadData';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const CatagorysSection = () => {
-
-    const { data, isLoading, refetch } = FatchData(`http://localhost:2100/catagories`)
-    console.log(data);
-
+    const { data, isLoading, refetch } = LoadData(`http://localhost:2100/catagories`)
 
     if (isLoading) return <div className="flex justify-center items-center w-full h-[200px]">
         <PrimaryLoading />
     </div>
-    refetch()
 
+    refetch()
     return (
         <div className="container px-3 md:px-9 m-auto mb-5 ">
             <div className="grid grid-cols-5 md:grid-cols-5 gap-1 lg:gap-4  group">

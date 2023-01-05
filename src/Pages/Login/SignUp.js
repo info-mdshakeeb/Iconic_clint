@@ -8,6 +8,7 @@ import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useLoading } from '../../Context/UseLoading';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
+import { SandData } from '../../Hooks/SandData';
 import { END_SIGNUP_GOOGLE, END_SIGNUP_MAIL, START_SIGNUP_GOOGLE, START_SIGNUP_MAIL } from '../../state/ActionType/actionType';
 
 const SignUp = () => {
@@ -16,29 +17,32 @@ const SignUp = () => {
     const { successMessage, errorMessage } = AlartMessage()
     const { state, dispatch } = useLoading();
     // console.log(state);
-
+    const url = `http://localhost:2100/users`
 
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
+    const saveToDatabase = (user) => {
+        SandData(url, 'POST', user)
+    }
     const onSubmit = (data) => {
         dispatch({ type: START_SIGNUP_MAIL })
         const name = data.firstName + data.lastName;
         const email = data.email;
         const password = data.Password;
-
         const user = {
             name, email, password
         }
-        console.log(user);
         CreateUserEP(data.email, data.Password)
             .then(rs =>
                 updateProfilePic(data.firstName)
                     .then(res => {
+                        saveToDatabase(user)
                         successMessage("successfully login")
                         navigate(from, { replace: true })
                         dispatch({ type: END_SIGNUP_MAIL })
+
                     }).catch(err => {
                         errorMessage(err.message)
                         dispatch({ type: END_SIGNUP_MAIL })
@@ -49,13 +53,19 @@ const SignUp = () => {
             })
     }
     const heandelGoogleSignIn = () => {
-
         dispatch({ type: START_SIGNUP_GOOGLE })
         GoogleLogin()
             .then(rs => {
+                const user = {
+                    email: rs?.user?.email,
+                    name: rs?.user?.displayName,
+                    photoUrl: rs?.user?.photoURL
+                }
+                saveToDatabase(user)
                 successMessage("successfully login")
                 navigate(from, { replace: true })
                 dispatch({ type: END_SIGNUP_GOOGLE })
+
             }).catch(err => {
                 errorMessage(err.message)
                 dispatch({ type: END_SIGNUP_GOOGLE })

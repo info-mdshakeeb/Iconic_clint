@@ -19,7 +19,7 @@ const AddShop = ({ refetch }) => {
         }
     })
 
-    console.log(catagories);
+    // console.log(catagories);
     const onSubmit = data => {
         console.log(data);
         const shopDetails = {
@@ -106,12 +106,6 @@ const AddShop = ({ refetch }) => {
                     </form>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
     );
 };

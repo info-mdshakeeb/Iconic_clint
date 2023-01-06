@@ -34,9 +34,9 @@ const DashboardLayout = () => {
                     <div className="drawer-content flex flex-col items-center justify-center">
                         <Outlet></Outlet>
                     </div>
-                    <div className="drawer-side">
+                    <div className="drawer-side ">
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                        <ul className="menu rounded-lg w-56 bg-slate-50 md:bg-inherit text-base-content">
+                        <ul className="menu  w-48  bg-slate-50 md:bg-inherit text-base-content">
                             {navLink}
                         </ul>
                     </div>

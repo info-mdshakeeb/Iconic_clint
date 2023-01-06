@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
@@ -11,7 +12,7 @@ const Profile = () => {
     const [seller, getSeller] = useState(false)
     const { successMessage } = AlartMessage()
 
-    const { data: useR = [], refetch } = useQuery({
+    const { data: useR = [], refetch, isLoading } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
             const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
@@ -40,6 +41,11 @@ const Profile = () => {
                 }
                 refetch()
             })
+    }
+    if (isLoading) {
+        return <div className="w-full mx-auto flex justify-center items-center h-96">
+            <PrimaryLoading></PrimaryLoading>
+        </div>
     }
     return (
         <div className="w-full">

@@ -5,7 +5,7 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 import SecondaryButton from '../share/Buttons/SecondaryButton';
 
-const AddShop = ({ refetch }) => {
+const AddShopModal = ({ refetch }) => {
     const { user } = useFirebaseInfo()
     const { successMessage } = AlartMessage()
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,7 +18,6 @@ const AddShop = ({ refetch }) => {
             return data.data
         }
     })
-
     // console.log(catagories);
     const onSubmit = data => {
         console.log(data);
@@ -48,8 +47,8 @@ const AddShop = ({ refetch }) => {
     return (
         <div className="">
             <input type="checkbox" id="AddShop" className="modal-toggle" />
-            <div className="modal">
-                <div className="modal-box relative">
+            <div className="modal  ">
+                <div className="modal-box relative bg-gradient-to-r from-gray-100 to-gray-300">
                     <label htmlFor="AddShop" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form
                         onSubmit={handleSubmit(onSubmit)}
@@ -110,4 +109,4 @@ const AddShop = ({ refetch }) => {
     );
 };
 
-export default AddShop;
+export default AddShopModal;

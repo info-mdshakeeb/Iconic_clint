@@ -38,7 +38,7 @@ const NavbarDashBoard = ({ useR }) => {
         })
     }
     return (
-        <header className='shadow-md  sticky top-0 z-50' >
+        <header className='shadow-md  sticky top-0 z-50  bg-white' >
             <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
                     <a href='/' className='text-2xl font-bold text-gray-800 transition-colors duration-300  hover:text-gray-700'>ICONIC</a>

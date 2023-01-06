@@ -10,7 +10,7 @@ const Navbar = () => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
     // console.log(user);
 
-    const { data: useR = [], isLoading, refetch } = useQuery({
+    const { data: useR = [], refetch } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
             const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
@@ -107,7 +107,6 @@ const Navbar = () => {
                     <li><NavLink to='/home'>Home</NavLink></li>
                     <li><NavLink to='/shops'>Shops</NavLink></li>
                     <li><NavLink to='/addtocart'>Card</NavLink></li>
-                    <label htmlFor="my-drawer-2" className="lg:hidden ml-3">Side Nav</label>
                     <div className="navbar-center hidden lg:flex">
                         <li><NavLink to='/products'>Products</NavLink></li>
                         <li><NavLink to='/add-address'>Delivary Address</NavLink></li>

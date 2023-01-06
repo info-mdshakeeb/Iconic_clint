@@ -20,11 +20,11 @@ const DashboardLayout = () => {
         <>
             <li ><NavLink className="shadow my-1" to='/dashboard/profile'>Account</NavLink></li>
             <li ><NavLink className="shadow my-1" to='/dashboard/orders'>My orders</NavLink></li>
-            {useR?.role === ('seller' || 'admin') && <li ><NavLink className="shadow my-1" to='/dashboard/sellerShop'>Seller Form</NavLink></li>}
+            {useR?.role === ('seller' || 'admin') && <li ><NavLink className="shadow my-1" to='/dashboard/sellerShop'>Your Shops</NavLink></li>}
         </>
     return (
 
-        <div className="h-screen  bg-slate-50">
+        <div className="h-screen bg-slate-50">
             <NavbarDashBoard
                 useR={useR}
             />

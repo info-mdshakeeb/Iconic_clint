@@ -1,14 +1,13 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import PrimaryLoading from '../Components/LoadingSpin/PrimaryLoading';
 import BodyTemplate from '../Components/share/Template/BodyTemplate';
-import { useLoading } from '../Context/UseLoading';
 import { useFirebaseInfo } from '../Context/UserContext';
 
 const PrivateRouters = ({ children }) => {
 
     const { user, loading } = useFirebaseInfo();
-    const location = useLoading()
-    console.log(location.state);
+    const location = useLocation()
+    console.log(location);
     if (loading) {
         return <BodyTemplate >
             <PrimaryLoading

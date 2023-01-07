@@ -18,17 +18,20 @@ const Login = () => {
     //uas reducer :
     const { state, dispatch } = useLoading();
     // console.log(state);
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
     const heandelGoogleSignIn = () => {
         dispatch({ type: START_LOGIN_GOOGLE })
         GoogleLogin()
             .then(result => {
+                setTimeout(() => {
+                    navigate(from, { replace: true })
+                }, 200)
                 successMessage('login successfull')
-                navigate(from, { replace: true })
                 dispatch({ type: END_LOGIN_GOOGLE })
+
             }).catch(error => {
                 errorMessage(error.message)
                 dispatch({ type: END_LOGIN_GOOGLE })
@@ -38,7 +41,9 @@ const Login = () => {
         dispatch({ type: START_LOGIN_MAIL })
         loginEmail(data.email, data.password)
             .then(re => {
-                navigate(from, { replace: true })
+                setTimeout(() => {
+                    navigate(from, { replace: true })
+                }, 200)
                 successMessage("login Successfull")
                 dispatch({ type: END_LOGIN_MAIL })
             })

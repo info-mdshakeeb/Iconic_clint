@@ -40,7 +40,9 @@ const SignUp = () => {
                     .then(res => {
                         saveToDatabase(user)
                         successMessage("successfully login")
-                        navigate(from, { replace: true })
+                        setTimeout(() => {
+                            navigate(from, { replace: true })
+                        }, 200)
                         dispatch({ type: END_SIGNUP_MAIL })
 
                     }).catch(err => {
@@ -63,7 +65,9 @@ const SignUp = () => {
                 }
                 saveToDatabase(user)
                 successMessage("successfully login")
-                navigate(from, { replace: true })
+                setTimeout(() => {
+                    navigate(from, { replace: true })
+                }, 200)
                 dispatch({ type: END_SIGNUP_GOOGLE })
 
             }).catch(err => {

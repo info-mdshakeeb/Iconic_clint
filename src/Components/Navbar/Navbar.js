@@ -9,8 +9,7 @@ import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 const Navbar = ({ need }) => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
     // console.log(user);
-
-    const { data: useR = [], refetch } = useQuery({
+    const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
             const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
@@ -19,7 +18,6 @@ const Navbar = ({ need }) => {
         }
     })
     // console.log(useR);
-
     const heandelLogout = () => {
         setLoading(true)
         Swal.fire({
@@ -45,7 +43,6 @@ const Navbar = ({ need }) => {
             }
         })
     }
-    refetch()
     return (
         <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
@@ -70,6 +67,9 @@ const Navbar = ({ need }) => {
                             </div>
                         </div>
                     </div>
+                    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                    </label>
                     <div className="dropdown ">
                         <label tabIndex={1}
                             className=" transition-colors md:hover:bg-gray-50">

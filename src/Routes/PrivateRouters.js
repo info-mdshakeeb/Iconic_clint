@@ -7,7 +7,7 @@ const PrivateRouters = ({ children }) => {
 
     const { user, loading } = useFirebaseInfo();
     const location = useLocation()
-    console.log(location);
+    // console.log(location);
     if (loading) {
         return <BodyTemplate >
             <PrimaryLoading

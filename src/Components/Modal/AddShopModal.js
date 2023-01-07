@@ -5,7 +5,7 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 import SecondaryButton from '../share/Buttons/SecondaryButton';
 
-const AddShopModal = ({ refetch }) => {
+const AddShopModal = ({ refetch, setShopeModal }) => {
     const { user } = useFirebaseInfo()
     const { successMessage } = AlartMessage()
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -26,7 +26,9 @@ const AddShopModal = ({ refetch }) => {
             ownerEmail: user.email,
             name: data.name,
             photoUrl: data.photourl,
-            location: data.location
+            location: data.location,
+            status: 'Unauthorised',
+            shopCreated: new Date()
         }
         fetch(`http://localhost:2100/shops`, {
             method: "POST",
@@ -39,17 +41,19 @@ const AddShopModal = ({ refetch }) => {
             .then(data => {
                 if (data.success) {
                     successMessage('Added SuccessFull')
+                    setShopeModal(false)
                 }
                 refetch()
             })
     }
-
     return (
         <div className="">
             <input type="checkbox" id="AddShop" className="modal-toggle" />
             <div className="modal  ">
                 <div className="modal-box relative bg-gradient-to-r from-gray-100 to-gray-300">
-                    <label htmlFor="AddShop" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label
+                        onClick={() => setShopeModal(false)}
+                        htmlFor="AddShop" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         className="mb-4"

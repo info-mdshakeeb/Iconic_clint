@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { NavLink, Outlet } from 'react-router-dom';
-import NavbarDashBoard from '../Components/Navbar/NavbarDashBoard';
+import Navbar from '../Components/Navbar/Navbar';
 import BodyTemplate from '../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../Context/UserContext';
 
@@ -25,9 +25,7 @@ const DashboardLayout = () => {
     return (
 
         <div className="h-screen bg-slate-50">
-            <NavbarDashBoard
-                useR={useR}
-            />
+            <Navbar need={false} />
             <BodyTemplate>
                 <div className="drawer drawer-mobile h-auto ">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

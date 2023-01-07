@@ -6,7 +6,7 @@ import Navbar from '../Components/Navbar/Navbar';
 const HomeLayout = () => {
     return (
         <div>
-            <Navbar />
+            <Navbar need={true} />
             <Outlet />
             <Footer />
         </div>

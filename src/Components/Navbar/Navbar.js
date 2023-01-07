@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
-const Navbar = () => {
+const Navbar = ({ need }) => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
     // console.log(user);
 
@@ -101,18 +101,21 @@ const Navbar = () => {
                     </div>
                 </div>
             </div >
-            <hr className='border-gray-100' />
-            <div className="container px-6 m-auto menu menu-compact ">
-                <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
-                    <li><NavLink to='/home'>Home</NavLink></li>
-                    <li><NavLink to='/shops'>Shops</NavLink></li>
-                    <li><NavLink to='/addtocart'>Card</NavLink></li>
-                    <div className="navbar-center hidden lg:flex">
-                        <li><NavLink to='/products'>Products</NavLink></li>
-                        <li><NavLink to='/add-address'>Delivary Address</NavLink></li>
+            {need &&
+                <> <hr className='border-gray-100' />
+                    <div className="container px-6 m-auto menu menu-compact ">
+                        <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
+                            <li><NavLink to='/home'>Home</NavLink></li>
+                            <li><NavLink to='/shops'>Shops</NavLink></li>
+                            <li><NavLink to='/addtocart'>Card</NavLink></li>
+                            <div className="navbar-center hidden lg:flex">
+                                <li><NavLink to='/products'>Products</NavLink></li>
+                                <li><NavLink to='/add-address'>Delivary Address</NavLink></li>
+                            </div>
+                        </ul>
                     </div>
-                </ul>
-            </div>
+                </>
+            }
         </header >
     );
 };

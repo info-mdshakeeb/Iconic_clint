@@ -34,8 +34,8 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side ">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <div class="flex flex-col mt-1 w-64 min-h-[90vh] px-4 py-8 bg-gray-00 border-r ">
-                        <div class="flex flex-col justify-between flex-1 text-white ">
+                    <div className="flex flex-col mt-1 w-64 min-h-[90vh] px-4 py-8 bg-gray-00 border-r ">
+                        <div className="flex flex-col justify-between flex-1 text-white ">
                             <nav className=''>
                                 {navLink}
                             </nav>

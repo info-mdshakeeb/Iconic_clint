@@ -71,7 +71,6 @@ const Login = () => {
                         {errors.email && <span className="label-text text-red-400">{errors?.email.message}</span>}
                     </div>
 
-
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block text-sm text-gray-800 ">Password</label>

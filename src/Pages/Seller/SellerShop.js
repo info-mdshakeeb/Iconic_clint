@@ -64,9 +64,6 @@ const RequestForSeller = () => {
                     </div>
                 </div>
             </div>
-
-
-
             <div className="mx-auto my-4 w-full">
                 <p className='mb-4 font-bold text-xl'>Your Shops</p>
                 {/* <div className="grid  md:grid-cols-2 md:gap-3">
@@ -155,8 +152,6 @@ const RequestForSeller = () => {
                         </div>
                     </div>
                 </div>
-
-
             </div >
             {shopModal &&
                 <AddShopModal

@@ -17,8 +17,8 @@ const Navbar = ({ need }) => {
             return data.data[0]
         }
     })
-    // console.log(useR);
-    const heandelLogout = () => {
+
+    const handleLLogout = () => {
         setLoading(true)
         Swal.fire({
             title: 'Are you sure?',
@@ -91,7 +91,7 @@ const Navbar = ({ need }) => {
                                 <hr />
                                 <li><Link to="/dashboard/orders">Orders</Link></li>
                                 <hr />
-                                <li><p onClick={() => heandelLogout()}>{loading ?
+                                <li><p onClick={() => handleLLogout()}>{loading ?
                                     <PrimaryLoading
                                         color={"#FFFFFF"}
                                         height={'16'}
@@ -107,11 +107,12 @@ const Navbar = ({ need }) => {
                         <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
                             <li><NavLink to='/home'>Home</NavLink></li>
                             <li><NavLink to='/shops'>Shops</NavLink></li>
-                            <li><NavLink to='/addtocart'>Card</NavLink></li>
-                            <div className="navbar-center hidden lg:flex">
+                            {user && <>
                                 <li><NavLink to='/products'>Products</NavLink></li>
-                                <li><NavLink to='/add-address'>Delivary Address</NavLink></li>
-                            </div>
+                                <li><NavLink to='/orders'>Orders</NavLink></li>
+                                <li><NavLink to='/add-address'>Delivery Address</NavLink></li>
+
+                            </>}
                         </ul>
                     </div>
                 </>

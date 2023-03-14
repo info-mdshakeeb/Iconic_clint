@@ -11,6 +11,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import AddToCart from "../Pages/Order/AddToCart";
 import Order from "../Pages/Order/Order";
+import AddProducts from "../Pages/Products/AddProducts";
 import Products from "../Pages/Products/Products";
 import Profile from "../Pages/Profile/Profile";
 import SellerShop from "../Pages/Seller/SellerShop";
@@ -30,16 +31,17 @@ export const router = createBrowserRouter([{
         { path: '/shops', element: <Shops /> },
         { path: '/shops/catagory/:id', element: <Catagory /> },
         { path: '/add-address', element: <Address /> },
-        { path: '/addtocart', element: <PrivateRouters><AddToCart /></PrivateRouters> },
+        { path: '/orders', element: <PrivateRouters><AddToCart /></PrivateRouters> },
+        { path: '/dashboard/profile', element: <PrivateRouters> <Profile /> </PrivateRouters> },
+        { path: '/dashboard/orders', element: <PrivateRouters>  <Order /> </PrivateRouters> },
     ]
 },
 {
     path: '/dashboard',
     element: <PrivateRouters><DashboardLayout /></PrivateRouters>,
     children: [
-        { path: '/dashboard/profile', element: <Profile /> },
-        { path: '/dashboard/orders', element: <Order /> },
         { path: '/dashboard/sellerShop', element: <SellerShop /> },
+        { path: '/dashboard/addproducts', element: <AddProducts /> },
     ]
 },
 { path: '/login', element: <Login /> },

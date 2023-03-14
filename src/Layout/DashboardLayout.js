@@ -20,7 +20,7 @@ const DashboardLayout = () => {
             <NavLink className={clas} to='/dashboard/profile'>Account</NavLink>
             <NavLink className={clas} to='/dashboard/orders'>My orders</NavLink>
             {useR?.role === ('seller' || 'admin') && <NavLink className={clas} to='/dashboard/sellerShop'>Your Shops</NavLink>}
-            {<NavLink className={clas} to='/dashboard/orders'>Add Product</NavLink>}
+            {<NavLink className={clas} to='/dashboard/addproducts'>Add Product</NavLink>}
         </>
     return (
         <div className="h-screen bg-white">

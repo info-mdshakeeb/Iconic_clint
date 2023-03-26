@@ -14,7 +14,7 @@ const ErrorPage = () => {
                     had its name changed or is temporarily unavailable.</p>
                 <div className="pt-8 flex justify-center">
                     <Link to='/'><PrimaryButton
-                        w={'28'}
+                        w={'40'}
                         h={'10'}
                         className='btn btn-sm btn-warning'>Go Back to home</PrimaryButton></Link>
                 </div>

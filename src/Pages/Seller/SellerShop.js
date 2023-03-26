@@ -66,7 +66,7 @@ const RequestForSeller = () => {
             </div>
             <div className="mx-auto my-4 w-full">
                 <p className='mb-4 font-bold text-xl'>Your Shops</p>
-                {/* <div className="grid  md:grid-cols-2 md:gap-3">
+                <div className="grid  md:grid-cols-2 md:gap-3">
                     {shops?.map(shop =>
                         <div className="my-4" key={shop?._id}>
                             <div className="flex gap-6 p-4 bg-white rounded shadow items-center" >
@@ -91,7 +91,7 @@ const RequestForSeller = () => {
                         </div>
 
                     )}
-                </div> */}
+                </div>
 
                 <div className="flex flex-wrap -mx-3">
                     <div className="flex-none w-full max-w-full px-3">
@@ -142,7 +142,7 @@ const RequestForSeller = () => {
                                                 </td>
                                                 {shop?.status === 'verified' &&
                                                     <td className="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent">
-                                                        <a href="/" className="text-xs font-semibold leading-tight"> Edit </a>
+                                                        <p className="text-xs font-semibold leading-tight"> Edit </p>
                                                     </td>}
                                             </tr>
                                         </tbody>)}

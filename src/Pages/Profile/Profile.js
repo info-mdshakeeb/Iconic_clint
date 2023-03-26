@@ -15,19 +15,18 @@ const Profile = () => {
     const { data: useR = [], refetch, isLoading } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
+            const res = await fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`)
             const data = await res.json()
             return data.data[0]
         }
     })
     const onSubmit = data => {
-        console.log(data);
         const updateUser = {
             name: data.name,
             role: data.check
         }
         updateProfilePic(data.name)
-        fetch(`http://localhost:2100/users/${user?.email}`, {
+        fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -36,6 +35,7 @@ const Profile = () => {
         })
             .then(res => res.json())
             .then(data => {
+                // console.log(data);
                 if (data.success) {
                     successMessage('Update SuccessFull')
                 }
@@ -73,25 +73,20 @@ const Profile = () => {
                             />
                         </div>
                         <div className="form-control pt-3 md:w-60">
-
-                            <label className="cursor-pointer label">
-                                {useR?.role === 'seller' ? undefined :
-                                    <span className="text "
-                                    >UnLock Seller Form</span>}
-                                {useR?.role === 'seller' ?
+                            {useR?.role === ("seller" || "admin") ?
+                                undefined : <label className="cursor-pointer label">
+                                    <span className="text ">UnLock Seller Form</span>
                                     <input onClick={() => getSeller(!seller)}
                                         type="checkbox" checked className="checkbox checkbox-warning hidden"
                                         {...register("check")}
                                     /> : <input onClick={() => getSeller(!seller)}
                                         type="checkbox" className="checkbox checkbox-warning"
                                         {...register("check")}
-                                    />}
-                            </label>
+                                    />
+                                </label>}
                         </div>
                         <div className="mt-4">
-                            <SecondaryButton>
-                                Update
-                            </SecondaryButton>
+                            <SecondaryButton>Update </SecondaryButton>
                         </div>
                     </form>
                 </div>

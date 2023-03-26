@@ -17,7 +17,7 @@ const SignUp = () => {
     const { successMessage, errorMessage } = AlartMessage()
     const { state, dispatch } = useLoading();
     // console.log(state);
-    const url = `http://localhost:2100/users`
+    const url = `http://localhost:3210/api/v2/users`
 
     const navigate = useNavigate();
     const location = useLocation()

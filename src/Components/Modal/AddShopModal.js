@@ -13,7 +13,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
     const { data: catagories = [] } = useQuery({
         queryKey: ['catagories'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2100/catagories`)
+            const res = await fetch(`http://localhost:3210/api/v2/catagories`)
             const data = await res.json()
             return data.data
         }
@@ -27,10 +27,10 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             name: data.name,
             photoUrl: data.photourl,
             location: data.location,
-            status: 'Unauthorised',
+            status: 'Unauthorized',
             shopCreated: new Date()
         }
-        fetch(`http://localhost:2100/shops`, {
+        fetch(`http://localhost:3210/api/v2/shops`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

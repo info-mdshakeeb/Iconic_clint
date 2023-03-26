@@ -12,7 +12,7 @@ const Navbar = ({ need }) => {
     const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
+            const res = await fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`)
             const data = await res.json()
             return data.data[0]
         }

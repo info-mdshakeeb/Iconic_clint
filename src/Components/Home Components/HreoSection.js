@@ -1,17 +1,14 @@
 import React from 'react';
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const HreoSection = () => {
+const HeroSection = () => {
     return (
         <div className='container px-3 md:px-9 h-full m-auto mb-4'>
             <Swiper
@@ -71,4 +68,4 @@ const HreoSection = () => {
     );
 };
 
-export default HreoSection;
+export default HeroSection;

@@ -17,13 +17,13 @@ const RequestForSeller = () => {
     const { data: shops = [], refetch } = useQuery({
         queryKey: ['shops'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2100/shops?email=${user?.email}`)
+            const res = await fetch(`http://localhost:3210/api/v2/shops/${user?.email}`)
             const data = await res.json()
             return data.data
         }
     })
     const requestValidation = (id) => {
-        const update = { status: "Unauthorised" }
+        const update = { status: "Unauthorized" }
         fetch(`http://localhost:2100/shop/${id}`, {
             method: "PUT",
             headers: {
@@ -65,31 +65,29 @@ const RequestForSeller = () => {
                 </div>
             </div>
             <div className="mx-auto my-4 w-full">
-                <p className='mb-4 font-bold text-xl'>Your Shops</p>
-                <div className="grid  md:grid-cols-2 md:gap-3">
+                <p className='mb-4 font-bold text-xl'>Your Shop</p>
+                <div className="">
                     {shops?.map(shop =>
                         <div className="my-4" key={shop?._id}>
-                            <div className="flex gap-6 p-4 bg-white rounded shadow items-center" >
-                                <div className="h-36">
+                            <div className="flex gap-6 p-4 bg-white rounded shadow items-center justify-between" >
+                                <div className="">
                                     <div className="">
-                                        <img src={shop?.photoUrl} height="120px" width="120px" alt="" />
+                                        <img src={shop?.photoUrl} height="220px" width="220px" alt="" />
                                     </div>
                                 </div>
-                                <div className="flex-1">
+                                <div className="">
                                     <p className='text-xl'>{shop?.name} </p>
                                     <p className='text-gray-600 h-20 overflow-scroll'>{shop?.location}</p>
-                                    <div className="py-3 flex">
-                                        <p>status: {shop?.status}</p>
-                                        {shop?.status === 'Unauthorised' &&
-                                            <SecondaryButton>
-                                                <p >request Admin For verify</p>
-                                            </SecondaryButton>}
-                                    </div>
+                                    <p>status: {shop?.status}</p>
+                                </div>
+                                <div className="">
+                                    {shop?.status === 'Unauthorized' &&
+                                        <SecondaryButton>
+                                            <p>request  For verify</p>
+                                        </SecondaryButton>}
                                 </div>
                             </div>
-
                         </div>
-
                     )}
                 </div>
 
@@ -104,8 +102,8 @@ const RequestForSeller = () => {
                                     <table className="items-center w-full mb-0 align-top border-collapse text-slate-500">
                                         <thead className="align-bottom">
                                             <tr>
-                                                <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">Shop Details</th>
-                                                <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">Location</th>
+                                                <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">Your Products</th>
+                                                <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">catagories</th>
                                                 <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap  opacity-70">Status</th>
                                                 <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none   tracking-none whitespace-nowra opacity-70"></th>
                                             </tr>
@@ -133,7 +131,7 @@ const RequestForSeller = () => {
                                                     }
                                                 </td>
                                                 <td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent">
-                                                    {shop?.status === 'Unauthorised' ?
+                                                    {shop?.status === 'Unauthorized' ?
                                                         <button
                                                             onClick={() => requestValidation(shop?._id)}
                                                             className='btn btn-sm btn-warning'>Request to admin</button> :
@@ -157,7 +155,6 @@ const RequestForSeller = () => {
                 <AddShopModal
                     refetch={refetch}
                     setShopeModal={setShopeModal}
-
                 />}
         </BodyTemplate >
     );

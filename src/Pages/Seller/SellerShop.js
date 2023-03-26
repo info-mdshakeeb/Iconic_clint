@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddShopModal from '../../Components/Modal/AddShopModal';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
@@ -13,8 +12,7 @@ const RequestForSeller = () => {
     const { user } = useFirebaseInfo();
     const { successMessage } = AlartMessage();
     const [shopModal, setShopeModal] = useState(false);
-    const [loadingM, setLoadingM] = useState(false);
-    const { data: shops = [], refetch } = useQuery({
+    const { data: shops = [], refetch, isLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:3210/api/v2/shops/${user?.email}`)
@@ -23,8 +21,9 @@ const RequestForSeller = () => {
         }
     })
     const requestValidation = (id) => {
-        const update = { status: "Unauthorized" }
-        fetch(`http://localhost:2100/shop/${id}`, {
+
+        const update = { status: "pending" }
+        fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -33,26 +32,17 @@ const RequestForSeller = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    successMessage('Request Sand')
-                }
+                successMessage('Request Sand')
                 refetch()
             })
     }
-    useEffect(() => {
-        setLoadingM(true)
-        setTimeout(() => {
-            setLoadingM(false)
-        }, 150)
-    }, [])
-
-    if (loadingM) return <div className="flex justify-center items-center w-full h-[60vh]">
-        <PrimaryLoading />
+    if (isLoading)
+        return
+    <div className="flex justify-center items-center w-full h-[60vh]"> <PrimaryLoading />
     </div>
-    console.log(shops);
     return (
         <BodyTemplate>
-            <div className="w-full mx-auto mb-5">
+            <div className="w-full mx-auto mb-5 ">
                 <div className=" flex gap-4 p-4 bg-white rounded shadow items-center justify-between">
                     <p className='mb-4 font-bold text-xl'>Add Shop</p>
                     <div className="">
@@ -69,40 +59,40 @@ const RequestForSeller = () => {
                 <div className="">
                     {shops?.map(shop =>
                         <div className="my-4" key={shop?._id}>
-                            <div className="flex gap-6 p-4 bg-white rounded shadow items-center justify-between" >
+                            <div className="flex gap-6  p-4 bg-white rounded shadow items-center " >
                                 <div className="">
                                     <div className="">
                                         <img src={shop?.photoUrl} height="220px" width="220px" alt="" />
                                     </div>
                                 </div>
-                                <div className="">
+                                <div className="flex-1">
                                     <p className='text-xl'>{shop?.name} </p>
                                     <p className='text-gray-600 h-20 overflow-scroll'>{shop?.location}</p>
                                     <p>status: {shop?.status}</p>
-                                </div>
-                                <div className="">
-                                    {shop?.status === 'Unauthorized' &&
-                                        <SecondaryButton>
-                                            <p>request  For verify</p>
-                                        </SecondaryButton>}
+                                    <p>category:{shop?.category}</p>
+                                    <div className=" w-80">
+                                        {shop?.status === ('pending' || 'verified') ? "" :
+                                            <button onClick={() => requestValidation(shop?._id)}>
+                                                <SecondaryButton>
+                                                    <p>request  For verify</p>
+                                                </SecondaryButton>
+                                            </button>}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
 
-                <div className="flex flex-wrap -mx-3">
+                {/* <div className="flex flex-wrap -mx-3">
                     <div className="flex-none w-full max-w-full px-3">
                         <div className="relative flex flex-col min-w-0 mb-6 break-words  border-0 border-transparent border-solid shadow-xl   rounded-2xl bg-clip-border">
-                            {/* <div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                                <h6 className="">Your Shops</h6>
-                            </div> */}
                             <div className="flex-auto px-0 pt-0 pb-2">
                                 <div className="p-0 overflow-x-auto">
                                     <table className="items-center w-full mb-0 align-top border-collapse text-slate-500">
                                         <thead className="align-bottom">
                                             <tr>
-                                                <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">Your Products</th>
+                                                <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">Your Shops</th>
                                                 <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowra opacity-70">catagories</th>
                                                 <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap  opacity-70">Status</th>
                                                 <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none   tracking-none whitespace-nowra opacity-70"></th>
@@ -149,7 +139,7 @@ const RequestForSeller = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div >
             {shopModal &&
                 <AddShopModal

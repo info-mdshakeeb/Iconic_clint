@@ -9,11 +9,12 @@ const DashboardLayout = () => {
     const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:2100/user?email=${user?.email}`)
+            const res = await fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`)
             const data = await res.json()
             return data.data[0]
         }
     })
+    console.log(useR);
     const className = 'flex items-center px-6 py-1 mt-5 text-gray-500 transition-colors duration-300 transform rounded-md hover:bg-gray-100  hover:text-gray-700 '
     const navLink =
         <>

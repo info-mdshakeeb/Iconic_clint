@@ -27,6 +27,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             name: data.name,
             photoUrl: data.photourl,
             location: data.location,
+            category: data.category,
             status: 'Unauthorized',
             shopCreated: new Date()
         }
@@ -87,7 +88,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
                         </div>
                         <div className="form-control ">
                             <label className="label">
-                                sellect Category
+                                select Category
                             </label>
                             <select className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.category ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
                                 {...register("category", { required: 'needed category' })}

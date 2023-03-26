@@ -4,9 +4,9 @@ import PrimaryButton from '../share/Buttons/PrimaryButton';
 import ShopCard from '../share/Cart/ShopCard';
 
 const ShopsSection = () => {
-    const datas = [
+    const data = [
         {
-            banadName: 'Mens World',
+            brandName: 'Mens World',
             brandLocation: {
                 road: '68',
                 city: 'Palton',
@@ -16,7 +16,7 @@ const ShopsSection = () => {
 
         },
         {
-            banadName: 'Samsung Smart Plaza Bashundhara City',
+            brandName: 'Samsung Smart Plaza Bashundhara City',
             brandLocation: {
                 road: '',
                 city: '',
@@ -25,7 +25,7 @@ const ShopsSection = () => {
             brandImg: 'https://media.e-valy.com/cms/brands/logo/d6f8dbe8-c79c-4160-a99e-4c9fb8758a61'
 
         }, {
-            banadName: 'One Plus Official',
+            brandName: 'One Plus Official',
             brandLocation: {
                 road: '',
                 city: '',
@@ -34,7 +34,7 @@ const ShopsSection = () => {
             brandImg: 'https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2'
 
         }, {
-            banadName: 'Nabil Enterprise',
+            brandName: 'Nabil Enterprise',
             brandLocation: {
                 road: '',
                 city: '',
@@ -44,7 +44,7 @@ const ShopsSection = () => {
 
         },
         {
-            banadName: 'Jamuna Electronics ',
+            brandName: 'Jamuna Electronics ',
             brandLocation: {
                 road: '',
                 city: '',
@@ -54,7 +54,7 @@ const ShopsSection = () => {
 
         },
         {
-            banadName: 'Oppo Official Store For PNP',
+            brandName: 'Oppo Official Store For PNP',
             brandLocation: {
                 road: '',
                 city: '',
@@ -73,7 +73,7 @@ const ShopsSection = () => {
                     <PrimaryButton><Link to='/shops'>see more</Link></PrimaryButton>
                 </div>
                 <ShopCard
-                    datas={datas} />
+                    shopsData={data} />
             </div>
         </div>
     );

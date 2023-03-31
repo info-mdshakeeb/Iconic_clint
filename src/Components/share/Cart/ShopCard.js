@@ -11,7 +11,7 @@ const ShopCard = ({ shopsData }) => {
                         <a href="/" className='p-4' >
                             <div className="h-[135px] " >
                                 <img className=' max-h-32 w-32 mx-auto'
-                                    src={data.brandImg} alt="" />
+                                    src={data.photoUrl} alt="" />
                             </div>
                             <div className="h-[50px] w-full ">
                                 <p className='lg:font-medium text-center hover:underline'>{data?.brandName.length > 30 ? data?.brandName.slice(0, 20) + '...' : data?.brandName}</p>

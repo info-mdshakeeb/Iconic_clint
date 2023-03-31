@@ -3,6 +3,8 @@ import React from 'react';
 import { BiUser } from "react-icons/bi";
 import { Link, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
+
+import { getUser } from '../../Api/api';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
@@ -11,11 +13,8 @@ const Navbar = ({ need }) => {
     // console.log(user);
     const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`)
-            const data = await res.json()
-            return data.data[0]
-        }
+        queryFn: () => getUser(user?.email),
+        enabled: !!user?.email
     })
 
     const handleLLogout = () => {
@@ -44,7 +43,7 @@ const Navbar = ({ need }) => {
         })
     }
     return (
-        <header className='shadow-md shadow-gray-200  sticky top-0 z-50 bg-white ' >
+        <header className='shadow-sm shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
                     <a href='/' className='text-2xl font-bold text-gray-800 transition-colors duration-300  hover:text-gray-700'>ICONIC</a>

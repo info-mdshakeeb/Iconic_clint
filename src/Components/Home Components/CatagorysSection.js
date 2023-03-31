@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { getCatagories } from '../../Api/api.js';
 
 import { Link } from 'react-router-dom';
 import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
@@ -8,11 +9,7 @@ const CatagoriesSection = () => {
 
     const { data: catagories = [], isLoading, refetch } = useQuery({
         queryKey: ['catagories'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:3210/api/v2/catagories`)
-            const data = await res.json()
-            return data.data
-        }
+        queryFn: getCatagories,
     })
 
     if (isLoading) return <div className="flex justify-center items-center w-full h-[200px]">

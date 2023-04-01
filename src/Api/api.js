@@ -30,3 +30,15 @@ export const pendingShops = async () => {
     const data = await res.json()
     return data.data
 }
+export const verifiedShopsAPI = async (limit) => {
+    if (limit) {
+        const res = await fetch(`http://localhost:3210/api/v2/shops/type/verified?limit=${limit}`)
+        const data = await res.json()
+        return data.data
+    } else {
+        const res = await fetch(`http://localhost:3210/api/v2/shops/type/verified`)
+        const data = await res.json()
+        return data.data
+    }
+
+}

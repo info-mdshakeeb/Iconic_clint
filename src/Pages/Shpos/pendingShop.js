@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { pendingShops } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
@@ -7,12 +7,11 @@ import AlartMessage from '../../Hooks/AlartMessage';
 
 const PendingShop = () => {
     const { successMessage } = AlartMessage();
-    const [pending_Shops, setPendingShops] = useState(true);
+
     const { data: shops = [], refetch, isLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: () => pendingShops(),
     })
-
     const handelShopUpdate = (id) => {
         const update = { status: "verified" }
         fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
@@ -28,18 +27,13 @@ const PendingShop = () => {
                 refetch()
             })
     }
-
-    setTimeout(() => {
-        setPendingShops(false)
-    }, 500)
-
-    if (isLoading || pending_Shops)
+    if (isLoading)
         return <div className="flex justify-center items-center w-full h-[60vh]">
             <PrimaryLoading />
         </div>
     return (
         <div className='min-h-[80vh] overflow-y-hidden p-4'>
-            <div className='px-4'>
+            {shops.length > 0 ? <div className='px-4'>
                 <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
                     <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                         <span>Shop Details</span>
@@ -49,7 +43,7 @@ const PendingShop = () => {
                     </div>
                     <ul>
                         {shops?.map(shop =>
-                            <li key={shop.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
+                            <li key={shop?.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
                                 <div className="flex items-center space-x-2">
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-8 h-8">
@@ -80,12 +74,13 @@ const PendingShop = () => {
                                 </div>
                             </li>
 
-                        )
-                        }
+                        )}
                     </ul>
                 </div>
-            </div>
-
+            </div> :
+                <div className='flex justify-center items-center w-full h-[69vh] text-5xl'>
+                    No pending Shops (;
+                </div>}
         </div>
     );
 };

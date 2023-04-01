@@ -3,12 +3,31 @@ import React, { useState } from 'react';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { pendingShops } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
+import AlartMessage from '../../Hooks/AlartMessage';
+
 const PendingShop = () => {
+    const { successMessage } = AlartMessage();
     const [pending_Shops, setPendingShops] = useState(true);
     const { data: shops = [], refetch, isLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: () => pendingShops(),
     })
+
+    const handelShopUpdate = (id) => {
+        const update = { status: "verified" }
+        fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(update)
+        })
+            .then(res => res.json())
+            .then(data => {
+                successMessage('Request Sand')
+                refetch()
+            })
+    }
 
     setTimeout(() => {
         setPendingShops(false)
@@ -48,11 +67,14 @@ const PendingShop = () => {
                                 <span className='hidden md:flex'>
                                     {shop?.ownerName}
                                 </span>
-
                                 <div className='flex  items-center justify-between'>
                                     <div className="btn-group btn-xs text-white">
-                                        <button className="btn btn-warning btn-xs">Verify</button>
-                                        <button className="btn btn-xs btn-warning">Delete</button>
+                                        <button
+                                            onClick={() => { handelShopUpdate(shop?._id) }}
+                                            className="btn btn-warning btn-xs">Verify</button>
+                                        <button className="btn btn-xs btn-warning"
+                                            onClick={() => successMessage("working on it")}
+                                        >Delete</button>
                                     </div>
                                     <BsThreeDotsVertical />
                                 </div>

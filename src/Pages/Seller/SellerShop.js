@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { getCatagories } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddShopModal from '../../Components/Modal/AddShopModal';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
@@ -14,6 +15,7 @@ const RequestForSeller = () => {
     const { successMessage } = AlartMessage();
     const [shopModal, setShopeModal] = useState(false);
     const [shops, setShops] = useState([]);
+    const [shopsId, setShopsId] = useState(null);
 
     const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['shops'],
@@ -22,13 +24,26 @@ const RequestForSeller = () => {
             const data = await res.json()
             setShops(data.data)
             return data.data
-        },
-
+        }
     })
-    console.log('shops', shops);
+    const { data: catagories = [] } = useQuery({
+        queryKey: ['catagories'],
+        queryFn: getCatagories,
+        enabled: !!data
+    })
+    const requestValidation = (id, type) => {
 
-    const requestValidation = (id) => {
-        const update = { status: "pending" }
+        if (type === 'pending') {
+            const update = { status: "pending" }
+            updateShop(id, update)
+        }
+        else {
+            const update = { category: type }
+            updateShop(id, update)
+        }
+    }
+
+    const updateShop = (id, update) => {
         fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
             method: "PUT",
             headers: {
@@ -41,6 +56,14 @@ const RequestForSeller = () => {
                 successMessage('Request Sand')
                 refetch()
             })
+    }
+
+    const handelCategory = (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const catagories = form.catagories.value;
+        requestValidation(shopsId, catagories);
     }
 
     if (isLoading)
@@ -67,12 +90,12 @@ const RequestForSeller = () => {
                         <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                             <span>Shop Details</span>
                             <span className='hidden md:grid'>Your Mail</span>
-                            <span className='hidden md:grid'>status</span>
+                            <span className='hidden md:grid'>status & Type</span>
                             <span className='sm:text-left text-left'>Action</span>
                         </div>
                         <ul>
                             {shops.map(shop =>
-                                <li key={shop.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
+                                <li key={shop.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer gap-3'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
@@ -86,19 +109,43 @@ const RequestForSeller = () => {
                                         </div>
                                     </div>
                                     <p className='hidden md:flex'> {shop?.ownerEmail}</p>
-
-                                    <span className='hidden md:flex'>
-                                        {shop?.status}
+                                    <span className='hidden md:flex pl-3'>
+                                        {shop?.status}  {shop?.status === 'verified' ?
+                                            <span className='text-green-500 ml-3'>{shop?.category}</span> : ""}
                                     </span>
 
                                     <div className='flex  items-center justify-between'>
                                         <div className=" ">
-                                            {shop?.status === ('pending' || 'verified') ? "request sent" :
-                                                <button onClick={() => requestValidation(shop?._id)}>
-                                                    <SecondaryButton>
-                                                        <p>request  For verify</p>
-                                                    </SecondaryButton>
-                                                </button>}
+                                            {shop?.status === 'verified' ?
+                                                <>
+                                                    <form action=""
+                                                        onSubmit={handelCategory}
+                                                    >
+                                                        <select required name="catagories" className="select select-bordered select-sm  max-w-xs">
+                                                            {catagories?.map(category =>
+                                                                <option key={category?._id} >{category?.name}</option>)
+                                                            }
+                                                        </select>
+                                                        {shop?.category ?
+                                                            <button
+                                                                onClick={() => setShopsId(shop?._id)}
+                                                                className='ml-4 btn btn-xs btn-warning'>Update</button>
+                                                            :
+                                                            <button
+                                                                onClick={() => setShopsId(shop?._id)}
+                                                                className='ml-4 btn btn-xs btn-warning'>publish</button>}
+                                                    </form>
+                                                </>
+                                                :
+                                                <>
+                                                    {shop?.status === 'pending' ? "request sent" :
+                                                        <button onClick={() => requestValidation(shop?._id, "pending")}>
+                                                            <SecondaryButton>
+                                                                <p>request  For verify</p>
+                                                            </SecondaryButton>
+                                                        </button>}
+                                                </>
+                                            }
                                         </div>
                                         <BsThreeDotsVertical />
                                     </div>

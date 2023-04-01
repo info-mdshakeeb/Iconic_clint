@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useFirebaseInfo } from '../../Context/UserContext';
@@ -10,14 +9,6 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
     const { successMessage } = AlartMessage()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const { data: catagories = [] } = useQuery({
-        queryKey: ['catagories'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:3210/api/v2/catagories`)
-            const data = await res.json()
-            return data.data
-        }
-    })
     // console.log(catagories);
     const onSubmit = data => {
         console.log(data);
@@ -27,7 +18,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             name: data.name,
             photoUrl: data.photourl,
             location: data.location,
-            category: data.category,
+            category: null,
             status: 'Unauthorized',
             shopCreated: new Date()
         }
@@ -86,22 +77,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
                             />
                             {errors.location && <span className="label-text text-red-400">{errors?.location.message}</span>}
                         </div>
-                        <div className="form-control ">
-                            <label className="label">
-                                select Category
-                            </label>
-                            <select className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg ${errors.category ? ' border-red-700 focus:ring-red-300' : 'focus:border-blue-400 focus:ring-blue-300'} focus:outline-none focus:ring focus:ring-opacity-40`}
-                                {...register("category", { required: 'needed category' })}
-                            >
-                                <option></option>
-                                {catagories?.map(catagory =>
-                                    <option key={catagory._id}>
-                                        {catagory.name}
-                                    </option>)
-                                }
-                            </select>
-                            <div className="">{errors.category && <span className="label-text text-red-400">{errors?.category.message}</span>}</div>
-                        </div>
+
                         <div className="mt-4">
                             <SecondaryButton>
                                 Add Shop

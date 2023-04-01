@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="text"]:focus ~ .input-text,
-input[type="text"]:not(:placeholder-shown) ~ .input-text {
-  @apply text-blue-500 transform -translate-y-10 -translate-x-2 scale-75;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap");
+
+body {
+  font-family: "Space Grotesk";
 }

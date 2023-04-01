@@ -19,6 +19,7 @@ const DashboardLayout = () => {
         <>
             <NavLink className={className} to='/dashboard/profile'>Account</NavLink>
             <NavLink className={className} to='/dashboard/orders'>My orders</NavLink>
+            <NavLink className={className} to='/dashboard/products/pending'>Pending Shops</NavLink>
             {<NavLink className={className} to='/dashboard/sellerShop'>Your Shops</NavLink>}
             {<NavLink className={className} to='/dashboard/addproducts'>Add Product</NavLink>}
         </>

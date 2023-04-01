@@ -1,3 +1,5 @@
+
+
 export const getUser = async (email) => {
     const res = await fetch(`http://localhost:3210/api/v2/users?email=${email}`)
     const data = await res.json()
@@ -16,3 +18,15 @@ export const getUserShops = async (email) => {
     return data.data
 }
 
+export const getShopsByUser = async (email) => {
+    const res = await fetch(`http://localhost:3210/api/v2/shops/${email}`)
+    const data = await res.json()
+    return data.data
+}
+
+
+export const pendingShops = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/shops/type/pending`)
+    const data = await res.json()
+    return data.data
+}

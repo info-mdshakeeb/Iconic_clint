@@ -17,6 +17,7 @@ import Products from "../Pages/Products/Products";
 import Profile from "../Pages/Profile/Profile";
 import SellerShop from "../Pages/Seller/SellerShop";
 import Shops from "../Pages/Shpos/Shops";
+import PendingShop from "../Pages/Shpos/pendingShop";
 import PrivateRouters from "./PrivateRouters";
 
 
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([{
     children: [
         { path: '/dashboard/sellerShop', element: <SellerShop /> },
         { path: '/dashboard/addproducts', element: <AddProducts /> },
+        { path: '/dashboard/products/pending', element: <PendingShop /> },
     ]
 },
 { path: '/login', element: <Login /> },

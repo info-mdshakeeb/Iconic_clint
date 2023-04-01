@@ -42,3 +42,8 @@ export const verifiedShopsAPI = async (limit) => {
     }
 
 }
+export const getShopByCategory = async (id) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/${id}`)
+    const data = await res.json()
+    return data.data
+}

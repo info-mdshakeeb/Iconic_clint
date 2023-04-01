@@ -7,16 +7,10 @@ import PrimaryButton from '../share/Buttons/PrimaryButton';
 import ShopCard from '../share/Cart/ShopCard';
 
 const ShopsSection = () => {
-
-    const { data: shops = [], isLoading, refetch } = useQuery({
+    const { data: shops = [], isLoading, isFetching, isInitialLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: () => verifiedShopsAPI(12)
     })
-
-    if (isLoading) return <div className="flex justify-center items-center w-full h-[200px]">
-        <PrimaryLoading />
-    </div>
-    refetch()
     return (
         <div className='container px-3 md:px-9 m-auto '>
             <div className="py-4">
@@ -24,8 +18,13 @@ const ShopsSection = () => {
                     <p className=" font-bold text-2xl">Shops</p>
                     <PrimaryButton><Link to='/shops'>see more</Link></PrimaryButton>
                 </div>
-                <ShopCard
-                    shopsData={shops} />
+                {isInitialLoading || isFetching || isLoading ?
+                    <div className="flex justify-center items-center w-full h-[200px]">
+                        <PrimaryLoading />
+                    </div>
+                    :
+                    <ShopCard
+                        shopsData={shops} />}
             </div>
         </div>
     );

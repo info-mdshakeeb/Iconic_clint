@@ -1,8 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import ProductCard from '../../Components/share/Cart/ProductCard';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const ShopDetails = () => {
+    const { id } = useParams()
+    console.log(id);
     const products = [
         {
             name: 'Microwear W26+ Pro Smartwatch - Black',

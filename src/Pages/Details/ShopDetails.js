@@ -1,11 +1,20 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { getShopById } from '../../Api/api';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import ProductCard from '../../Components/share/Cart/ProductCard';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const ShopDetails = () => {
     const { id } = useParams()
-    console.log(id);
+    // console.log(id);
+    const { data: shop = [], isLoading, isFetching, isInitialLoading } = useQuery({
+        queryKey: ['products'],
+        queryFn: () => getShopById(id),
+        enabled: !!id
+    })
+    console.log(shop);
     const products = [
         {
             name: 'Microwear W26+ Pro Smartwatch - Black',
@@ -38,18 +47,27 @@ const ShopDetails = () => {
             dropPrice: '200'
         },
     ]
+
+    if (isInitialLoading || isFetching || isLoading) {
+        return <div className="flex justify-center items-center w-full h-[600px]">
+            <PrimaryLoading />
+        </div>
+    }
+
+
     return (
         <BodyTemplate >
             <div className="flex gap-4 p-4 bg-white rounded shadow">
                 <div className="">
                     <div className="">
-                        <img src="https://media.e-valy.com/cms/brands/logo/44d44b1d-f302-45b0-9af7-78f3b146d1e2" height="120px" width="120px" alt="" />
+                        <img src={shop?.photoUrl} height="120px" width="120px" alt="" />
                     </div>
                 </div>
                 <div className="flex-1">
-                    <p className='text-xl'>One Plus Official For CBD
+                    <p className='text-xl'>{shop?.name}
                     </p>
-                    <p className='text-gray-600'>Sel Rose N Dale, 116 Kazi Nazrul Islam Avenue, Banglamotor, Dhaka-1205, Dhaka, Dhaka</p>
+                    <p className='text-gray-600'>{shop?.location}</p>
+
                 </div>
             </div>
             <br />

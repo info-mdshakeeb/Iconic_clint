@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { getCatagories } from '../../Api/api';
+import { getCatagories, getUserShops } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddShopModal from '../../Components/Modal/AddShopModal';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
@@ -14,25 +14,18 @@ const RequestForSeller = () => {
     const { user } = useFirebaseInfo();
     const { successMessage } = AlartMessage();
     const [shopModal, setShopeModal] = useState(false);
-    const [shops, setShops] = useState([]);
     const [shopsId, setShopsId] = useState(null);
 
-    const { data = [], refetch, isLoading } = useQuery({
+    const { data: shops = [], refetch, isLoading, isInitialLoading, isFetching } = useQuery({
         queryKey: ['shops'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:3210/api/v2/shops/${user?.email}`)
-            const data = await res.json()
-            setShops(data.data)
-            return data.data
-        }
+        queryFn: () => getUserShops(user?.email),
     })
     const { data: catagories = [] } = useQuery({
         queryKey: ['catagories'],
         queryFn: getCatagories,
-        enabled: !!data
+        enabled: !!shops
     })
     const requestValidation = (id, type) => {
-
         if (type === 'pending') {
             const update = { status: "pending" }
             updateShop(id, update)
@@ -60,16 +53,15 @@ const RequestForSeller = () => {
 
     const handelCategory = (e) => {
         e.preventDefault()
-
         const form = e.target;
         const catagories = form.catagories.value;
         requestValidation(shopsId, catagories);
     }
 
-    if (isLoading)
-        return
-    <div className="flex justify-center items-center w-full h-[60vh]"> <PrimaryLoading />
-    </div>
+    if (isLoading || isInitialLoading || isFetching)
+        return <div className="flex justify-center items-center w-full h-[60vh]">
+            <PrimaryLoading />
+        </div>
     return (
         <BodyTemplate>
             <div className="w-full mx-auto mb-5 ">

@@ -2,6 +2,20 @@ import React from 'react';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const ProductDetail = () => {
+
+    const productDescription = [
+        { name: "Network", data: "2G, 3G, 4G" },
+        { name: "Display", data: "6.7 inches" },
+        { name: "Resolution", data: "Full HD+ 1080 x 2400 pixels" },
+        { name: "Front Camera Resolution", data: "16 Megapixel" },
+        { name: "Rear Camera Resolution", data: "48 Megapixel + 8 Megapixel + 2 Megapixel + 2 Megapixel" },
+        { name: "Battery Type and Capacity", data: "Lithium-polymer 5000 mAh (non-removable)" },
+        { name: "Operating System", data: "Android 11 (XOS 10.6)" },
+        { name: "RAM", data: "6 GB" },
+        { name: "Processor", data: "Octa-core, up to 2.0 GHz" },
+        { name: "ROM", data: "128 GB" },
+    ]
+
     return (
         <BodyTemplate>
             <div className="p-4 my-6 bg-white shadow">
@@ -35,10 +49,13 @@ const ProductDetail = () => {
                             Specification:
                         </p>
                         <div className="">
-                            <dl className="flex gap-4 mb-1">
-                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Brand :</dt>
-                                <dd className="flex-1 text-gray-500">Shakeeb</dd>
-                            </dl>
+                            {productDescription.map(details =>
+                                <dl className="flex gap-4 mb-1">
+                                    <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">{details.name}</dt>
+                                    <dd className="flex-1 text-gray-500">{details.data}</dd>
+
+                                </dl>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -83,25 +100,12 @@ const ProductDetail = () => {
                 </div>
             </div>
             <div className="p-4 my-6 bg-white shadow">
-                <p className=''>Description</p>
+                <p className=''>Description :</p>
                 <p className='text-gray-600'>
-                    Operating System: realme UI 3.0 | Based on Android 12
-                    Processor: MediaTek Dimensity 920 5G Processor
-                    CPU: Octa-core, 6nm, up to 2.5GHz
-                    GPU: Arm Mali-G68 MC4
-                    RAM: Up to 13GB (8GB+5GB) Dynamic RAM
-                    ROM: 128GB UFS 2.2
-                    Network: 2G/3G/4G/5G
-                    Sim Slot: 2 Nano Card Slots
-                    Rear Camera: 50MP+2MP+8MP
-                    Rear Camera Mechanism: Sony IMX766 Sensor, F/1.8 Aperture, OIS (Primary Camera) | f/2.4 aperture, EIS, 88.8° FOV (Macro Lens) | f/2.2, 5P Lens, EIS, 119° FOV (Ultra Wide-angle Lens)
-                    Front Camera: 16MP In-display Selfie | Aperture: F2.4 | FOV: 78°
-                    Display Size: 6.4" | 90Hz Super AMOLED Display | Touch sampling rate: 360Hz
-                    Display Resolution: 2400x1080 FHD+
-                    Battery: 4500mAh | 60W SuperDart Charge | Includes a 10V/6.5A Charging Adaptor
-                    Connectivity: Wi-Fi 2.4/5GHz (IEEE802.11 a/b/g/n/ac/ax) | Bluetooth 5.2 | GPS
-                    Buttons & Ports: USB Type-C | 3.5 mm Earphone Port | Dual Speakers | Dual Microphones | Volume up / down
-                    Sensors: Magnetic induction sensor | Light sensor | Proximity Sensor | Acceleration sensor | in-display fingerprint sensor with heart rate monitor
+                    {productDescription.map(details => <>
+                        <p className='inline'>{details.name} {" "} {details.data}</p>
+                        <p className='inline'></p>
+                    </>)}
                 </p>
             </div>
             <div className=""></div>

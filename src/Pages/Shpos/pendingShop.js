@@ -8,7 +8,7 @@ import AlartMessage from '../../Hooks/AlartMessage';
 const PendingShop = () => {
     const { successMessage } = AlartMessage();
 
-    const { data: shops = [], refetch, isLoading } = useQuery({
+    const { data: shops = [], refetch, isLoading, isFetching, isInitialLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: () => pendingShops(),
     })
@@ -27,7 +27,7 @@ const PendingShop = () => {
                 refetch()
             })
     }
-    if (isLoading)
+    if (isLoading || isFetching || isInitialLoading)
         return <div className="flex justify-center items-center w-full h-[60vh]">
             <PrimaryLoading />
         </div>

@@ -7,18 +7,16 @@ import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const CatagoriesSection = () => {
 
-    const { data: catagories = [], isLoading, refetch, isFetching, isInitialLoading } = useQuery({
+    const { data: catagories = [], isLoading, isFetching, isInitialLoading } = useQuery({
         queryKey: ['catagories'],
         queryFn: getCatagories,
     })
-    if (isLoading || isFetching || isInitialLoading) return <div className="flex justify-center items-center w-full h-[200px]">
-        <PrimaryLoading />
-    </div>
+
 
     return (
         <div className="container px-3 md:px-9 m-auto mb-5 ">
             {isInitialLoading || isFetching || isLoading ?
-                <div className="flex justify-center items-center w-full h-[200px]">
+                <div className="flex justify-center items-center w-full md:h-[170px]">
                     <PrimaryLoading />
                 </div>
                 :

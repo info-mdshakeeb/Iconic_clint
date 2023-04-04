@@ -7,7 +7,6 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 
 const MyProducts = () => {
     const { user } = useFirebaseInfo();
-
     const [productId, setProductID] = useState(null);
     const { data: products = [], isInitialLoading, isFetching, isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -34,12 +33,12 @@ const MyProducts = () => {
                 console.log(err);
             })
     }
-
-
+    console.log(products);
     if (isLoading || isInitialLoading)
         return <div className="flex justify-center items-center w-full h-[60vh]">
             <PrimaryLoading />
         </div>
+
     return (
         <div>
             <div className='min-h-[80vh] overflow-y-hidden'>
@@ -57,16 +56,15 @@ const MyProducts = () => {
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
-                                                <img src="" alt="Avatar" />
+                                                <img src={product?.ImgUrls[0]} alt="Avatar" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">shakeeb </div>
-                                            <div className="text-sm opacity-50">seller {" "} ID: 234</div>
+                                            <div className="font-bold">{product?.Names} </div>
+                                            <div className="text-sm opacity-50">{product?.BrandNames}</div>
                                         </div>
                                     </div>
-                                    <p className='hidden md:flex'>@edf.csdc in <span className='px-2 text-green-500'>{product?.shop}</span></p>
-
+                                    <p className='hidden md:flex'>{product?.Quantity}  in : <span className='px-2 text-green-500'>{product?.shop}</span></p>
                                     <form action="" onSubmit={handelShop}
                                     >
                                         <select required name="shops" className="select select-bordered select-sm  w-48">
@@ -82,19 +80,14 @@ const MyProducts = () => {
                                     </form>
                                     <div className='flex  items-center justify-between'>
                                         {product?.status === "published" ?
-                                            <button
-                                                onClick={() => handelUpdate({ status: 'hide' })}
-                                                htmlFor="confirmation-modal" className="btn btn-warning btn-xs">Hide</button> :
+                                            <p className=' rounded-md bg-green-500 px-2' >Active</p> :
                                             <button
                                                 onClick={() => handelUpdate({ status: 'published' })}
                                                 htmlFor="confirmation-modal" className="btn btn-warning btn-xs">Publish</button>}
                                         <BsThreeDotsVertical />
                                     </div>
                                 </li>
-
                             )}
-
-
                         </ul>
                     </div>
                 </div>

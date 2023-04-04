@@ -69,11 +69,29 @@ export const updateProductApi = async (id, product) => {
     const data = await res.json()
     return data
 }
-
+//get all products:
+export const getProductsApi = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/products`)
+    const data = await res.json()
+    return data.data
+}
+// get limit products:
+export const getLimitProductsApi = async (limit) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products?limit=${limit}`)
+    const data = await res.json()
+    return data.data
+}
 
 //get all products by user:
 export const getProductsByUserApi = async (email) => {
     const res = await fetch(`http://localhost:3210/api/v2/products/user/${email}`)
+    const data = await res.json()
+    return data.data
+}
+
+//get all products by shop:
+export const getProductsByShopApi = async (id) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/shop_id/${id}`)
     const data = await res.json()
     return data.data
 }

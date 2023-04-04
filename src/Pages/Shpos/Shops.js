@@ -22,7 +22,6 @@ const ShopsAll = () => {
                 <div className="flex justify-center items-center w-full h-[600px]">
                     <PrimaryLoading />
                 </div> :
-
                 <ShopCard
                     shopsData={dates} />}
         </TemplateCPS>

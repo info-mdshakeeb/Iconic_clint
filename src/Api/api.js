@@ -11,7 +11,7 @@ export const getCatagories = async () => {
     return data.data
 }
 export const getShopByCategory = async (id) => {
-    const res = await fetch(`http://localhost:3210/api/v2/products/${id}`)
+    const res = await fetch(`http://localhost:3210/api/v2/catagories/${id}`)
     const data = await res.json()
     return data.data
 }
@@ -42,4 +42,38 @@ export const getShopById = async (id) => {
     const res = await fetch(`http://localhost:3210/api/v2/shops/id/${id}`)
     const data = await res.json()
     return data.data[0]
+}
+
+//product functions :
+//add product :
+export const addProductApi = async (product) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product)
+    })
+    const data = await res.json()
+    return data
+}
+// update product :
+export const updateProductApi = async (id, product) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product)
+    })
+    const data = await res.json()
+    return data
+}
+
+
+//get all products by user:
+export const getProductsByUserApi = async (email) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/user/${email}`)
+    const data = await res.json()
+    return data.data
 }

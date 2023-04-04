@@ -13,7 +13,7 @@ const Catagory = () => {
         queryFn: () => getShopByCategory(id),
         enabled: !!id
     })
-    console.log(catagories);
+
     return (
         <TemplateCPS
             type={'Category'}

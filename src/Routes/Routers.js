@@ -13,6 +13,7 @@ import SignUp from "../Pages/Login/SignUp";
 import AddToCart from "../Pages/Order/AddToCart";
 import Order from "../Pages/Order/Order";
 import AddProducts from "../Pages/Products/AddProducts";
+import MyProducts from "../Pages/Products/MyProducts";
 import Products from "../Pages/Products/Products";
 import Profile from "../Pages/Profile/Profile";
 import SellerShop from "../Pages/Seller/SellerShop";
@@ -45,6 +46,7 @@ export const router = createBrowserRouter([{
         { path: '/dashboard/sellerShop', element: <SellerShop /> },
         { path: '/dashboard/addproducts', element: <AddProducts /> },
         { path: '/dashboard/products/pending', element: <PendingShop /> },
+        { path: '/dashboard/MyProducts', element: <MyProducts /> },
     ]
 },
 { path: '/login', element: <Login /> },

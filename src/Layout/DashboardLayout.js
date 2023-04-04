@@ -13,7 +13,8 @@ const DashboardLayout = () => {
         enabled: !!user?.email
     })
 
-    console.log(useR.role);
+    // console.log(useR.role)
+
     const className = 'flex items-center px-6 py-1 mt-5 text-gray-500 transition-colors duration-300 transform rounded-md hover:bg-gray-100  hover:text-gray-700 '
     const navLink =
         <>
@@ -22,6 +23,7 @@ const DashboardLayout = () => {
             <NavLink className={className} to='/dashboard/products/pending'>Pending Shops</NavLink>
             {<NavLink className={className} to='/dashboard/sellerShop'>Your Shops</NavLink>}
             {<NavLink className={className} to='/dashboard/addproducts'>Add Product</NavLink>}
+            {<NavLink className={className} to='/dashboard/MyProducts'>Your Products</NavLink>}
         </>
     return (
 

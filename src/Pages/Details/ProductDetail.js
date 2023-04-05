@@ -1,61 +1,116 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductByIdApi, getShopById } from '../../Api/api';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
+import Variants from '../../Components/Variants/Variants';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const ProductDetail = () => {
+    const { id } = useParams();
+    const [img, setImg] = useState(null);
+    const [variantsPrice, setVariantsPrice] = useState(null);
 
-    const productDescription = [
-        { name: "Network", data: "2G, 3G, 4G" },
-        { name: "Display", data: "6.7 inches" },
-        { name: "Resolution", data: "Full HD+ 1080 x 2400 pixels" },
-        { name: "Front Camera Resolution", data: "16 Megapixel" },
-        { name: "Rear Camera Resolution", data: "48 Megapixel + 8 Megapixel + 2 Megapixel + 2 Megapixel" },
-        { name: "Battery Type and Capacity", data: "Lithium-polymer 5000 mAh (non-removable)" },
-        { name: "Operating System", data: "Android 11 (XOS 10.6)" },
-        { name: "RAM", data: "6 GB" },
-        { name: "Processor", data: "Octa-core, up to 2.0 GHz" },
-        { name: "ROM", data: "128 GB" },
-    ]
+    const { data: product = [] } = useQuery({
+        queryKey: ['product' + id, id],
+        queryFn: () => getProductByIdApi(id),
+        enabled: !!id
+    })
+    const { data: shop = [], isFetching, isLoading, isInitialLoading } = useQuery({
+        queryKey: ['shop' + product?.shopId, product?.shopId],
+        queryFn: () => getShopById(product?.shopId),
+        enabled: !!id && !!product?.shopId
+    })
 
+    if (isLoading || isInitialLoading || isFetching) {
+        return <div className="flex justify-center items-center w-full h-[600px]">
+            <PrimaryLoading />
+        </div>
+    }
+    console.log(product);
     return (
         <BodyTemplate>
             <div className="p-4 my-6 bg-white shadow">
                 <div className="flex flex-col gap-4 md:flex-row">
                     <div className="flex-shrink-0 flex-1">
-                        <div className="md:max-w-[500px] lg:max-w-[600px] ">
-                            <figure className=''>
+                        <div className="md:max-w-[500px]  ">
+                            <figure className='flex justify-center items-center'>
                                 <div className="">
-                                    <img src="https://prodpublicbucket.blob.core.windows.net/cms/products/images/cf230154-25a8-4d90-8f7e-48a9c2c15d1f" alt="" />
+                                    {img ? <img className='h-[450px]' src={img} alt="" /> :
+                                        <img className='h-[450px]' src={product?.ImgUrls[1]} alt="" />}
                                 </div>
                             </figure>
                             <div className="mt-2">
                                 <ul className="flex gap-2 overflow-x-auto flex-nowrap hide-scrollbar">
-                                    <li className='cursor-pointer hover:border-gray-600 transition-colors duration-300 border-2 flex-shrink-0 '>
-                                        <div className="">
-                                            <img src="https://media.e-valy.com/cms/products/images/7a848abe-821d-4ed9-8aff-a4809c247783" alt="" height="50px" width="50px" />
-                                        </div>
-                                    </li>
+                                    <div className="flex gap-3">
+                                        {product?.ImgUrls.map((img, i) =>
+                                            <li
+                                                key={i}
+                                                onClick={() => setImg(img)}
+                                                className='cursor-pointer hover:border-gray-600 transition-colors duration-300 border-2 flex-shrink-0 '>
+                                                <img className='object-fill h-12 w-12 p-1' src={img} alt="" />
+                                            </li>
+                                        )}
+                                    </div>
+
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div className="flex-1">
-                        <p className='font-bold text-xl md:mt-8'>Realme 9 Pro+ RAM 8GB ROM 128GB Smartphone</p>
+                        <p className='font-bold text-xl md:mt-8'>{product?.Names}</p>
                         <p className='mb-6 text-gray-600'>
-                            <strong>Category: Comming Soon</strong>
+                            <strong>Category: {shop?.category}</strong>
                             <span className='mx-2'>||</span>
-                            <strong>Brand:Phone</strong>
+                            <strong>Brand: {product?.BrandNames}</strong>
                         </p>
                         <p className='mb-2 text-base font-semibold'>
                             Specification:
                         </p>
                         <div className="">
-                            {productDescription.map(details =>
-                                <dl className="flex gap-4 mb-1">
-                                    <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">{details.name}</dt>
-                                    <dd className="flex-1 text-gray-500">{details.data}</dd>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Network</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Network}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Display</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Display}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Resolution</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Resolution}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">font Cameras</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Cameras[0]}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Main Cameras</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Cameras[1]}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Battery</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Battery}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Operating_System</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Operating_System}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Processor</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Processor}</dd>
+                            </dl>
+                            <dl className="flex gap-4 mb-1">
+                                <dt className="flex-1 max-w-[200px] font-semibold text-gray-600">Quantity</dt>
+                                <dd className="flex-1 text-gray-500">{product?.Quantity}</dd>
+                            </dl>
+                            {product?.Quantity > 0 &&
+                                <Variants
+                                    product={product}
+                                    setVariantsPrice={setVariantsPrice}
+                                />
+                            }
 
-                                </dl>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -69,43 +124,37 @@ const ProductDetail = () => {
                         <div className="">
                             <a href="/" className="">
                                 <div className="">
-                                    <img src="https://media.e-valy.com/cms/brands/logo/7deaf19b-28e2-409c-a5a4-e1bf2f2e7283" alt="" height="50px" width="50px" />
+                                    <img src={shop?.photoUrl} alt="" height="50px" width="50px" />
                                 </div>
                             </a>
                         </div>
                         <div className="">
-                            <a href="/" className="">
+                            <a href={`/shops/${shop?._id}`} className="">
                                 <p className="text-base font-medium hover:text-gray-600">
-                                    Nabil Enterprise For CBD
+                                    {shop?.name}
                                 </p>
-                                <p><span className="px-2 py-0.5 text-xs bg-gray-200 rounded">CBD</span></p>
+                                <p><span className="px-2 py-0.5 text-xs bg-gray-200 rounded">{shop?.category}</span></p>
                             </a>
                         </div>
                     </div>
                     <p className='flex items-center gap-2 mb-1'>
                         <span className="">Q</span>
-                        <span className="flex-1">Gha-100/A Middle Badda, Dhaka, Dhaka, Dhaka</span>
-                    </p>
-                    <hr />
+                        <span className="flex-1">{shop?.location}</span>
+                    </p> <hr />
                     <div className="my-4">
                         <div className="flex items-end gap-2">
-                            <p className="text-sm text-gray-600 line-through">100000 ৳</p>
-                            <p className="text-base font-semibold text-blue-500">10000 ৳</p>
-                            <div className=""></div>
+                            {variantsPrice ? <p className="text-base font-semibold text-gray-600">Price : {variantsPrice}</p>
+                                : <p className="text-base font-semibold text-gray-600"> Please Select a variant</p>
+                            }
                         </div>
-                        <button className="mt-3 btn btn-sm type-info    ">
-                            Add to card
-                        </button>
+                        <button className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</button>
                     </div>
                 </div>
             </div>
             <div className="p-4 my-6 bg-white shadow">
                 <p className=''>Description :</p>
                 <p className='text-gray-600'>
-                    {productDescription.map(details => <>
-                        <p className='inline'>{details.name} {" "} {details.data}</p>
-                        <p className='inline'></p>
-                    </>)}
+                    <p className='inline'>{product?.description}</p>
                 </p>
             </div>
             <div className=""></div>

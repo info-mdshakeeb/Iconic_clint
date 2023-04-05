@@ -6,7 +6,7 @@ import ShopCard from '../../Components/share/Cart/ShopCard';
 import TemplateCPS from '../../Components/share/Template/TemplateCPS';
 const ShopsAll = () => {
 
-    const { data: dates = [], isInitialLoading, isFetching, isLoading } = useQuery({
+    const { data: shops = [], isInitialLoading, isFetching, isLoading, refetch } = useQuery({
         queryKey: ['shops'],
         queryFn: () => verifiedShopsAPI()
 
@@ -23,7 +23,9 @@ const ShopsAll = () => {
                     <PrimaryLoading />
                 </div> :
                 <ShopCard
-                    shopsData={dates} />}
+                    shopsData={shops}
+                    refetch={refetch}
+                />}
         </TemplateCPS>
     );
 };

@@ -4,7 +4,6 @@ export const getUser = async (email) => {
     return data.data[0]
 }
 //Category functions :
-
 export const getCatagories = async () => {
     const res = await fetch(`http://localhost:3210/api/v2/catagories`)
     const data = await res.json()
@@ -81,6 +80,12 @@ export const getLimitProductsApi = async (limit) => {
     const data = await res.json()
     return data.data
 }
+//get product by id:
+export const getProductByIdApi = async (id) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/id/${id}`)
+    const data = await res.json()
+    return data.data
+}
 
 //get all products by user:
 export const getProductsByUserApi = async (email) => {
@@ -91,7 +96,7 @@ export const getProductsByUserApi = async (email) => {
 
 //get all products by shop:
 export const getProductsByShopApi = async (id) => {
-    const res = await fetch(`http://localhost:3210/api/v2/products/shop_id/${id}`)
+    const res = await fetch(`http://localhost:3210/api/v2/products/shop/${id}`)
     const data = await res.json()
     return data.data
 }

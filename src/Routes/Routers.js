@@ -22,6 +22,7 @@ import PendingShop from "../Pages/Shpos/pendingShop";
 import PrivateRouters from "./PrivateRouters";
 
 
+
 export const router = createBrowserRouter([{
     path: '/',
     element: <HomeLayout />,

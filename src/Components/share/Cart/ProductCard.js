@@ -5,14 +5,14 @@ const ProductCard = ({ products }) => {
     // console.log(products);
 
     return (
-        <ul className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5  '>
+        <ul className='grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-5  '>
             {products?.map((product, i) =>
                 <div className="flex flex-col items-center justify-center  rounded-md " key={i}>
                     <Link to={`/products/${product?._id}`} key={i}>
                         <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-md">
                             <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
                                 <div className="">
-                                    <img className=" h-60 w-60 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[1]} alt="" />
+                                    <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[2]} alt="" />
                                 </div>
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/50">
                                 </div>

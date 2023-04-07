@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import AddToCart from './Context/AddToCatd';
 import UseLoading from './Context/UseLoading';
 import UserContext from './Context/UserContext';
 import './index.css';
@@ -13,9 +14,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <UseLoading>
-        <UserContext>
-          <App />
-        </UserContext>
+        <AddToCart>
+          <UserContext>
+            <App />
+          </UserContext>
+        </AddToCart>
       </UseLoading>
     </QueryClientProvider>
   </React.StrictMode>

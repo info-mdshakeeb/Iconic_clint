@@ -1,15 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getProductByIdApi, getShopById } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import Variants from '../../Components/Variants/Variants';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
-
+import { useAddToCart } from '../../Context/AddToCatd';
+import { useFirebaseInfo } from '../../Context/UserContext';
 const ProductDetail = () => {
+
+    const { user } = useFirebaseInfo();
+    const { cart, setCart, amount, setAmount } = useAddToCart();
+
     const { id } = useParams();
     const [img, setImg] = useState(null);
     const [variantsPrice, setVariantsPrice] = useState(null);
+    const [variants, setVariants] = useState(null);
 
     const { data: product = [] } = useQuery({
         queryKey: ['product' + id, id],
@@ -21,13 +27,88 @@ const ProductDetail = () => {
         queryFn: () => getShopById(product?.shopId),
         enabled: !!id && !!product?.shopId
     })
+    const setDecrease = (price) => {
+        amount > 1 ? setAmount(amount - 1) : setAmount(1);
+    }
+    const setIncrease = (price) => {
+        amount < product?.Quantity ? setAmount(amount + 1) : setAmount(product?.Quantity);
+    }
+    // console.log(product);
+    const handleAddToCart = (data) => {
+        const cartData = {
+            id: data._id + variants,
+            name: data.Names,
+            amount: amount,
+            image: data?.ImgUrls[0],
+            price: variantsPrice ? variantsPrice : data?.Price,
+            max: data?.Quantity,
+            shop: data?.shop,
+            shopId: data?._id,
+            userEmail: user?.email,
+            variants: variants,
+            status: 'pending',
+            data: new Date().toDateString()
+        }
+        const common = cart.find((item) => item.id === cartData.id);
+        // console.log(common);
+        if (common) {
+            const newCart = cart.map((item) => {
+                if (item.id === cartData.id) {
+                    return {
+                        ...item,
+                        amount: item.amount + cartData.amount
+                    }
+                }
+                return item;
+            })
+            handleUpdateWishList(cartData);
+            setCart(newCart);
+            return;
+        } else {
+            handleAddToWishList(cartData);
+            setCart([...cart, cartData])
+        }
+    }
+
+    //add to database :
+    const handleAddToWishList = (data) => {
+        fetch('http://localhost:3210/api/v2/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log(data);
+            })
+    }
+
+    //update 
+    const handleUpdateWishList = (data) => {
+        fetch(`http://localhost:3210/api/v2/cart?id=${data?.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
+
+
 
     if (isLoading || isInitialLoading || isFetching) {
         return <div className="flex justify-center items-center w-full h-[600px]">
             <PrimaryLoading />
         </div>
     }
-    console.log(product);
+    // console.log(product);
     return (
         <BodyTemplate>
             <div className="p-4 my-6 bg-white shadow">
@@ -108,6 +189,7 @@ const ProductDetail = () => {
                                 <Variants
                                     product={product}
                                     setVariantsPrice={setVariantsPrice}
+                                    setVariants={setVariants}
                                 />
                             }
 
@@ -147,7 +229,16 @@ const ProductDetail = () => {
                                 : <p className="text-base font-semibold text-gray-600"> Please Select a variant</p>
                             }
                         </div>
-                        <button className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</button>
+                        <div className="flex items-center gap-4 ">
+                            <div className="flex gap-4 items-center ">
+                                <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setDecrease()}>-</button>
+                                <p className='w-4'>{amount}</p>
+                                <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setIncrease()}>+</button>
+                            </div>
+                            <Link
+                                onClick={() => handleAddToCart(product)}
+                                className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</Link>
+                        </div>
                     </div>
                 </div>
             </div>

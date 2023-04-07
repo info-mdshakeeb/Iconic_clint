@@ -8,8 +8,8 @@ import AlartMessage from '../../Hooks/AlartMessage';
 const PendingShop = () => {
     const { successMessage } = AlartMessage();
 
-    const { data: shops = [], refetch, isLoading, isFetching, isInitialLoading } = useQuery({
-        queryKey: ['shops'],
+    const { data: shopsPending = [], refetch, isLoading, isFetching, isInitialLoading } = useQuery({
+        queryKey: ['shopsPending'],
         queryFn: () => pendingShops(),
     })
     const handelShopUpdate = (id) => {
@@ -33,7 +33,7 @@ const PendingShop = () => {
         </div>
     return (
         <div className='min-h-[80vh] overflow-y-hidden p-4'>
-            {shops.length > 0 ? <div className='px-4'>
+            {shopsPending.length > 0 ? <div className='px-4'>
                 <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
                     <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                         <span>Shop Details</span>
@@ -42,7 +42,7 @@ const PendingShop = () => {
                         <span className='sm:text-left text-left'>Action</span>
                     </div>
                     <ul>
-                        {shops?.map(shop =>
+                        {shopsPending?.map(shop =>
                             <li key={shop?.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
                                 <div className="flex items-center space-x-2">
                                     <div className="avatar">

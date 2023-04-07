@@ -6,8 +6,8 @@ import ShopCard from '../../Components/share/Cart/ShopCard';
 import TemplateCPS from '../../Components/share/Template/TemplateCPS';
 const ShopsAll = () => {
 
-    const { data: shops = [], isInitialLoading, isFetching, isLoading, refetch } = useQuery({
-        queryKey: ['shops'],
+    const { data: verifyShops = [], isInitialLoading, isFetching, isLoading, refetch } = useQuery({
+        queryKey: ['verifyShops'],
         queryFn: () => verifiedShopsAPI()
 
     })
@@ -23,7 +23,7 @@ const ShopsAll = () => {
                     <PrimaryLoading />
                 </div> :
                 <ShopCard
-                    shopsData={shops}
+                    shopsData={verifyShops}
                     refetch={refetch}
                 />}
         </TemplateCPS>

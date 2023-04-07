@@ -10,7 +10,7 @@ const ProductsSection = () => {
         queryKey: ['products'],
         queryFn: () => getLimitProductsApi(20)
     })
-    console.log(products);
+    // console.log(products);
 
     return (
         <div className='container px-3 md:px-9 m-auto '>

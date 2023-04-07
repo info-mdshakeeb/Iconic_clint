@@ -8,7 +8,7 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const MyProducts = () => {
     const { user } = useFirebaseInfo();
     const [productId, setProductID] = useState(null);
-    const { data: products = [], isInitialLoading, isLoading, refetch } = useQuery({
+    const { data: productsByUser = [], isInitialLoading, isLoading, refetch } = useQuery({
         queryKey: ['products'],
         enabled: !!user?.email,
         queryFn: () => getProductsByUserApi(user?.email)
@@ -56,7 +56,7 @@ const MyProducts = () => {
                             <span className='sm:text-left text-left'>Action</span>
                         </div>
                         <ul>
-                            {products.map(product =>
+                            {productsByUser.map(product =>
                                 <li key={product?._id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">

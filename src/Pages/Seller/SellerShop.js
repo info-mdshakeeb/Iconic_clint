@@ -16,14 +16,14 @@ const RequestForSeller = () => {
     const [shopModal, setShopeModal] = useState(false);
     const [shopsId, setShopsId] = useState(null);
 
-    const { data: shops = [], refetch, isLoading, isInitialLoading, isFetching } = useQuery({
-        queryKey: ['shops'],
+    const { data: sellerShops = [], refetch, isLoading, isInitialLoading, isFetching } = useQuery({
+        queryKey: ['sellerShops'],
         queryFn: () => getUserShops(user?.email),
     })
     const { data: catagories = [] } = useQuery({
         queryKey: ['catagories'],
         queryFn: getCatagories,
-        enabled: !!shops
+        enabled: !!sellerShops
     })
     const requestValidation = (id, type) => {
         if (type === 'pending') {
@@ -86,7 +86,7 @@ const RequestForSeller = () => {
                             <span className='sm:text-left text-left'>Action</span>
                         </div>
                         <ul>
-                            {shops.map(shop =>
+                            {sellerShops.map(shop =>
                                 <li key={shop.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer gap-3'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
@@ -148,7 +148,6 @@ const RequestForSeller = () => {
                         </ul>
                     </div>
                 </div>
-
             </div>
             {/* <div className="mx-auto my-4 w-full">
                 <p className='mb-4 font-bold text-xl'>Your Shop</p>

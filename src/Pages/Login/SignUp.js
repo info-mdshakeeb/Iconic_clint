@@ -2,13 +2,13 @@ import Lottie from 'lottie-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import signUp from '../../assets/Lotti/signUp.json';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useLoading } from '../../Context/UseLoading';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 import { SandData } from '../../Hooks/SandData';
+import signUp from '../../assets/Lotti/signUp.json';
 import { END_SIGNUP_GOOGLE, END_SIGNUP_MAIL, START_SIGNUP_GOOGLE, START_SIGNUP_MAIL } from '../../state/ActionType/actionType';
 
 const SignUp = () => {

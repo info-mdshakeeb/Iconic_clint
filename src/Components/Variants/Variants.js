@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Variants = ({ product, setVariantsPrice }) => {
+const Variants = ({ product, setVariantsPrice, setVariants }) => {
     const [active, setActive] = useState(product?.variants[0]?.variant);
     return (
 
@@ -12,6 +12,7 @@ const Variants = ({ product, setVariantsPrice }) => {
                     onClick={() => {
                         setActive(variant.variant)
                         setVariantsPrice(variant.price)
+                        setVariants(variant.variant)
                     }}
                     className={`${active === variant.variant ? "bg-black text-white" : "bg-white"} border-2 px-4 rounded-lg cursor-pointer `}>
                     <dd className="flex-1 text-gray-500">{variant.variant}</dd>

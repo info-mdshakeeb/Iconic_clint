@@ -14,11 +14,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <UseLoading>
-        <AddToCart>
-          <UserContext>
+        <UserContext>
+          <AddToCart>
             <App />
-          </UserContext>
-        </AddToCart>
+          </AddToCart>
+        </UserContext>
       </UseLoading>
     </QueryClientProvider>
   </React.StrictMode>

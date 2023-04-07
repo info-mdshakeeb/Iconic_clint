@@ -10,8 +10,7 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const ProductDetail = () => {
 
     const { user } = useFirebaseInfo();
-    const { cart, setCart, amount, setAmount } = useAddToCart();
-
+    const { cart, setCart, amount, setAmount, refetch } = useAddToCart();
     const { id } = useParams();
     const [img, setImg] = useState(null);
     const [variantsPrice, setVariantsPrice] = useState(null);
@@ -63,13 +62,14 @@ const ProductDetail = () => {
             })
             handleUpdateWishList(cartData);
             setCart(newCart);
+            refetch()
             return;
         } else {
             handleAddToWishList(cartData);
             setCart([...cart, cartData])
+            refetch()
         }
     }
-
     //add to database :
     const handleAddToWishList = (data) => {
         fetch('http://localhost:3210/api/v2/cart', {
@@ -81,11 +81,11 @@ const ProductDetail = () => {
         })
             .then(res => res.json())
             .then(data => {
+                refetch()
 
                 console.log(data);
             })
     }
-
     //update 
     const handleUpdateWishList = (data) => {
         fetch(`http://localhost:3210/api/v2/cart?id=${data?.id}`, {
@@ -97,18 +97,16 @@ const ProductDetail = () => {
         })
             .then(res => res.json())
             .then(data => {
+                refetch()
                 console.log(data);
             })
     }
-
-
-
     if (isLoading || isInitialLoading || isFetching) {
         return <div className="flex justify-center items-center w-full h-[600px]">
             <PrimaryLoading />
         </div>
     }
-    // console.log(product);
+
     return (
         <BodyTemplate>
             <div className="p-4 my-6 bg-white shadow">

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useAddToCart } from '../../Context/AddToCatd';
 
 const Variants = ({ product, setVariantsPrice, setVariants }) => {
+    const { setAmount } = useAddToCart()
     const [active, setActive] = useState(product?.variants[0]?.variant);
     return (
 
@@ -10,6 +12,7 @@ const Variants = ({ product, setVariantsPrice, setVariants }) => {
                 <div
                     key={i}
                     onClick={() => {
+                        setAmount(1)
                         setActive(variant.variant)
                         setVariantsPrice(variant.price)
                         setVariants(variant.variant)

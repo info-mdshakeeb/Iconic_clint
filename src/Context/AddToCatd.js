@@ -5,7 +5,6 @@ import { useFirebaseInfo } from './UserContext';
 const addToCart = createContext()
 const AddToCart = ({ children }) => {
     const { user } = useFirebaseInfo()
-    console.log(user);
     const [cart, setCart] = useState([])
     const [amount, setAmount] = useState(1);
 

@@ -5,13 +5,13 @@ import { app } from "../Configuration/Firebase.config";
 
 export const AuthUser = createContext();
 const auth = getAuth(app);
-const provaider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 const UserContext = ({ children }) => {
     const [user, setUser] = useState('')
     const [loading, setLoading] = useState(true)
     // console.log(user);
 
-    const GoogleLogin = () => signInWithPopup(auth, provaider);
+    const GoogleLogin = () => signInWithPopup(auth, provider);
     const loginEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
     const CreateUserEP = (email, password) => createUserWithEmailAndPassword(auth, email, password);
     const logout = () => signOut(auth);
@@ -20,12 +20,12 @@ const UserContext = ({ children }) => {
             { displayName: name, photoURL: photo })
 
     useEffect(() => {
-        const unsuscribe = onAuthStateChanged(auth, currentUser => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             // console.log(currentUser.displayName);
             setLoading(false)
             setUser(currentUser)
         })
-        return () => unsuscribe()
+        return () => unSubscribe()
     }, [])
     // console.log(user.email);
 

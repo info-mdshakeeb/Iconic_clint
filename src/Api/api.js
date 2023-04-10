@@ -100,3 +100,9 @@ export const getProductsByShopApi = async (id) => {
     const data = await res.json()
     return data.data
 }
+
+export const getAddressApi = async (email) => {
+    const res = await fetch(`http://localhost:3210/api/v2/users/address?email=${email}`)
+    const data = await res.json()
+    return data.data
+}

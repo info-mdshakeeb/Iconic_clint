@@ -87,7 +87,8 @@ const RequestForSeller = () => {
                         </div>
                         <ul>
                             {sellerShops.map(shop =>
-                                <li key={shop.id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer gap-3'>
+                                <li key={shop.id}
+                                    className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer gap-3'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
@@ -105,15 +106,14 @@ const RequestForSeller = () => {
                                         {shop?.status}  {shop?.status === 'verified' ?
                                             <span className='text-green-500 ml-3'>{shop?.category}</span> : ""}
                                     </span>
-
-                                    <div className='flex  items-center justify-between'>
-                                        <div className=" ">
+                                    <div className='flex  items-center justify-between max-h-10 '>
+                                        <div className="">
                                             {shop?.status === 'verified' ?
                                                 <>
-                                                    <form action=""
+                                                    <form action="" className=' overflow-x-hidden'
                                                         onSubmit={handelCategory}
                                                     >
-                                                        <select required name="catagories" className="select select-bordered select-sm  max-w-xs">
+                                                        <select required name="catagories" className="select select-bordered select-sm ">
                                                             {catagories?.map(category =>
                                                                 <option key={category?._id} >{category?.name}</option>)
                                                             }
@@ -121,11 +121,11 @@ const RequestForSeller = () => {
                                                         {shop?.category ?
                                                             <button
                                                                 onClick={() => setShopsId(shop?._id)}
-                                                                className='ml-4 btn btn-xs btn-warning'>Update</button>
+                                                                className='ml-2 btn btn-xs btn-warning'>Update</button>
                                                             :
                                                             <button
                                                                 onClick={() => setShopsId(shop?._id)}
-                                                                className='ml-4 btn btn-xs btn-warning'>publish</button>}
+                                                                className='ml-2 btn btn-xs btn-warning'>publish</button>}
                                                     </form>
                                                 </>
                                                 :
@@ -142,9 +142,7 @@ const RequestForSeller = () => {
                                         <BsThreeDotsVertical />
                                     </div>
                                 </li>
-
-                            )
-                            }
+                            )}
                         </ul>
                     </div>
                 </div>

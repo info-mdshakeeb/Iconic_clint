@@ -54,7 +54,7 @@ const SignUp = () => {
                 dispatch({ type: END_SIGNUP_MAIL })
             })
     }
-    const heandelGoogleSignIn = () => {
+    const handelGoogleSignIn = () => {
         dispatch({ type: START_SIGNUP_GOOGLE })
         GoogleLogin()
             .then(rs => {
@@ -69,7 +69,6 @@ const SignUp = () => {
                     navigate(from, { replace: true })
                 }, 200)
                 dispatch({ type: END_SIGNUP_GOOGLE })
-
             }).catch(err => {
                 errorMessage(err.message)
                 dispatch({ type: END_SIGNUP_GOOGLE })
@@ -81,19 +80,14 @@ const SignUp = () => {
                 <div className="hidden bg-cover lg:flex lg:w-2/5">
                     <Lottie animationData={signUp} loop={true} />
                 </div>
-                <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+                <div className="flex items-center w-full p-8 mx-auto lg:px-12 lg:w-3/5">
                     <div className="w-full ">
-                        <h1 className="text-2xl font-semibold tracking-wider capitalize ">
-                            Get your free account now.
-                        </h1>
-                        <p className="mt-4 text-gray-500 ">
-                            Let’s get you all set up so you can verify your personal account and begin setting up your profile.
-                        </p>
+
                         <form
                             onSubmit={handleSubmit(onSubmit)}
-                            className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 ">
+                            className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 mx-auto border w-full ">
 
-                            <div className="form-control">
+                            <div className="form-control ">
                                 <label className="label">
                                     <span className="label-text">First Name</span>
                                 </label>
@@ -141,8 +135,8 @@ const SignUp = () => {
                                 </div>
                             </div>
                         </form>
-                        <div className="py-3 mt-4 w-1/2"
-                            onClick={() => heandelGoogleSignIn()}>
+                        <div className="py-3 mt-4 "
+                            onClick={() => handelGoogleSignIn()}>
                             <SecondaryButton>
                                 {state?.SignUpGoogle ? <PrimaryLoading
                                     color={"#FFFFFF"}

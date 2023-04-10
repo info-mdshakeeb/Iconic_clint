@@ -11,7 +11,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
 
     // console.log(catagories);
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         const shopDetails = {
             ownerName: user.displayName,
             ownerEmail: user.email,

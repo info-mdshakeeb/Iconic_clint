@@ -2,12 +2,12 @@ import Lottie from 'lottie-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import signUp from '../../assets/Lotti/signUp.json';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useLoading } from '../../Context/UseLoading';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
+import signUp from '../../assets/Lotti/signUp.json';
 import { END_LOGIN_GOOGLE, END_LOGIN_MAIL, START_LOGIN_GOOGLE, START_LOGIN_MAIL } from '../../state/ActionType/actionType';
 
 const Login = () => {
@@ -57,10 +57,10 @@ const Login = () => {
             <div className="hidden  lg:flex lg:w-2/5 mx-auto ">
                 <Lottie animationData={signUp} loop={true} />
             </div>
-            <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md ">
+            <div className="w-full max-w-md p-6 m-auto mx-auto bg-white rounded-lg shadow-md ">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">ICONIC</h1>
                 <form onSubmit={handleSubmit(onSubmit)}
-                    className="mt-6">
+                    className="mt-6 -ml-7 ">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>

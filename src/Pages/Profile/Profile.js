@@ -21,9 +21,10 @@ const Profile = () => {
         }
     })
     const onSubmit = data => {
+        console.log(data);
         const updateUser = {
             name: data.name,
-            role: data.check
+            role: data?.check
         }
         updateProfilePic(data.name)
         fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`, {
@@ -51,10 +52,10 @@ const Profile = () => {
         <div className="w-full">
             <div className="max-w-2xl m-auto mt-4">
                 <p className='mb-4 font-bold text-xl'>Profile</p>
-                <div className="p-4 mb-10 bg-white shadow">
+                <div className=" bg-white shadow">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
-                        className="mb-4"
+                        className="mb-4 w-full"
                     >
                         <div className="form-control">
                             <label className="label">

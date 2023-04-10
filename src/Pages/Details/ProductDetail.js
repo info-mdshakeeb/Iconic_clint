@@ -26,6 +26,7 @@ const ProductDetail = () => {
         queryFn: () => getShopById(product?.shopId),
         enabled: !!id && !!product?.shopId
     })
+    // console.log(shop);
     const setDecrease = (price) => {
         amount > 1 ? setAmount(amount - 1) : setAmount(1);
     }
@@ -36,7 +37,10 @@ const ProductDetail = () => {
     const handleAddToCart = (data) => {
         const cartData = {
             id: data._id + variants,
+            productId: data._id,
             name: data.Names,
+            sellerName: shop?.ownerName,
+            sellerEmail: shop?.ownerEmail,
             amount: amount,
             image: data?.ImgUrls[0],
             price: variantsPrice ? variantsPrice : data?.Price,
@@ -83,7 +87,7 @@ const ProductDetail = () => {
             .then(data => {
                 refetch()
 
-                console.log(data);
+                // console.log(data);
             })
     }
     //update 
@@ -98,7 +102,7 @@ const ProductDetail = () => {
             .then(res => res.json())
             .then(data => {
                 refetch()
-                console.log(data);
+                // console.log(data);
             })
     }
     if (isLoading || isInitialLoading || isFetching) {
@@ -233,9 +237,15 @@ const ProductDetail = () => {
                                 <p className='w-4'>{amount}</p>
                                 <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setIncrease()}>+</button>
                             </div>
-                            <Link
-                                onClick={() => handleAddToCart(product)}
-                                className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</Link>
+                            {user ?
+                                <Link
+                                    onClick={() => handleAddToCart(product)}
+                                    className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</Link>
+                                :
+                                <Link to={`/login`}>
+                                    <button className='mt-3 btn btn-sm type-info'>Add to card</button>
+                                </Link>
+                            }
                         </div>
                     </div>
                 </div>

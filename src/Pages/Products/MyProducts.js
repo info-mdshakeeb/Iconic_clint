@@ -33,7 +33,7 @@ const MyProducts = () => {
         updateProductApi(id, value)
             .then(data => {
                 refetch()
-                console.log(data);
+                // console.log(data);
             }).catch(err => {
                 console.log(err);
             })
@@ -49,7 +49,7 @@ const MyProducts = () => {
             <div className='min-h-[80vh] overflow-y-hidden'>
                 <div className='px-4'>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
-                        <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
+                        <div className='my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product Details</span>
                             <span className='hidden md:grid'>Quantity remain</span>
                             <span className='hidden md:grid'>Add to shop</span>
@@ -57,7 +57,7 @@ const MyProducts = () => {
                         </div>
                         <ul>
                             {productsByUser.map(product =>
-                                <li key={product?._id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
+                                <li key={product?._id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
@@ -70,21 +70,27 @@ const MyProducts = () => {
                                         </div>
                                     </div>
                                     <p className='hidden md:flex'>{product?.Quantity}  in : <span className='px-2 text-green-500'>{product?.shop}</span></p>
-                                    <form action="" onSubmit={handelShop}
-                                    >
-                                        <select required name="shops" className="select select-bordered select-sm  w-48">
-                                            {shops?.map(shop =>
-                                                <option key={shop?._id} value={shop?._id} >
-                                                    {shop?.name}
-                                                </option>)
-                                            }
-                                        </select>
-                                        <button
-                                            onClick={() => setProductID(product?._id)}
-                                            className='ml-4 btn btn-xs btn-warning'>Update</button>
 
-                                    </form>
-                                    <div className='flex  items-center justify-between'>
+                                    <div className="max-h-[30px] overflow-x-hidden">
+                                        <div className="-mt-10">
+                                            <form action="" onSubmit={handelShop} className='max-w-28 max-h-2   overflow-hidden'
+                                            >
+                                                <select required name="shops" className="select select-bordered select-xs w-28  overflow-x-hidden ">
+                                                    {shops?.map(shop =>
+                                                        <option key={shop?._id} value={shop?._id} >
+                                                            {shop?.name}
+                                                        </option>)
+                                                    }
+                                                </select>
+                                                <button
+                                                    onClick={() => setProductID(product?._id)}
+                                                    className='ml-4 btn btn-xs btn-warning'>
+                                                    Update
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div className='flex  items-center justify-between '>
                                         {product?.status === "published" ?
                                             <button
                                                 onClick={() => handelPublish(product?._id, 'hidden')}

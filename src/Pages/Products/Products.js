@@ -9,7 +9,7 @@ const ProductsAll = () => {
         queryKey: ['products'],
         queryFn: () => getProductsApi()
     })
-    console.log(products);
+    // console.log(products);
     return (
         <TemplateCPS
             type={'Products'}

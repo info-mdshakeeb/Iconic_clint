@@ -70,7 +70,7 @@ const AddProducts = () => {
         <BodyTemplate>
             <div className="">
                 <form onSubmit={handleSubmit(onSubmit)}
-                    className="mt-6  ">
+                    className="mt-6 w-full ">
                     <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4">
                         {tableData.map((data, index) =>
                             <FormTemplate

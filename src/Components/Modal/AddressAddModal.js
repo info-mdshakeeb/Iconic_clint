@@ -1,13 +1,33 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useFirebaseInfo } from '../../Context/UserContext';
 import SecondaryButton from '../share/Buttons/SecondaryButton';
 
-const AddressAddModal = ({ closeModal, setCloseModal }) => {
+const AddressAddModal = ({ closeModal, setCloseModal, refetch }) => {
+    const { user } = useFirebaseInfo();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
-        setCloseModal(false)
+        const Address = {
+            name: data.name,
+            address: data.address,
+            phone: data.phone,
+            userEmail: user?.email
+        }
+        //add to db
+        fetch(`http://localhost:3210/api/v2/users/address?email=${user?.email}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Address)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCloseModal(false)
+                refetch();
+                console.log(data);
+            })
     }
     return (
         <div>

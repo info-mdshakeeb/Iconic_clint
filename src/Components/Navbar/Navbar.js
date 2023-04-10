@@ -11,7 +11,7 @@ import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Navbar = ({ need }) => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
-    const { cartDates } = useAddToCart()
+    const { cartDates, refetch } = useAddToCart()
     // console.log(user);
     const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
@@ -19,7 +19,7 @@ const Navbar = ({ need }) => {
         enabled: !!user?.email
     })
     const handleLLogout = () => {
-        setLoading(true)
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to logout !",
@@ -31,7 +31,7 @@ const Navbar = ({ need }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 logout().then(re => {
-                    setLoading(false)
+                    refetch()
                     Swal.fire({
                         icon: 'success',
                         title: `LogOut SuccessFull`,
@@ -39,7 +39,7 @@ const Navbar = ({ need }) => {
                     })
                 })
             } else {
-                setLoading(false)
+
             }
         })
     }
@@ -64,7 +64,7 @@ const Navbar = ({ need }) => {
                                 <span className="text-info">total: {totalPrice} tk</span>
 
                                 <div className="card-actions">
-                                    <Link to='/orders' className="btn btn-primary btn-block">View cart</Link>
+                                    <Link to='/dashboard/orders' className="btn btn-primary btn-block">View cart</Link>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@ const Navbar = ({ need }) => {
                             <li><NavLink to='/shops'>Shops</NavLink></li>
                             {user && <>
                                 <li><NavLink to='/products'>Products</NavLink></li>
-                                <li><NavLink to='/orders'>Orders</NavLink></li>
+                                <li><NavLink to='/dashboard/orders'>Orders</NavLink></li>
                                 <li><NavLink to='/add-address'>Delivery Address</NavLink></li>
 
                             </>}

@@ -9,6 +9,6 @@ export const SandData = (url, method, body) => {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
         })
 }

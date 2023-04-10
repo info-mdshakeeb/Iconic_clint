@@ -12,27 +12,23 @@ const DashboardLayout = () => {
         queryFn: async () => getUser(user?.email),
         enabled: !!user?.email
     })
-
     // console.log(useR.role)
-
     const className = 'flex items-center px-6 py-1 mt-5 text-gray-500 transition-colors duration-300 transform rounded-md hover:bg-gray-100  hover:text-gray-700 '
     const navLink =
         <>
             <NavLink className={className} to='/dashboard/profile'>Account</NavLink>
             <NavLink className={className} to='/dashboard/orders'>My orders</NavLink>
-            <NavLink className={className} to='/dashboard/products/pending'>Pending Shops</NavLink>
             {<NavLink className={className} to='/dashboard/sellerShop'>Your Shops</NavLink>}
-            {<NavLink className={className} to='/dashboard/addproducts'>Add Product</NavLink>}
+            {<NavLink className={className} to='/dashboard/products'>Add Product</NavLink>}
             {<NavLink className={className} to='/dashboard/MyProducts'>Your Products</NavLink>}
+            <NavLink className={className} to='/dashboard/admin/pendingShop'>Pending Shops</NavLink>
         </>
     return (
-
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content ">
                 <Navbar />
                 <Outlet />
-                {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>

@@ -11,7 +11,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import AddToCart from "../Pages/Order/AddToCart";
-import Order from "../Pages/Order/Order";
+import PaymentHistory from "../Pages/Order/PaymentHistory";
 import AddProducts from "../Pages/Products/AddProducts";
 import MyProducts from "../Pages/Products/MyProducts";
 import Products from "../Pages/Products/Products";
@@ -19,9 +19,9 @@ import Profile from "../Pages/Profile/Profile";
 import SellerShop from "../Pages/Seller/SellerShop";
 import Shops from "../Pages/Shpos/Shops";
 import PendingShop from "../Pages/Shpos/pendingShop";
+import AdminRoute from "./AdminRoute";
 import PrivateRouters from "./PrivateRouters";
-
-
+import SellerRoutes from "./SellerRoutes";
 
 export const router = createBrowserRouter([{
     path: '/',
@@ -35,21 +35,28 @@ export const router = createBrowserRouter([{
         { path: '/shops', element: <Shops /> },
         { path: '/shops/category/:id', element: <Catagory /> },
         { path: '/add-address', element: <Address /> },
-        { path: '/orders', element: <PrivateRouters><AddToCart /></PrivateRouters> },
+        { path: '/dashboard/orders', element: <PrivateRouters><AddToCart /></PrivateRouters> },
         { path: '/dashboard/profile', element: <PrivateRouters> <Profile /> </PrivateRouters> },
-        { path: '/dashboard/orders', element: <PrivateRouters>  <Order /> </PrivateRouters> },
+        { path: '/dashboard/orders/payment-history', element: <PrivateRouters> <PaymentHistory /> </PrivateRouters> },
     ]
 },
 {
     path: '/dashboard',
-    element: <PrivateRouters><DashboardLayout /></PrivateRouters>,
+    element: <PrivateRouters> <SellerRoutes><DashboardLayout /></SellerRoutes> </PrivateRouters>,
     children: [
         { path: '/dashboard/sellerShop', element: <SellerShop /> },
-        { path: '/dashboard/addproducts', element: <AddProducts /> },
-        { path: '/dashboard/products/pending', element: <PendingShop /> },
+        { path: '/dashboard/products', element: <AddProducts /> },
         { path: '/dashboard/MyProducts', element: <MyProducts /> },
     ]
 },
+{
+    path: '/dashboard/admin',
+    element: <AdminRoute><DashboardLayout /></AdminRoute>,
+    children: [
+        { path: '/dashboard/admin/pendingShop', element: <PendingShop /> },
+    ]
+},
+
 { path: '/login', element: <Login /> },
 { path: '/resister', element: <SignUp /> },
 { path: '*', element: <ErrorPage /> },

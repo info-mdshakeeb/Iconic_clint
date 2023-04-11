@@ -12,8 +12,6 @@ const AddToCart = () => {
     const [product, setProduct] = useState(null)
 
     // update o
-
-
     const removeItem = (id) => {
         // console.log(id);
         fetch(`http://localhost:3210/api/v2/cart?id=${id}`, {
@@ -46,20 +44,20 @@ const AddToCart = () => {
                         <ul>
                             {cartDates?.map((item, i) =>
                                 <li key={i} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 grid-cols-2 items-center justify-between cursor-pointer'>
-                                    <Link to={`/products/${item?.productId}`}>
-                                        <div className="flex items-center space-x-2">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-8 h-8">
-                                                    <img src={item?.image} alt="Avatar" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="font-bold">{item?.name}
-                                                </div>
-                                                <div className="text-sm opacity-50">{item?.shop} type :{item?.variants}</div>
+
+                                    <div className="flex items-center space-x-2">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-8 h-8">
+                                                <img src={item?.image} alt="Avatar" />
                                             </div>
                                         </div>
-                                    </Link>
+                                        <div>
+                                            <div className="font-bold">{item?.name}
+                                            </div>
+                                            <div className="text-sm opacity-50">{item?.shop} type :{item?.variants}</div>
+                                        </div>
+                                    </div>
+
                                     <p className='hidden md:flex'>{item?.price} - ({item?.amount})</p>
                                     <span className='hidden md:flex'>
                                         {item?.price * item?.amount}
@@ -67,11 +65,10 @@ const AddToCart = () => {
                                     <div className='flex  items-center justify-between'>
                                         <label
                                             onClick={() => removeItem(item?.id)}
-                                            htmlFor="confirmation-modal" className="btn btn-warning btn-xs"> x</label>
-
+                                            htmlFor="confirmation-modal" className="btn btn-warning btn-xs ml-3 lg:ml-0"> x</label>
                                         <label
                                             onClick={() => setProduct(item)}
-                                            htmlFor="my-modal-3" className='btn btn-sm btn-warning'>Make Payment</label>
+                                            htmlFor="my-modal-3" className='btn btn-sm btn-warning'>PAY</label>
                                         <BsThreeDotsVertical />
                                     </div>
                                 </li>
@@ -83,18 +80,24 @@ const AddToCart = () => {
                                     <Link className='btn btn-sm btn-primary mt-2' to={`/products`}>BacK to Shopping</Link>
                                 </div>
                                 <p className='hidden md:flex '>Total :{totalQuantity}</p>
-                                <span className='flex -ml-12'>
+                                <span className='flex lg:-ml-12'>
                                     Total : {totalPrice}
                                 </span>
                                 <div className='flex items-center justify-between'>
 
                                     <Link to={`/dashboard/orders/payment-history`}
-                                        className='btn btn-sm btn-warning ml-6'>Got to Payment history</Link>
+                                        className='btn btn-sm btn-warning ml-6'>Payment history</Link>
                                 </div>
                             </li>
                         </div>
                     </div> :
-                        <div className="flex items-center justify-center h-28 text-2xl"><p>Currently No order Pending );</p></div>
+                        <div className='flex flex-col items-center justify-center text-center text-2xl font-[400] text-gray-500 min-h-[calc(100vh_-_500px)]'>
+                            <p> No payment history</p>
+                            <div className="mt-10">
+                                <Link className=' btn btn-sm' to={`/products`}>Products</Link>
+                                <Link className='ml-3 btn btn-sm' to={`/dashboard/orders/payment-history`}>Payed</Link>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>

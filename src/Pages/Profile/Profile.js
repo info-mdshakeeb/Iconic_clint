@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
+import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 
@@ -49,8 +50,8 @@ const Profile = () => {
         </div>
     }
     return (
-        <div className="w-full">
-            <div className="max-w-2xl m-auto mt-4">
+        <BodyTemplate >
+            <div className="max-w-2xl m-auto mt-4 ">
                 <p className='mb-4 font-bold text-xl'>Profile</p>
                 <div className=" bg-white shadow">
                     <form
@@ -92,7 +93,7 @@ const Profile = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </BodyTemplate>
     );
 };
 

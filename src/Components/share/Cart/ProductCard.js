@@ -5,7 +5,7 @@ const ProductCard = ({ products }) => {
     // console.log(products);
 
     return (
-        <ul className='grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-5  '>
+        <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5  '>
             {products?.map((product, i) =>
                 <div className="flex flex-col items-center justify-center  rounded-md " key={i}>
                     <Link to={`/products/${product?._id}`} key={i}>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { getProductsByUserApi, getUserShops, updateProductApi } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
+import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const MyProducts = () => {
@@ -45,19 +46,19 @@ const MyProducts = () => {
         </div>
 
     return (
-        <div>
-            <div className='min-h-[80vh] overflow-y-hidden'>
+        <BodyTemplate>
+            <div className='min-h-[80vh] overflow-x-hidden '>
                 <div className='px-4'>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
-                        <div className='my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
+                        <div className='my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product Details</span>
                             <span className='hidden md:grid'>Quantity remain</span>
                             <span className='hidden md:grid'>Add to shop</span>
-                            <span className='sm:text-left text-left'>Action</span>
+                            <span className='hidden xl:grid'>Action</span>
                         </div>
                         <ul>
                             {productsByUser.map(product =>
-                                <li key={product?._id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
+                                <li key={product?._id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
@@ -71,11 +72,11 @@ const MyProducts = () => {
                                     </div>
                                     <p className='hidden md:flex'>{product?.Quantity}  in : <span className='px-2 text-green-500'>{product?.shop}</span></p>
 
-                                    <div className="max-h-[30px] overflow-x-hidden">
-                                        <div className="-mt-10">
-                                            <form action="" onSubmit={handelShop} className='max-w-28 max-h-2   overflow-hidden'
+                                    <div className="max-h-[30px]  ">
+                                        <div className="-mt-10 -ml-10">
+                                            <form action="" onSubmit={handelShop} className=''
                                             >
-                                                <select required name="shops" className="select select-bordered select-xs w-28  overflow-x-hidden ">
+                                                <select required name="shops" className="select select-bordered select-xs w-28  ">
                                                     {shops?.map(shop =>
                                                         <option key={shop?._id} value={shop?._id} >
                                                             {shop?.name}
@@ -90,7 +91,7 @@ const MyProducts = () => {
                                             </form>
                                         </div>
                                     </div>
-                                    <div className='flex  items-center justify-between '>
+                                    <div className='hidden lg:flex  items-center justify-between '>
                                         {product?.status === "published" ?
                                             <button
                                                 onClick={() => handelPublish(product?._id, 'hidden')}
@@ -107,7 +108,7 @@ const MyProducts = () => {
                 </div>
 
             </div>
-        </div>
+        </BodyTemplate>
     );
 };
 

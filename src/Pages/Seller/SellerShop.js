@@ -64,7 +64,7 @@ const RequestForSeller = () => {
         </div>
     return (
         <BodyTemplate>
-            <div className="w-full mx-auto mb-5 ">
+            <div className=" mx-auto mb-5 ">
                 <div className=" flex gap-4 p-4 bg-white rounded shadow items-center justify-between">
                     <p className='mb-4 font-bold text-xl'>Add Shop</p>
                     <div className="">
@@ -76,19 +76,19 @@ const RequestForSeller = () => {
                     </div>
                 </div>
             </div>
-            <div className='min-h-[80vh] overflow-y-hidden'>
+            <div className='min-h-[80vh] '>
                 <div className=''>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
-                        <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
+                        <div className='my-3 p-2 grid xl:grid-cols-4 lg:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                             <span>Shop Details</span>
-                            <span className='hidden md:grid'>Your Mail</span>
-                            <span className='hidden md:grid'>status & Type</span>
-                            <span className='sm:text-left text-left'>Action</span>
+                            <span className='hidden xl:grid'>Your Mail</span>
+                            <span className='hidden lg:grid'>status & Type</span>
+                            <span className='flex justify-center'>Action</span>
                         </div>
                         <ul>
                             {sellerShops.map(shop =>
                                 <li key={shop.id}
-                                    className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer gap-3'>
+                                    className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4 grid-cols-2 items-center justify-between cursor-pointer gap-3'>
                                     <div className="flex items-center space-x-2">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-8 h-8">
@@ -101,12 +101,12 @@ const RequestForSeller = () => {
                                             <div className="text-sm opacity-50">Date : {shop?.shopCreated?.slice(0, 10)}</div>
                                         </div>
                                     </div>
-                                    <p className='hidden md:flex'> {shop?.ownerEmail}</p>
-                                    <span className='hidden md:flex pl-3'>
+                                    <p className='hidden xl:flex'> {shop?.ownerEmail}</p>
+                                    <span className='hidden lg:flex pl-3'>
                                         {shop?.status}  {shop?.status === 'verified' ?
                                             <span className='text-green-500 ml-3'>{shop?.category}</span> : ""}
                                     </span>
-                                    <div className='flex  items-center justify-between max-h-10 '>
+                                    <div className='flex  items-center justify-between max-h-10 overflow-hidden  '>
                                         <div className="">
                                             {shop?.status === 'verified' ?
                                                 <>

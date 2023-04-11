@@ -21,14 +21,23 @@ const Profile = () => {
             return data.data[0]
         }
     })
+
     const onSubmit = data => {
-        console.log(data);
-        const updateUser = {
-            name: data.name,
-            role: data?.check
+
+        if (seller) {
+            const updateUser = { name: data.name, role: useR?.role }
+            updateSeller(user?.email, updateUser)
+        }
+        else {
+            const updateUser = { name: data.name, role: "seller" }
+            updateSeller(user?.email, updateUser)
         }
         updateProfilePic(data.name)
-        fetch(`http://localhost:3210/api/v2/users?email=${user?.email}`, {
+
+    }
+    //user?.email
+    const updateSeller = (email, updateUser) => {
+        fetch(`http://localhost:3210/api/v2/users?email=${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -75,8 +84,8 @@ const Profile = () => {
                             />
                         </div>
                         <div className="form-control pt-3 md:w-60">
-                            {useR?.role === ("seller" || "admin") ?
-                                undefined : <label className="cursor-pointer label">
+                            {useR?.role === "buyer" ?
+                                <label className="cursor-pointer label">
                                     <span className="text ">UnLock Seller Form</span>
                                     <input onClick={() => getSeller(!seller)}
                                         type="checkbox" checked className="checkbox checkbox-warning hidden"
@@ -85,7 +94,7 @@ const Profile = () => {
                                         type="checkbox" className="checkbox checkbox-warning"
                                         {...register("check")}
                                     />
-                                </label>}
+                                </label> : undefined}
                         </div>
                         <div className="mt-4">
                             <SecondaryButton>Update </SecondaryButton>

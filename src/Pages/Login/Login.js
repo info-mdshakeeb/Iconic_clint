@@ -29,7 +29,7 @@ const Login = () => {
                 setTimeout(() => {
                     navigate(from, { replace: true })
                 }, 200)
-                successMessage('login successfull')
+                successMessage('login successful')
                 dispatch({ type: END_LOGIN_GOOGLE })
 
             }).catch(error => {

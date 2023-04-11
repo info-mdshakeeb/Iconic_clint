@@ -32,7 +32,7 @@ const SignUp = () => {
         const email = data.email;
         const password = data.Password;
         const user = {
-            name, email, password
+            name, email, password, role: "buyer"
         }
         CreateUserEP(data.email, data.Password)
             .then(rs =>
@@ -61,7 +61,8 @@ const SignUp = () => {
                 const user = {
                     email: rs?.user?.email,
                     name: rs?.user?.displayName,
-                    photoUrl: rs?.user?.photoURL
+                    photoUrl: rs?.user?.photoURL,
+                    role: "buyer"
                 }
                 saveToDatabase(user)
                 successMessage("successfully login")

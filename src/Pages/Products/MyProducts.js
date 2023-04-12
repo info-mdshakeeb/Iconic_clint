@@ -23,9 +23,9 @@ const MyProducts = () => {
         e.preventDefault()
         const form = e.target;
         const shopId = form.shops.value
-        // console.log(shopId, shopName);
+        const Quantity = form.Quantity.value
         const shop = shops?.find(shop => shop?._id === shopId)
-        handelUpdate(productId, { shop: shop?.name, shopId: shop?._id })
+        handelUpdate(productId, { shop: shop?.name, shopId: shop?._id, Quantity: Quantity })
     }
     const handelPublish = (id, value) => {
         handelUpdate(id, { status: value })
@@ -52,8 +52,8 @@ const MyProducts = () => {
                     <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
                         <div className='my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product Details</span>
-                            <span className='hidden md:grid'>Quantity remain</span>
-                            <span className='hidden md:grid'>Add to shop</span>
+                            <span className='hidden md:grid'>shop</span>
+                            <span className='hidden md:grid'>Add to shop & Quantity</span>
                             <span className='hidden xl:grid'>Action</span>
                         </div>
                         <ul>
@@ -70,12 +70,11 @@ const MyProducts = () => {
                                             <div className="text-sm opacity-50">{product?.BrandNames}</div>
                                         </div>
                                     </div>
-                                    <p className='hidden md:flex'>{product?.Quantity}  in : <span className='px-2 text-green-500'>{product?.shop}</span></p>
+                                    <p className='hidden md:flex'>  <span className='px-2 text-green-500'>{product?.shop}</span></p>
 
                                     <div className="max-h-[30px]  ">
                                         <div className="-mt-10 -ml-10">
-                                            <form action="" onSubmit={handelShop} className=''
-                                            >
+                                            <form action="" onSubmit={handelShop} className=''>
                                                 <select required name="shops" className="select select-bordered select-xs w-28  ">
                                                     {shops?.map(shop =>
                                                         <option key={shop?._id} value={shop?._id} >
@@ -83,6 +82,7 @@ const MyProducts = () => {
                                                         </option>)
                                                     }
                                                 </select>
+                                                <input defaultValue={product?.Quantity} name='Quantity' type="number" className='hidden md:inline-block select-xs w-20 ml-3' />
                                                 <button
                                                     onClick={() => setProductID(product?._id)}
                                                     className='ml-4 btn btn-xs btn-warning'>
@@ -91,7 +91,7 @@ const MyProducts = () => {
                                             </form>
                                         </div>
                                     </div>
-                                    <div className='hidden lg:flex  items-center justify-between '>
+                                    <div className='hidden lg:flex  items-center justify-around '>
                                         {product?.status === "published" ?
                                             <button
                                                 onClick={() => handelPublish(product?._id, 'hidden')}

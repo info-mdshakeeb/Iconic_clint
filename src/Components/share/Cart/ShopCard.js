@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ShopCard = ({ shopsData }) => {
 
     return (
-        <ul className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6  '>
+        <ul className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  '>
             {shopsData?.map((data, i) =>
                 <Link to={`/shops/${data._id}`} key={i}>
                     <div className="inline-flex flex-col items-center justify-center w-full h-full bg-white rounded-md shadow-sm hover:scale-[0.91] duration-200  " >

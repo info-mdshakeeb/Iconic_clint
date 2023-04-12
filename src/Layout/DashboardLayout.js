@@ -21,6 +21,7 @@ const DashboardLayout = () => {
             {<NavLink className={className} to='/dashboard/sellerShop'>Your Shops</NavLink>}
             {<NavLink className={className} to='/dashboard/products'>Add Product</NavLink>}
             {<NavLink className={className} to='/dashboard/MyProducts'>Your Products</NavLink>}
+            <NavLink className={className} to='/dashboard/see_byers'>My Byers</NavLink>
             <NavLink className={className} to='/dashboard/admin/pendingShop'>Pending Shops</NavLink>
         </>
     return (

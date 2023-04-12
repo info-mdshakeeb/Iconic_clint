@@ -19,6 +19,7 @@ import Profile from "../Pages/Profile/Profile";
 import SellerShop from "../Pages/Seller/SellerShop";
 import Shops from "../Pages/Shpos/Shops";
 import PendingShop from "../Pages/Shpos/pendingShop";
+import Byers from "../Pages/byers/Byers";
 import AdminRoute from "./AdminRoute";
 import PrivateRouters from "./PrivateRouters";
 import SellerRoutes from "./SellerRoutes";
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([{
         { path: '/dashboard/sellerShop', element: <SellerShop /> },
         { path: '/dashboard/products', element: <AddProducts /> },
         { path: '/dashboard/MyProducts', element: <MyProducts /> },
+        { path: '/dashboard/see_byers', element: < Byers /> },
     ]
 },
 {

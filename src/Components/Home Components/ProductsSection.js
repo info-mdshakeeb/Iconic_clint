@@ -24,7 +24,7 @@ const ProductsSection = () => {
                 />
             </div>
             <div className="text-center py-5">
-                <Link to='/products'>
+                {/* <Link to='/products'>
                     <button className="relative group overflow-hidden px-4 h-8 rounded-md bg-gradient-to-r from-gray-700 via-gray-800 to-black
                       before:absolute 
                       before:inset-0 
@@ -36,7 +36,7 @@ const ProductsSection = () => {
                       hover:before:scale-y-100
                       ">
                         <span className="relative uppercase text-base text-white">Load More</span>
-                    </button></Link>
+                    </button></Link> */}
             </div>
         </div>
     );

@@ -20,7 +20,7 @@ const RandomSection = () => {
         slidesToShow: 6,
         slidesToScroll: 3,
         initialSlide: 0,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         nextArrow: <SamplePrevArrow />,
         prevArrow: <SamplePrevArrow />,
@@ -81,7 +81,7 @@ const RandomSection = () => {
     return (
         <div className='container px-3 md:px-9 m-auto '>
             <div className="py-4">
-                <div className="flex justify-between mb-4">
+                <div className="flex justify-between mb-4 pb-8">
                     <p className="font-bold text-2xl"> Recent Best Products</p>
                 </div>
                 <ul>

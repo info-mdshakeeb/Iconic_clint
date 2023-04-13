@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { getAddressApi } from '../../Api/api';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddressAddModal from '../../Components/Modal/AddressAddModal';
 import PrimaryButton from '../../Components/share/Buttons/PrimaryButton';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
@@ -10,7 +11,7 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 const Address = () => {
     const [closeModal, setCloseModal] = useState(false)
     const { user } = useFirebaseInfo();
-    const { data: address = [], refetch } = useQuery({
+    const { data: address = [], refetch, isFetching, isLoading } = useQuery({
         queryKey: ['address'],
         enabled: !!user?.email,
         queryFn: () => getAddressApi(user?.email)
@@ -27,6 +28,13 @@ const Address = () => {
             .then(data => {
                 refetch();
             })
+    }
+    if (isFetching || isLoading) {
+        return (
+            <div className='w-full  min-h-[calc(100vh_-_370px)] flex justify-center items-center'>
+                <PrimaryLoading />
+            </div>
+        )
     }
     return (
         <BodyTemplate >

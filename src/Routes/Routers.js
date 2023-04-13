@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
 import Address from "../Pages/Address/Address";
+import ProductsAD from "../Pages/Advertisement/ProductsAD";
+import ShopAD from "../Pages/Advertisement/ShopAD.js";
 import Catagory from "../Pages/Catagory/Catagory";
 import ProductDetail from "../Pages/Details/ProductDetail";
 import ShopDetails from "../Pages/Details/ShopDetails";
@@ -49,6 +51,9 @@ export const router = createBrowserRouter([{
         { path: '/dashboard/products', element: <AddProducts /> },
         { path: '/dashboard/MyProducts', element: <MyProducts /> },
         { path: '/dashboard/see_byers', element: < Byers /> },
+        { path: '/dashboard/admin/pendingShop', element: <PendingShop /> },
+        { path: '/dashboard/admin/advertisement/shops', element: <ShopAD /> },
+        { path: '/dashboard/admin/advertisement/products', element: <ProductsAD /> },
     ]
 },
 {

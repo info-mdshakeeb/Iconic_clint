@@ -30,11 +30,14 @@ const MyProducts = () => {
     const handelPublish = (id, value) => {
         handelUpdate(id, { status: value })
     }
+    const handleAdvertisement = (id, value) => {
+        handelUpdate(id, { Advertisement: value })
+    }
     const handelUpdate = (id, value) => {
         updateProductApi(id, value)
             .then(data => {
                 refetch()
-                // console.log(data);
+                console.log(data);
             }).catch(err => {
                 console.log(err);
             })
@@ -49,7 +52,7 @@ const MyProducts = () => {
         <BodyTemplate>
             <div className='min-h-[80vh] overflow-x-hidden '>
                 <div className='px-4'>
-                    <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
+                    <div className='w-full m-auto p-4 border rounded-lg bg-white h-[85vh] xl:h-[87vh] overflow-scroll '>
                         <div className='my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product Details</span>
                             <span className='hidden md:grid'>shop</span>
@@ -67,7 +70,17 @@ const MyProducts = () => {
                                         </div>
                                         <div>
                                             <div className="font-bold">{product?.Names} </div>
-                                            <div className="text-sm opacity-50">{product?.BrandNames}</div>
+                                            <div className="text-sm opacity-50 flex ">{product?.BrandNames}
+                                                {product?.Advertisement ?
+                                                    <div className='pl-2'>{product?.Advertisement}
+                                                        <button
+                                                            onClick={() => handleAdvertisement(product?._id, false)}
+                                                            className='ml-2 bg-black rounded-lg px-1 text-white '> Remove</button>
+                                                    </div>
+                                                    : <button
+                                                        onClick={() => handleAdvertisement(product?._id, "pending")}
+                                                        className='ml-2 bg-black rounded-lg px-1 text-white '> Advertise</button>}
+                                            </div>
                                         </div>
                                     </div>
                                     <p className='hidden md:flex'>  <span className='px-2 text-green-500'>{product?.shop}</span></p>

@@ -7,7 +7,7 @@ import PrimaryButton from '../share/Buttons/PrimaryButton';
 import ShopCard from '../share/Cart/ShopCard';
 
 const ShopsSection = () => {
-    const { data: shops = [], isLoading, isFetching, isInitialLoading } = useQuery({
+    const { data: shops = [], isLoading, isInitialLoading } = useQuery({
         queryKey: ['shops'],
         queryFn: () => verifiedShopsAPI(12)
     })
@@ -18,7 +18,7 @@ const ShopsSection = () => {
                     <p className=" font-bold text-2xl">Shops</p>
                     <PrimaryButton><Link to='/shops'>see more</Link></PrimaryButton>
                 </div>
-                {isInitialLoading || isFetching || isLoading ?
+                {isInitialLoading || isLoading ?
                     <div className="flex justify-center items-center w-full h-[200px]">
                         <PrimaryLoading />
                     </div>

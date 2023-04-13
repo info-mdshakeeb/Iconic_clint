@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import PaymentModal from '../../Components/Modal/PaymentModal';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useAddToCart } from '../../Context/AddToCatd';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const AddToCart = () => {
-    const { cartDates, refetch } = useAddToCart()
+    const { cartDates, refetch, isFetching, isLoading } = useAddToCart()
     const { user } = useFirebaseInfo()
     const [product, setProduct] = useState(null)
 
@@ -28,6 +29,14 @@ const AddToCart = () => {
     }
     const totalPrice = cartDates?.reduce((total, item) => total + item?.price * item?.amount, 0);
     const totalQuantity = cartDates?.reduce((total, item) => total + item?.amount, 0);
+
+    if (isFetching || isLoading) {
+        return (
+            <div className='w-full  min-h-[calc(100vh_-_370px)] flex justify-center items-center'>
+                <PrimaryLoading />
+            </div>
+        )
+    }
 
     return (
         <BodyTemplate>

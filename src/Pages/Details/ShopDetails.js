@@ -9,15 +9,16 @@ import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 const ShopDetails = () => {
     const { id } = useParams()
     // console.log(id);
-    const { data: shop = [], isLoading, isInitialLoading, refetch } = useQuery({
+    const { data: shop = [], isLoading, isInitialLoading, refetch, isFetching: load } = useQuery({
         queryKey: ['shop' + id, id],
         queryFn: () => getShopById(id),
         enabled: !!id
     })
-    const { data: products = [] } = useQuery({
-        queryKey: ['products' + id, id],
+    const { data: products = [], isFetching } = useQuery({
+        queryKey: ['products', id],
         queryFn: () => getProductsByShopApi(id),
     })
+
 
     if (isLoading || isInitialLoading) {
         return <div className="flex justify-center items-center w-full h-[600px]">
@@ -41,13 +42,18 @@ const ShopDetails = () => {
             </div>
             <br />
             <div className="mb-4 font-bold text-2xl ">Products</div>
-            {
-                products.length ?
-                    <ProductCard
-                        products={products}
-                    /> :
-                    <div className="text-center text-gray-600 h-28">No Products added</div>
-            }
+            {isFetching && load && isLoading ?
+                <div className="flex justify-center items-center w-full ">
+                    <PrimaryLoading />
+                </div>
+                : <>
+                    {products.length ?
+                        <ProductCard
+                            products={products}
+                        /> :
+                        <div className="text-center text-gray-600 h-28">No Products added</div>
+                    }
+                </>}
 
         </BodyTemplate>
 

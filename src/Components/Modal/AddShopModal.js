@@ -20,7 +20,8 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             location: data.location,
             category: null,
             status: 'Unauthorized',
-            shopCreated: new Date()
+            shopCreated: new Date(),
+            Advertisement: false,
         }
         fetch(`http://localhost:3210/api/v2/shops`, {
             method: "POST",

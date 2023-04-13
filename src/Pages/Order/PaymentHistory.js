@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const PaymentHistory = () => {
     const { user } = useFirebaseInfo()
-    const { data: paymentHistory } = useQuery({
+    const { data: paymentHistory, isFetching, isLoading } = useQuery({
         queryKey: ['paymentHistory'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:3210/api/v2/cart/payment/confirmed?email=${user?.email}`
@@ -16,6 +17,14 @@ const PaymentHistory = () => {
             return data.data
         }
     })
+
+    if (isFetching || isLoading) {
+        return (
+            <div className='w-full  min-h-[calc(100vh_-_370px)] flex justify-center items-center'>
+                <PrimaryLoading />
+            </div>
+        )
+    }
     return (
         <BodyTemplate>
             <div className='overflow-y-hidden'>

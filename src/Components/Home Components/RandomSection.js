@@ -10,7 +10,7 @@ import "../../Pages/Home/Home.css";
 const RandomSection = () => {
     const { data: randomData = [] } = useQuery({
         queryKey: ['randomData'],
-        queryFn: () => getRandomProductsApi(8)
+        queryFn: () => getRandomProductsApi(10)
     })
     // console.log(products);
     const settings = {

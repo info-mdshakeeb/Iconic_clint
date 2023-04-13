@@ -113,3 +113,14 @@ export const getAddressApi = async (email) => {
     const data = await res.json()
     return data.data
 }
+//advertisement functions :
+export const getAdvertisementShopsApi = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/shops/type/advertisement`)
+    const data = await res.json()
+    return data.data
+}
+export const getAdvertisementProductsApi = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/advertisement`)
+    const data = await res.json()
+    return data.data
+}

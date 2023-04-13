@@ -51,10 +51,11 @@ const AddProducts = () => {
         const variants3 = data.variants3;
         const price3 = data.price3;
         const Quantity = data.Quantity;
+        const Advertisement = false;
         const date = new Date();
         const productData = {
             Names, BrandNames, ImgUrls, Network, Display, Resolution, Cameras, Battery, Operating_System, Processor, date, ownerName: user?.displayName, ownerEmail: user?.email,
-            description, Quantity, variants: [{ variant: variants1, price: price1 }, { variant: variants2, price: price2 }, { variant: variants3, price: price3 }],
+            description, Quantity, variants: [{ variant: variants1, price: price1 }, { variant: variants2, price: price2 }, { variant: variants3, price: price3 }], Advertisement,
             available: false
         }
 

@@ -30,6 +30,15 @@ const RequestForSeller = () => {
             const update = { status: "pending" }
             updateShop(id, update)
         }
+        else if (type === 'requested') {
+            const update = { Advertisement: "requested" }
+            updateShop(id, update)
+        }
+        else if (type === 'undo') {
+            const update = { Advertisement: false }
+            updateShop(id, update)
+            return;
+        }
         else {
             const update = { category: type }
             updateShop(id, update)
@@ -46,6 +55,7 @@ const RequestForSeller = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 successMessage('Request Sand')
                 refetch()
             })
@@ -58,13 +68,13 @@ const RequestForSeller = () => {
         requestValidation(shopsId, catagories);
     }
 
-    if (isLoading || isInitialLoading || isFetching)
-        return <div className="flex justify-center items-center w-full h-[60vh]">
+    if (isLoading || isInitialLoading)
+        return <div className="flex justify-center items-center w-full h-[60vh] overflow-hidden">
             <PrimaryLoading />
         </div>
     return (
         <BodyTemplate>
-            <div className=" mx-auto mb-5 ">
+            <div className=" mx-auto mb-1 ">
                 <div className=" flex gap-4 p-4 bg-white rounded shadow items-center justify-between">
                     <p className='mb-4 font-bold text-xl'>Add Shop</p>
                     <div className="">
@@ -76,9 +86,9 @@ const RequestForSeller = () => {
                     </div>
                 </div>
             </div>
-            <div className='min-h-[80vh] '>
+            <div className=''>
                 <div className=''>
-                    <div className='w-full m-auto p-4 border rounded-lg bg-white  '>
+                    <div className='w-full m-auto p-4 border rounded-lg bg-white h-[70vh] xl:h-[75vh] overflow-scroll  '>
                         <div className='my-3 p-2 grid xl:grid-cols-4 lg:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                             <span>Shop Details</span>
                             <span className='hidden xl:grid'>Your Mail</span>
@@ -98,7 +108,21 @@ const RequestForSeller = () => {
                                         <div>
                                             <div className="font-bold">{shop?.name}
                                             </div>
-                                            <div className="text-sm opacity-50">Date : {shop?.shopCreated?.slice(0, 10)}</div>
+                                            {shop?.status === 'pending' ? undefined : <div className="text-sm opacity-50">
+                                                {shop?.Advertisement ?
+                                                    <div className='flex gap-2'>
+                                                        <p> {shop?.Advertisement}</p>
+                                                        <button
+                                                            onClick={() => requestValidation(shop?._id, "undo")}
+                                                            className='btn btn-xs'> X</button>
+                                                    </div>
+
+                                                    : <button
+                                                        onClick={() => requestValidation(shop?._id, "requested")}
+                                                        className='btn btn-xs'>Advertise
+                                                    </button>
+                                                }
+                                            </div>}
                                         </div>
                                     </div>
                                     <p className='hidden xl:flex'> {shop?.ownerEmail}</p>
@@ -147,36 +171,6 @@ const RequestForSeller = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="mx-auto my-4 w-full">
-                <p className='mb-4 font-bold text-xl'>Your Shop</p>
-                <div className="">
-                    {shops?.map(shop =>
-                        <div className="my-4" key={shop?._id}>
-                            <div className="flex gap-6  p-4 bg-white rounded shadow items-center " >
-                                <div className="">
-                                    <div className="">
-                                        <img src={shop?.photoUrl} height="220px" width="220px" alt="" />
-                                    </div>
-                                </div>
-                                <div className="flex-1">
-                                    <p className='text-xl'>{shop?.name} </p>
-                                    <p className='text-gray-600 h-20 overflow-scroll'>{shop?.location}</p>
-                                    <p>status: {shop?.status}</p>
-                                    <p>category:{shop?.category}</p>
-                                    <div className=" w-80">
-                                        {shop?.status === ('pending' || 'verified') ? "" :
-                                            <button onClick={() => requestValidation(shop?._id)}>
-                                                <SecondaryButton>
-                                                    <p>request  For verify</p>
-                                                </SecondaryButton>
-                                            </button>}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div > */}
             {shopModal &&
                 <AddShopModal
                     refetch={refetch}

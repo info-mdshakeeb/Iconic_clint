@@ -9,7 +9,7 @@ import AlartMessage from '../../Hooks/AlartMessage';
 const PendingShop = () => {
     const { successMessage } = AlartMessage();
 
-    const { data: shopsPending = [], refetch, isLoading, isFetching, isInitialLoading } = useQuery({
+    const { data: shopsPending = [], refetch, isLoading, isInitialLoading } = useQuery({
         queryKey: ['shopsPending'],
         queryFn: () => pendingShops(),
     })
@@ -36,7 +36,7 @@ const PendingShop = () => {
         <BodyTemplate>
 
             <div className='min-h-[80vh] overflow-y-hidden '>
-                {shopsPending.length > 0 ? <div className='px-4'>
+                {shopsPending.length > 0 ? <div className=''>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white  xl:min-h-[87vh] overflow-scroll '>
                         <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer text-xl font-[500]'>
                             <span>Shop Details</span>

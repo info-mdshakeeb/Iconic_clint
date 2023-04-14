@@ -51,7 +51,7 @@ const MyProducts = () => {
     return (
         <BodyTemplate>
             <div className='min-h-[80vh] overflow-x-hidden '>
-                <div className='px-4'>
+                <div className=''>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white h-[85vh] xl:h-[87vh] overflow-scroll '>
                         <div className='my-3 p-2 grid lg:grid-cols-3 xl:grid-cols-4  grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product Details</span>

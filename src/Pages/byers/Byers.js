@@ -19,7 +19,7 @@ const Byers = () => {
     return (
         <BodyTemplate>
             <div className='overflow-y-hidden'>
-                <div className='px-4'>
+                <div className=''>
                     <div className='w-full m-auto p-4 border rounded-lg bg-white h-[87vh] overflow-scroll  '>
                         <div className='my-3 p-2 grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
                             <span>Product</span>

@@ -62,6 +62,7 @@ const SignUp = () => {
                     email: rs?.user?.email,
                     name: rs?.user?.displayName,
                     photoUrl: rs?.user?.photoURL,
+                    date: new Date(),
                     role: "buyer"
                 }
                 saveToDatabase(user)

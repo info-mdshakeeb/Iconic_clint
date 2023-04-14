@@ -16,7 +16,7 @@ const RequestForSeller = () => {
     const [shopModal, setShopeModal] = useState(false);
     const [shopsId, setShopsId] = useState(null);
 
-    const { data: sellerShops = [], refetch, isLoading, isInitialLoading, isFetching } = useQuery({
+    const { data: sellerShops = [], refetch, isLoading, isInitialLoading } = useQuery({
         queryKey: ['sellerShops'],
         queryFn: () => getUserShops(user?.email),
     })

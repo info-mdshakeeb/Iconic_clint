@@ -74,7 +74,6 @@ const ShopAD = () => {
                                     <button
                                         onClick={() => requestValidation(shop?._id, "rejected")}
                                         className="btn btn-xs btn-warning"
-
                                     >Delete</button>
                                 </div>
                                 <BsThreeDotsVertical />

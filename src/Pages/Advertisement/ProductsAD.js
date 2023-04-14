@@ -1,15 +1,38 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { getAdvertisementProductsApi } from '../../Api/api';
+import { getAdvertisementProductsApi, updateProductApi } from '../../Api/api';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
 const ProductsAD = () => {
-    const { data: addProducts = [] } = useQuery({
+    const { data: addProducts = [], refetch } = useQuery({
         queryKey: ['addProducts'],
         queryFn: () => getAdvertisementProductsApi(),
     })
-    console.log(addProducts);
+
+    const requestValidation = (id, type) => {
+        if (type === 'acceded') {
+            const update = { Advertisement: "acceded" }
+            handelUpdate(id, update)
+            return;
+        }
+        else if (type === 'undo') {
+            const update = { Advertisement: false }
+            handelUpdate(id, update)
+            return;
+        }
+    }
+
+    const handelUpdate = (id, value) => {
+        updateProductApi(id, value)
+            .then(data => {
+                refetch()
+                console.log(data);
+            }).catch(err => {
+                console.log(err);
+            })
+    }
+
     return (
         <BodyTemplate>
             <div className='w-full m-auto p-4 border rounded-lg bg-white min-h-[85vh] xl:min-h-[87vh] overflow-scroll  '>
@@ -42,12 +65,11 @@ const ProductsAD = () => {
                             <div className='flex  items-center justify-between'>
                                 <div className="btn-group btn-xs text-white">
                                     <button
-
+                                        onClick={() => requestValidation(Product?._id, 'acceded')}
                                         className="btn btn-warning btn-xs">Verify</button>
                                     <button
-
+                                        onClick={() => requestValidation(Product?._id, 'undo')}
                                         className="btn btn-xs btn-warning"
-
                                     >Delete</button>
                                 </div>
                                 <BsThreeDotsVertical />

@@ -3,6 +3,12 @@ export const getUser = async (email) => {
     const data = await res.json()
     return data.data[0]
 }
+export const getUsers = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/users`)
+    const data = await res.json()
+    return data.data
+}
+
 //Category functions :
 export const getCatagories = async () => {
     const res = await fetch(`http://localhost:3210/api/v2/catagories`)

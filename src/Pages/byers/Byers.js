@@ -2,13 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const Byers = () => {
 
     const { user } = useFirebaseInfo()
-    const { data: getByers } = useQuery({
+    const { data: getByers, isLoading } = useQuery({
         queryKey: ['byers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:3210/api/v2/cart/payment/confirmed/${user?.email}`)
@@ -16,6 +17,17 @@ const Byers = () => {
             return data.data
         }
     })
+
+    if (isLoading) {
+        return (
+            <BodyTemplate>
+                <div className="flex justify-center items-center ">
+                    <PrimaryLoading />
+                </div>
+            </BodyTemplate>
+        )
+    }
+
     return (
         <BodyTemplate>
             <div className='overflow-y-hidden'>

@@ -7813,6 +7813,7 @@ __metadata:
     react-icons: ^4.7.1
     react-image-magnify: ^2.7.4
     react-lazy-load-image-component: ^1.5.6
+    react-paginate: ^8.2.0
     react-photo-view: ^1.2.3
     react-router-dom: ^6.6.1
     react-scripts: 5.0.1
@@ -11459,7 +11460,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15, prop-types@npm:^15.6.0, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -11763,6 +11764,17 @@ __metadata:
     react: ^15.x.x || ^16.x.x || ^17.x.x || ^18.x.x
     react-dom: ^15.x.x || ^16.x.x || ^17.x.x || ^18.x.x
   checksum: 2db8dd56e5926c4831e58b05650e310fd8eabc24607716ad7ffda3e0f6b325434edb098ad27068ea8db7f42fec37bc17eaffbaf562a322e6f1ace16dcc3d5422
+  languageName: node
+  linkType: hard
+
+"react-paginate@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "react-paginate@npm:8.2.0"
+  dependencies:
+    prop-types: ^15
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+  checksum: a0969b4ef27be466ef3e052e2c7c61fca60af24e0d10c76770ebd9953ad6131206a276dfc335e61cf35aa494ff3aacc2610682e3192d7f2ee9541928edb46721
   languageName: node
   linkType: hard
 

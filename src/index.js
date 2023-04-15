@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import AddToCart from './Context/AddToCatd';
+import UsePagination from './Context/Pagination/Pagination';
 import UseLoading from './Context/UseLoading';
 import UserContext from './Context/UserContext';
 import './index.css';
@@ -16,7 +17,9 @@ root.render(
       <UseLoading>
         <UserContext>
           <AddToCart>
-            <App />
+            <UsePagination>
+              <App />
+            </UsePagination>
           </AddToCart>
         </UserContext>
       </UseLoading>

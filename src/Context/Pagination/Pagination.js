@@ -8,18 +8,37 @@ const UsePagination = ({ children }) => {
     const [search, setSearch] = useState("");
     const [searchData, setSearchData] = useState([]);
     const [products, setProducts] = useState(true);
+    const [searchLoading, setSearchLoading] = useState(false);
 
     useEffect(() => {
         if (search?.length > 0 && products === true) {
             const filterResult = data.filter(u => u?.Names?.toLowerCase().includes(search?.toLowerCase()))
+            if (filterResult.length === 0) {
+                setSearchLoading(true)
+            }
+            setSearchLoading(false)
             setSearchData(filterResult)
         } else if (search?.length > 0 && !products) {
             const filterResult = data.filter(u => u?.name?.toLowerCase().includes(search?.toLowerCase()))
+            if (filterResult.length === 0) {
+                setSearchLoading(true)
+            }
+            setSearchLoading(false)
             setSearchData(filterResult)
-        } else { setSearchData(data) }
+        } else {
+            if (data.length === 0) {
+                setSearchLoading(true)
+            }
+            setSearchLoading(false)
+            setSearchData(data)
+        }
     }, [search, data, setData, products, setProducts])
 
-    const value = { data, setData, search, setSearch, searchData, setSearchData, products, setProducts }
+
+
+
+
+    const value = { data, setData, search, setSearch, searchData, setSearchData, products, setProducts, searchLoading, setSearchLoading }
 
     return (
         <pagination.Provider value={value} >

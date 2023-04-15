@@ -9,7 +9,7 @@ import { usePagination } from '../../Context/Pagination/Pagination';
 
 const Category = () => {
 
-    const { searchData, setData, setSearch, setProducts } = usePagination()
+    const { searchData, setData, setProducts, searchLoading } = usePagination()
     const { id } = useParams();
     const { data: catagories = [], isLoading, isFetching, isInitialLoading } = useQuery({
         queryKey: ['catagories'],
@@ -25,10 +25,8 @@ const Category = () => {
         <TemplateCPS
             type={'Category'}
             value={"Category"}
-            data={catagories}
-            setSearch={setSearch}
         >
-            {isInitialLoading || isFetching || isLoading ?
+            {isInitialLoading || isFetching || isLoading || searchLoading ?
                 <div className="flex justify-center items-center w-full h-[200px]">
                     <PrimaryLoading />
                 </div>

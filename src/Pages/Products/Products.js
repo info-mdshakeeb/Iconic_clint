@@ -3,11 +3,12 @@ import React, { useEffect } from 'react';
 import { getProductsApi } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import ProductCard from '../../Components/share/Cart/ProductCard';
+import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import TemplateCPS from '../../Components/share/Template/TemplateCPS';
 import { usePagination } from '../../Context/Pagination/Pagination';
 
 const ProductsAll = () => {
-    const { searchData, setData, setSearch, setProducts } = usePagination()
+    const { searchData, setData, setProducts, searchLoading } = usePagination()
 
     const { data: products = [], isFetching, isLoading, isInitialLoading } = useQuery({
         queryKey: ['products'],
@@ -25,12 +26,13 @@ const ProductsAll = () => {
         <TemplateCPS
             type={'Products'}
             value={"Products"}
-            setSearch={setSearch}
         >
-            {isInitialLoading || isFetching || isLoading ?
-                <div className="flex justify-center items-center w-full h-[600px]">
-                    <PrimaryLoading />
-                </div> :
+            {isInitialLoading || isFetching || isLoading || searchLoading ?
+                <BodyTemplate>
+                    <div className="flex justify-center items-center ">
+                        <PrimaryLoading />
+                    </div>
+                </BodyTemplate> :
                 <ProductCard
                     products={searchData}
                 />}

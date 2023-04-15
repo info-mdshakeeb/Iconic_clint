@@ -22,6 +22,7 @@ const ShopAD = () => {
             return;
         }
     }
+    console.log(adShops);
     const updateShop = (id, update) => {
         fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
             method: "PUT",

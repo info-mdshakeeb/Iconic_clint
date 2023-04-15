@@ -5,7 +5,7 @@ import HomeLayout from "../Layout/HomeLayout";
 import Address from "../Pages/Address/Address";
 import ProductsAD from "../Pages/Advertisement/ProductsAD";
 import ShopAD from "../Pages/Advertisement/ShopAD.js";
-import Catagory from "../Pages/Catagory/Catagory";
+import Category from "../Pages/Catagory/Catagory";
 import ProductDetail from "../Pages/Details/ProductDetail";
 import ShopDetails from "../Pages/Details/ShopDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([{
         { path: '/products/:id', element: <ProductDetail /> },
         { path: '/shops/:id', element: <ShopDetails /> },
         { path: '/shops', element: <Shops /> },
-        { path: '/shops/category/:id', element: <Catagory /> },
+        { path: '/shops/category/:id', element: <Category /> },
         { path: '/add-address', element: <Address /> },
         { path: '/dashboard/orders', element: <PrivateRouters><AddToCart /></PrivateRouters> },
         { path: '/dashboard/profile', element: <PrivateRouters> <Profile /> </PrivateRouters> },

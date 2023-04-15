@@ -49,6 +49,14 @@ export const getShopById = async (id) => {
     return data.data[0]
 }
 
+//pagination 
+export const getShoPByIdPagination = async (page, limit) => {
+    console.log(page, limit);
+    const res = await fetch(`http://localhost:3210/api/v2/shops/type/verified?page=${page}&limit=${limit}`)
+    const data = await res.json()
+    return data.data
+}
+
 //product functions :
 //add product :
 export const addProductApi = async (product) => {
@@ -121,12 +129,24 @@ export const getAddressApi = async (email) => {
 }
 //advertisement functions :
 export const getAdvertisementShopsApi = async () => {
-    const res = await fetch(`http://localhost:3210/api/v2/shops/type/advertisement`)
+    const res = await fetch(`http://localhost:3210/api/v2/shops/type/advertisement/pending`)
     const data = await res.json()
     return data.data
 }
 export const getAdvertisementProductsApi = async () => {
     const res = await fetch(`http://localhost:3210/api/v2/products/advertisement`)
+    const data = await res.json()
+    return data.data
+}
+// verified advertisement shops:
+export const getVerifiedAdvertisementShopsApi = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/shops/type/advertisement/verified`)
+    const data = await res.json()
+    return data.data
+}
+// verified advertisement products:
+export const getVerifiedAdvertisementProductsApi = async () => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/advertisement/verified`)
     const data = await res.json()
     return data.data
 }

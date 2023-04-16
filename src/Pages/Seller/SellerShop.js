@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 import { getCatagories, getUserShops } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddShopModal from '../../Components/Modal/AddShopModal';
@@ -56,7 +57,7 @@ const RequestForSeller = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                successMessage('Request Sand')
+                toast.success("Done")
                 refetch()
             })
     }

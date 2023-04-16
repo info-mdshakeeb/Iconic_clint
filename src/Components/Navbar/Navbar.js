@@ -12,7 +12,7 @@ import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 const Navbar = ({ need }) => {
     const { user, logout, loading, setLoading } = useFirebaseInfo()
     const { cartDates, refetch } = useAddToCart()
-    // console.log(user);
+
     const { data: useR = [] } = useQuery({
         queryKey: ['useR', user?.email],
         queryFn: () => getUser(user?.email),
@@ -48,7 +48,7 @@ const Navbar = ({ need }) => {
         <header className='shadow-sm shadow-gray-200  sticky top-0 z-50 bg-white ' >
             <div className=" container px-9 flex py-3 m-auto ">
                 <div className="flex items-center flex-1 gap-4 md:gap-8">
-                    <a href='/' className='text-2xl font-bold text-gray-800 transition-colors duration-300  hover:text-gray-700'>ICONIC</a>
+                    <a href='/' className='text-3xl font-bold text-gray-800 transition-colors duration-300  hover:text-gray-700'>ICONIC</a>
                 </div >
                 <div className="flex items-center gap-4 md:gap-12">
                     <div className="dropdown">
@@ -86,12 +86,17 @@ const Navbar = ({ need }) => {
                         {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 ">
                                 <li>
-                                    <Link to="/dashboard/profile" className="">
+                                    {useR?.role === "seller" || "admin" ? <Link to="/dashboard/seller/profile" className="">
                                         Profile
                                     </Link>
+                                        :
+                                        <Link to="/dashboard/profile" className="">
+                                            Profile
+                                        </Link>}
                                 </li>
                                 <hr />
-                                <li><Link to="/dashboard/orders">Orders</Link></li>
+                                {useR?.role === "seller" || "admin" ? <li><Link to="/dashboard/seller/orders">Orders</Link></li> :
+                                    <li><Link to="/dashboard/orders">Orders</Link></li>}
                                 <hr />
                                 <li><p onClick={() => handleLLogout()}>{loading ?
                                     <PrimaryLoading
@@ -109,11 +114,10 @@ const Navbar = ({ need }) => {
                         <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
                             <li><NavLink to='/home'>Home</NavLink></li>
                             <li><NavLink to='/shops'>Shops</NavLink></li>
+                            <li><NavLink to='/products'>Products</NavLink></li>
                             {user && <>
-                                <li><NavLink to='/products'>Products</NavLink></li>
                                 <li><NavLink to='/dashboard/orders'>Orders</NavLink></li>
                                 <li><NavLink to='/add-address'>Delivery Address</NavLink></li>
-
                             </>}
                         </ul>
                     </div>

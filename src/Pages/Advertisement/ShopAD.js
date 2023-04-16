@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 import { getAdvertisementShopsApi } from '../../Api/api';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
@@ -22,7 +23,6 @@ const ShopAD = () => {
             return;
         }
     }
-    console.log(adShops);
     const updateShop = (id, update) => {
         fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
             method: "PUT",
@@ -33,8 +33,8 @@ const ShopAD = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 refetch()
+                toast.success("success")
             })
     }
 

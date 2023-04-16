@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { getAddressApi } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import AddressAddModal from '../../Components/Modal/AddressAddModal';
@@ -26,6 +27,7 @@ const Address = () => {
         })
             .then(res => res.json())
             .then(data => {
+                toast.warning('Address Deleted')
                 refetch();
             })
     }

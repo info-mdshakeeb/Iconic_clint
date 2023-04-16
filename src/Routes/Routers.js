@@ -51,9 +51,9 @@ export const router = createBrowserRouter([{
         { path: '/dashboard/products', element: <AddProducts /> },
         { path: '/dashboard/MyProducts', element: <MyProducts /> },
         { path: '/dashboard/see_byers', element: < Byers /> },
-        { path: '/dashboard/admin/pendingShop', element: <PendingShop /> },
-        { path: '/dashboard/admin/advertisement/shops', element: <ShopAD /> },
-        { path: '/dashboard/admin/advertisement/products', element: <ProductsAD /> },
+        { path: '/dashboard/seller/profile', element: <Profile /> },
+        { path: '/dashboard/seller/orders', element: <AddToCart /> },
+
     ]
 },
 {
@@ -61,6 +61,9 @@ export const router = createBrowserRouter([{
     element: <AdminRoute><DashboardLayout /></AdminRoute>,
     children: [
         { path: '/dashboard/admin/pendingShop', element: <PendingShop /> },
+        { path: '/dashboard/admin/pendingShop', element: <PendingShop /> },
+        { path: '/dashboard/admin/advertisement/shops', element: <ShopAD /> },
+        { path: '/dashboard/admin/advertisement/products', element: <ProductsAD /> },
     ]
 },
 

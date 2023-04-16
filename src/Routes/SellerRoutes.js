@@ -21,7 +21,7 @@ const SellerRoutes = ({ children }) => {
             <PrimaryLoading></PrimaryLoading>
         </div>
     }
-    if (useR?.role === ('seller' || 'admin')) {
+    if (useR?.role === 'seller' || 'admin') {
         return children
     }
     return <Navigate to='/login' state={{ from: location }} replace />

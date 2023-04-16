@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import AlartMessage from '../../Hooks/AlartMessage';
 import SecondaryButton from '../share/Buttons/SecondaryButton';
@@ -33,7 +34,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    successMessage('Added SuccessFull')
+                    toast.success("Added Shop")
                     setShopeModal(false)
                 }
                 refetch()

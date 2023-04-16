@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { addProductApi } from '../../Api/api';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import FormTemplate from '../../Components/share/Template/FormTemplate';
@@ -62,7 +63,7 @@ const AddProducts = () => {
         //add data to database
         addProductApi(productData)
             .then(res => {
-                console.log(res);
+                toast.success("added product")
             })
             .catch(err => console.log(err))
     }

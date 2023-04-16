@@ -29,7 +29,7 @@ const Profile = () => {
             updateSeller(user?.email, updateUser)
         }
         else {
-            const updateUser = { name: data.name, role: "seller" }
+            const updateUser = { name: data.name }
             updateSeller(user?.email, updateUser)
         }
         updateProfilePic(data.name)

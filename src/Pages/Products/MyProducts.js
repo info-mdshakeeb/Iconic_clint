@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 import { getProductsByUserApi, getUserShops, updateProductApi } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
@@ -37,9 +38,10 @@ const MyProducts = () => {
         updateProductApi(id, value)
             .then(data => {
                 refetch()
-                console.log(data);
+                toast.success("Success")
             }).catch(err => {
                 console.log(err);
+                toast.error(err.message)
             })
     }
 

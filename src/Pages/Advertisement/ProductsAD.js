@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 import { getAdvertisementProductsApi, updateProductApi } from '../../Api/api';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 
@@ -27,9 +28,10 @@ const ProductsAD = () => {
         updateProductApi(id, value)
             .then(data => {
                 refetch()
-                console.log(data);
+                toast.success("success")
             }).catch(err => {
                 console.log(err);
+                toast.error(err.message)
             })
     }
 

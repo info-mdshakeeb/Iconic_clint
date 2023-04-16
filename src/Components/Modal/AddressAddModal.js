@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useFirebaseInfo } from '../../Context/UserContext';
 import SecondaryButton from '../share/Buttons/SecondaryButton';
 
@@ -26,7 +27,8 @@ const AddressAddModal = ({ closeModal, setCloseModal, refetch }) => {
             .then(data => {
                 setCloseModal(false)
                 refetch();
-                console.log(data);
+                toast.success("added Address")
+
             })
     }
     return (

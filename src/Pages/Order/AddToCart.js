@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import PaymentModal from '../../Components/Modal/PaymentModal';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
@@ -8,9 +10,12 @@ import { useAddToCart } from '../../Context/AddToCatd';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
 const AddToCart = () => {
+
     const { cartDates, refetch, isFetching, isLoading } = useAddToCart()
     const { user } = useFirebaseInfo()
     const [product, setProduct] = useState(null)
+
+    // 
 
     // update o
     const removeItem = (id) => {
@@ -24,6 +29,7 @@ const AddToCart = () => {
         })
             .then(res => res.json())
             .then(data => {
+                toast.success("Success!");
                 refetch();
             })
     }
@@ -32,7 +38,7 @@ const AddToCart = () => {
 
     if (isFetching || isLoading) {
         return (
-            <div className='w-full  min-h-[calc(100vh_-_370px)] flex justify-center items-center'>
+            <div className='w-full  min-h-[calc(100vh_-_370px)]  flex justify-center items-center'>
                 <PrimaryLoading />
             </div>
         )

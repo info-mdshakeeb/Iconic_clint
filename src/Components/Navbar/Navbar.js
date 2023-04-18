@@ -86,7 +86,7 @@ const Navbar = ({ need }) => {
                         {user?.uid &&
                             <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 ">
                                 <li>
-                                    {useR?.role === "seller" || "admin" ? <Link to="/dashboard/seller/profile" className="">
+                                    {useR?.role === "seller" || useR?.role === "admin" ? <Link to="/dashboard/seller/profile" className="">
                                         Profile
                                     </Link>
                                         :
@@ -95,7 +95,7 @@ const Navbar = ({ need }) => {
                                         </Link>}
                                 </li>
                                 <hr />
-                                {useR?.role === "seller" || "admin" ? <li><Link to="/dashboard/seller/orders">Orders</Link></li> :
+                                {useR?.role === "seller" || useR?.role === "admin" ? <li><Link to="/dashboard/seller/orders">Orders</Link></li> :
                                     <li><Link to="/dashboard/orders">Orders</Link></li>}
                                 <hr />
                                 <li><p onClick={() => handleLLogout()}>{loading ?

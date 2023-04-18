@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import Lottie from 'lottie-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getUsers } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
 import SecondaryButton from '../../Components/share/Buttons/SecondaryButton';
 import { useLoading } from '../../Context/UseLoading';
@@ -15,6 +17,11 @@ const SignUp = () => {
     const { GoogleLogin, CreateUserEP, updateProfilePic } = useFirebaseInfo()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { successMessage, errorMessage } = AlartMessage()
+    const { data: UserS = [] } = useQuery({
+        queryKey: ['user'],
+        queryFn: () => getUsers()
+    })
+
     const { state, dispatch } = useLoading();
     // console.log(state);
     const url = `http://localhost:3210/api/v2/users`
@@ -65,7 +72,10 @@ const SignUp = () => {
                     date: new Date(),
                     role: "buyer"
                 }
-                saveToDatabase(user)
+                const findUser = UserS.find(user => user?.email === rs?.user?.email)
+                if (!findUser) {
+                    saveToDatabase(user)
+                }
                 successMessage("successfully login")
                 setTimeout(() => {
                     navigate(from, { replace: true })

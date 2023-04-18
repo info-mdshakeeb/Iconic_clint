@@ -2,6 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeLayout from "../Layout/HomeLayout";
+import Infinite from "../Layout/Infinite";
 import Address from "../Pages/Address/Address";
 import ProductsAD from "../Pages/Advertisement/ProductsAD";
 import ShopAD from "../Pages/Advertisement/ShopAD.js";
@@ -32,16 +33,23 @@ export const router = createBrowserRouter([{
     children: [
         { path: '/', element: <Home /> },
         { path: '/home', element: <Home /> },
-        { path: '/products', element: <Products /> },
         { path: '/products/:id', element: <ProductDetail /> },
         { path: '/shops/:id', element: <ShopDetails /> },
-        { path: '/shops', element: <Shops /> },
         { path: '/shops/category/:id', element: <Category /> },
         { path: '/add-address', element: <Address /> },
         { path: '/dashboard/orders', element: <PrivateRouters><AddToCart /></PrivateRouters> },
         { path: '/dashboard/profile', element: <PrivateRouters> <Profile /> </PrivateRouters> },
         { path: '/dashboard/orders/payment-history', element: <PrivateRouters> <PaymentHistory /> </PrivateRouters> },
     ]
+},
+{
+    path: "/all",
+    element: <Infinite />,
+    children: [
+        { path: '/all/shops', element: <Shops /> },
+        { path: '/all/products', element: <Products /> },
+    ]
+
 },
 {
     path: '/dashboard',

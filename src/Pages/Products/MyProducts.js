@@ -15,6 +15,7 @@ const MyProducts = () => {
         enabled: !!user?.email,
         queryFn: () => getProductsByUserApi(user?.email)
     })
+    console.log(productsByUser);
     const { data: shops = [] } = useQuery({
         queryKey: ['shops'],
         enabled: !!user?.email,
@@ -73,19 +74,26 @@ const MyProducts = () => {
                                         <div>
                                             <div className="font-bold">{product?.Names} </div>
                                             <div className="text-sm opacity-50 flex ">{product?.BrandNames}
-                                                {product?.Advertisement ?
-                                                    <div className='pl-2'>{product?.Advertisement}
-                                                        <button
-                                                            onClick={() => handleAdvertisement(product?._id, false)}
-                                                            className='ml-2 bg-black rounded-lg px-1 text-white '> Remove</button>
-                                                    </div>
-                                                    : <button
-                                                        onClick={() => handleAdvertisement(product?._id, "pending")}
-                                                        className='ml-2 bg-black rounded-lg px-1 text-white '> Advertise</button>}
+                                                {product?.shop && <>
+
+                                                    {product?.Advertisement ?
+                                                        <div className='pl-2'>{product?.Advertisement}
+                                                            <button
+                                                                onClick={() => handleAdvertisement(product?._id, false)}
+                                                                className='ml-2 bg-black rounded-lg px-1 text-white '> Remove</button>
+                                                        </div>
+                                                        : <button
+                                                            onClick={() => handleAdvertisement(product?._id, "pending")}
+                                                            className='ml-2 bg-black rounded-lg px-1 text-white '> Advertise</button>
+                                                    }
+                                                </>}
                                             </div>
                                         </div>
                                     </div>
-                                    <p className='hidden md:flex'>  <span className='px-2 text-green-500'>{product?.shop}</span></p>
+                                    {product?.shop ? <p className='hidden md:flex'>  <span className='px-2 text-green-500'>{product?.shop}</span></p>
+                                        :
+                                        <p className='text-yellow-400'>Add a Shop</p>
+                                    }
 
                                     <div className="max-h-[30px]  ">
                                         <div className="-mt-10 -ml-10">
@@ -106,7 +114,7 @@ const MyProducts = () => {
                                             </form>
                                         </div>
                                     </div>
-                                    <div className='hidden lg:flex  items-center justify-around '>
+                                    {product?.shop && <div className='hidden lg:flex  items-center justify-around '>
                                         {product?.status === "published" ?
                                             <button
                                                 onClick={() => handelPublish(product?._id, 'hidden')}
@@ -115,7 +123,7 @@ const MyProducts = () => {
                                                 onClick={() => handelPublish(product?._id, 'published')}
                                                 htmlFor="confirmation-modal" className="btn btn-secondary btn-xs">Publish</button>}
                                         <BsThreeDotsVertical />
-                                    </div>
+                                    </div>}
                                 </li>
                             )}
                         </ul>

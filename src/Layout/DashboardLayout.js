@@ -18,10 +18,12 @@ const DashboardLayout = () => {
         <>
             <NavLink className={`flex items-center  px-4  py-3 mt-10  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === "/dashboard/seller/profile" ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/seller/profile'>Account</NavLink>
             <NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === "/dashboard/seller/orders" ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/seller/orders'>My orders</NavLink>
-            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === "/dashboard/sellerShop" ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/sellerShop'>Your Shops</NavLink>}
-            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/products' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/products'>Add Product</NavLink>}
-            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/MyProducts' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/MyProducts'>Your Products</NavLink>}
             <NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/see_byers' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/see_byers'>My Byers</NavLink>
+            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === "/dashboard/sellerShop" ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/sellerShop'>Your Shops</NavLink>}
+
+            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/MyProducts' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/MyProducts'>Your Products</NavLink>}
+            {<NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/products' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/products'>Add Product</NavLink>}
+
             {useR?.role === "admin" &&
                 <>
                     <NavLink className={`flex items-center px-4  py-3  transition-colors duration-300 transform  hover:bg-gray-100 ${pathname === '/dashboard/admin/pendingShop' ? "bg-blue-500 text-white" : ""} hover:text-gray-700 `} to='/dashboard/admin/pendingShop'>Pending Shops</NavLink>

@@ -88,6 +88,12 @@ export const getProductsApi = async () => {
     const data = await res.json()
     return data.data
 }
+//
+export const getProductsScroll = async (page, Limit) => {
+    const res = await fetch(`http://localhost:3210/api/v2/products/verified/all?page=${page}&Limit=${Limit}`)
+    const data = await res.json()
+    return data.data
+}
 // get limit products:
 export const getLimitProductsApi = async (limit) => {
     const res = await fetch(`http://localhost:3210/api/v2/products?limit=${limit}`)

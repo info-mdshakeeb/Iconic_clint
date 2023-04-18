@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import BodyTemplate from '../Template/BodyTemplate';
 
 const ProductCard = ({ products }) => {
-    // console.log(products);
-
     return (
         <>
             {products.length > 0 ?
@@ -15,7 +13,7 @@ const ProductCard = ({ products }) => {
                                 <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-md">
                                     <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
                                         <div className="">
-                                            <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[2]} alt="" />
+                                            <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[0]} alt="" />
                                         </div>
                                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/50">
                                         </div>

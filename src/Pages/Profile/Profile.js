@@ -94,7 +94,8 @@ const Profile = () => {
                                         type="checkbox" className="checkbox checkbox-warning"
                                         {...register("check")}
                                     />
-                                </label> : undefined}
+                                </label>
+                                : undefined}
                         </div>
                         <div className="mt-4">
                             <SecondaryButton>Update </SecondaryButton>

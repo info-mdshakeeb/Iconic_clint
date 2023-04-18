@@ -115,12 +115,12 @@ const ProductDetail = () => {
         <BodyTemplate>
             <div className="p-4 my-6 bg-white shadow">
                 <div className="flex flex-col gap-4 md:flex-row">
-                    <div className="flex-shrink-0 flex-1">
+                    <div className="flex-shrink-0 flex-1    ">
                         <div className="md:max-w-[500px]  ">
                             <figure className='flex justify-center items-center'>
                                 <div className="">
                                     {img ? <img className='h-[450px]' src={img} alt="" /> :
-                                        <img className='h-[450px]' src={product?.ImgUrls[1]} alt="" />}
+                                        <img className='h-[450px]' src={product?.ImgUrls[0]} alt="" />}
                                 </div>
                             </figure>
                             <div className="mt-2">
@@ -202,54 +202,59 @@ const ProductDetail = () => {
             <div className="my-6">
                 <p className='mb-3 text-base text-semibold'>Buy Form</p>
             </div>
-            <div className="flex gap-4 pb-1 overflow-x-auto flex-nowrap hide-scrollbar lg:grid lg:grid-cols-2">
-                <div className="p-4 bg-white shadow w-full md:max-w-[400px] min-w-[300px]">
-                    <div className="flex gap-2 mb-2">
-                        <div className="">
-                            <a href="/" className="">
-                                <div className="">
-                                    <img src={shop?.photoUrl} alt="" height="50px" width="50px" />
-                                </div>
-                            </a>
-                        </div>
-                        <div className="">
-                            <a href={`/shops/${shop?._id}`} className="">
-                                <p className="text-base font-medium hover:text-gray-600">
-                                    {shop?.name}
-                                </p>
-                                <p><span className="px-2 py-0.5 text-xs bg-gray-200 rounded">{shop?.category}</span></p>
-                            </a>
-                        </div>
-                    </div>
-                    <p className='flex items-center gap-2 mb-1'>
-                        <span className="">Q</span>
-                        <span className="flex-1">{shop?.location}</span>
-                    </p> <hr />
-                    <div className="my-4">
-                        <div className="flex items-end gap-2">
-                            {variantsPrice ? <p className="text-base font-semibold text-gray-600">Price : {variantsPrice}</p>
-                                : <p className="text-base font-semibold text-gray-600"> Please Select a variant</p>
-                            }
-                        </div>
-                        <div className="flex items-center gap-4 ">
-                            <div className="flex gap-4 items-center ">
-                                <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setDecrease()}>-</button>
-                                <p className='w-4'>{amount}</p>
-                                <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setIncrease()}>+</button>
+            {shop?._id ?
+                <div className="flex gap-4 pb-1 overflow-x-auto flex-nowrap hide-scrollbar lg:grid lg:grid-cols-2">
+                    <div className="p-4 bg-white shadow w-full md:max-w-[400px] min-w-[300px]">
+                        <div className="flex gap-2 mb-2">
+                            <div className="">
+                                <a href="/" className="">
+                                    <div className="">
+                                        <img src={shop?.photoUrl} alt="" height="50px" width="50px" />
+                                    </div>
+                                </a>
                             </div>
-                            {user ?
-                                <Link
-                                    onClick={() => handleAddToCart(product)}
-                                    className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</Link>
-                                :
-                                <Link to={`/login`}>
-                                    <button className='mt-3 btn btn-sm type-info'>Add to card</button>
-                                </Link>
-                            }
+                            <div className="">
+                                <a href={`/shops/${shop?._id}`} className="">
+                                    <p className="text-base font-medium hover:text-gray-600">
+                                        {shop?.name}
+                                    </p>
+                                    <p><span className="px-2 py-0.5 text-xs bg-gray-200 rounded">{shop?.category}</span></p>
+                                </a>
+                            </div>
+                        </div>
+                        <p className='flex items-center gap-2 mb-1'>
+                            <span className="">Q</span>
+                            <span className="flex-1">{shop?.location}</span>
+                        </p> <hr />
+                        <div className="my-4">
+                            <div className="flex items-end gap-2">
+                                {variantsPrice ? <p className="text-base font-semibold text-gray-600">Price : {variantsPrice}</p>
+                                    : <p className="text-base font-semibold text-gray-600"> Please Select a variant</p>
+                                }
+                            </div>
+                            <div className="flex items-center gap-4 ">
+                                <div className="flex gap-4 items-center ">
+                                    <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setDecrease()}>-</button>
+                                    <p className='w-4'>{amount}</p>
+                                    <button className='px-3 border hover:bg-black hover:text-white ' onClick={() => setIncrease()}>+</button>
+                                </div>
+                                {user ?
+                                    <Link
+                                        onClick={() => handleAddToCart(product)}
+                                        className={`mt-3 btn btn-sm type-info  ${variantsPrice ? "" : "btn-disabled"}`}>Add to card</Link>
+                                    :
+                                    <Link to={`/login`}>
+                                        <button className='mt-3 btn btn-sm type-info'>Add to card</button>
+                                    </Link>
+                                }
+                            </div>
                         </div>
                     </div>
+                </div> :
+                <div>
+                    <p className='text-center text-2xl'>No shop Available for this product</p>
                 </div>
-            </div>
+            }
             <div className="p-4 my-6 bg-white shadow">
                 <p className=''>Description :</p>
                 <p className='text-gray-600'>

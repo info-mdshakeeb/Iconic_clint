@@ -17,12 +17,14 @@ const UsePagination = ({ children }) => {
         setPage(pre => pre + 1)
         const data = await getProductsScroll(page, 15)
         if (data.length === 0) {
+            console.log('no more data');
             setHasMore(false)
             return
         }
         setSearchData(pre => [...pre, ...data])
     };
     useEffect(() => {
+
         if (search?.length > 0 && products === true) {
             const filterResult = data.filter(u => u?.Names?.toLowerCase().includes(search?.toLowerCase()))
             if (filterResult.length === 0 && search) {
@@ -42,6 +44,7 @@ const UsePagination = ({ children }) => {
                 setSearchLoading(true)
             }
             setHasMore(true)
+            setPage(2)
             setSearchLoading(false)
             setSearchData(data)
         }

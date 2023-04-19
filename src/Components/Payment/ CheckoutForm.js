@@ -17,7 +17,7 @@ const CheckoutForm = ({ product, setProduct }) => {
     const [error, setError] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
     const price = product?.price * product?.amount;
-    const { data: address = [] } = useQuery({
+    const { data: address = [], isLoading } = useQuery({
         queryKey: ['address'],
         enabled: !!user?.email,
         queryFn: () => getAddressApi(user?.email)
@@ -103,6 +103,8 @@ const CheckoutForm = ({ product, setProduct }) => {
             addToDb(confirmPayment)
         }
     };
+    if (isLoading) return <div className='text-center mt-10'>Loading...</div>
+
     return (
         <form onSubmit={handleSubmit}>
             <div className=" ">

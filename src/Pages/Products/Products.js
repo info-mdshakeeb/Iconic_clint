@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-
 import React, { useEffect } from 'react';
 import { getProductsApi, getProductsScroll } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
@@ -9,10 +8,9 @@ import TemplateCPS from '../../Components/share/Template/TemplateCPS';
 import { usePagination } from '../../Context/Pagination/Pagination';
 
 const ProductsAll = () => {
-    const { searchData, setData, setProducts, searchLoading, setSearchData, search } = usePagination()
+    const { searchData, setData, setProducts, searchLoading, setSearchData, search, setPage, setHasMore } = usePagination()
     const { data: products = [], isFetching, isLoading, isInitialLoading } = useQuery({
         queryKey: ['products'],
-        // queryFn: () => getProductsApi()
         queryFn: () => getProductsScroll(1, 15)
     })
     const { data: allProducts = [] } = useQuery({
@@ -20,12 +18,11 @@ const ProductsAll = () => {
         queryFn: () => getProductsApi()
     })
     useEffect(() => {
+        setPage(2)
+        setHasMore(true)
         setProducts(true)
         setData(products)
-        if (!!search) {
-            setData(allProducts)
-
-        }
+        if (!!search) { setData(allProducts) }
     }, [setData, setProducts, products, allProducts, setSearchData, search])
 
     return (

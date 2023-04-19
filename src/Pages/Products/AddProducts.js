@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { addProductApi } from '../../Api/api';
-import BodyTemplate from '../../Components/share/Template/BodyTemplate';
 import FormTemplate from '../../Components/share/Template/FormTemplate';
 import { useFirebaseInfo } from '../../Context/UserContext';
 
@@ -69,11 +68,11 @@ const AddProducts = () => {
     }
 
     return (
-        <BodyTemplate>
-            <div className="">
-                <form onSubmit={handleSubmit(onSubmit)}
-                    className="mt-6 w-full ">
-                    <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4">
+        <div className="">
+            <form onSubmit={handleSubmit(onSubmit)}
+                className="mt-6 w-full  ">
+                <div className=" ">
+                    <div className="grid xl:grid-cols-4 md:grid-cols-3 gap-4 ">
                         {tableData.map((data, index) =>
                             <FormTemplate
                                 key={index}
@@ -82,12 +81,13 @@ const AddProducts = () => {
                             />
                         )}
                     </div>
-                    <div className="text-center mt-6">
-                        <button className=' btn btn-primary btn-sm '>add data</button>
-                    </div>
-                </form>
-            </div>
-        </BodyTemplate>
+                </div>
+                <div className="text-center mt-6">
+                    <button className=' btn btn-primary btn-sm '>add data</button>
+                </div>
+            </form>
+        </div>
+
     );
 };
 

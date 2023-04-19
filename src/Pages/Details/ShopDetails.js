@@ -56,8 +56,6 @@ const ShopDetails = () => {
                             )
                             }
                         </ul>
-
-
                         :
                         <div className="text-center text-gray-600 h-28">No Products added</div>
                     }

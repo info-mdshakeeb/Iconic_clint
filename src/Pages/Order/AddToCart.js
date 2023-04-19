@@ -11,11 +11,9 @@ import { useFirebaseInfo } from '../../Context/UserContext';
 
 const AddToCart = () => {
 
-    const { cartDates, refetch, isFetching, isLoading } = useAddToCart()
+    const { cartDates, refetch, isLoading } = useAddToCart()
     const { user } = useFirebaseInfo()
     const [product, setProduct] = useState(null)
-
-    // 
 
     // update o
     const removeItem = (id) => {
@@ -36,7 +34,7 @@ const AddToCart = () => {
     const totalPrice = cartDates?.reduce((total, item) => total + item?.price * item?.amount, 0);
     const totalQuantity = cartDates?.reduce((total, item) => total + item?.amount, 0);
 
-    if (isFetching || isLoading) {
+    if (isLoading) {
         return (
             <div className='w-full  min-h-[calc(100vh_-_370px)]  flex justify-center items-center'>
                 <PrimaryLoading />

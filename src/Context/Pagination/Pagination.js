@@ -25,11 +25,13 @@ const UsePagination = ({ children }) => {
     useEffect(() => {
         if (search?.length > 0 && products === true) {
             const filterResult = data.filter(u => u?.Names?.toLowerCase().includes(search?.toLowerCase()))
-            if (filterResult.length === 0) { setSearchLoading(true) }
-            setHasMore(true)
-            setPage(2)
-            setSearchLoading(false)
-            setSearchData(filterResult)
+            if (filterResult.length === 0 && search) {
+                setHasMore(false); setSearchLoading(true); setPage(2)
+            } else if (filterResult.length === 0 && !search) {
+                setHasMore(true); setSearchLoading(true); setPage(2)
+            } else {
+                setSearchLoading(false); setSearchData(filterResult); setHasMore(false);
+            }
         } else if (search?.length > 0 && !products) {
             const filterResult = data.filter(u => u?.name?.toLowerCase().includes(search?.toLowerCase()))
             if (filterResult.length === 0) { setSearchLoading(true) }
@@ -39,6 +41,7 @@ const UsePagination = ({ children }) => {
             if (data.length === 0) {
                 setSearchLoading(true)
             }
+            setHasMore(true)
             setSearchLoading(false)
             setSearchData(data)
         }

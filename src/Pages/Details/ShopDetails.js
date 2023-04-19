@@ -3,8 +3,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductsByShopApi, getShopById } from '../../Api/api';
 import PrimaryLoading from '../../Components/LoadingSpin/PrimaryLoading';
-import ProductCard from '../../Components/share/Cart/ProductCard';
 import BodyTemplate from '../../Components/share/Template/BodyTemplate';
+import Card from '../../Components/share/Template/Card';
 
 const ShopDetails = () => {
     const { id } = useParams()
@@ -48,9 +48,17 @@ const ShopDetails = () => {
                 </div>
                 : <>
                     {products.length ?
-                        <ProductCard
-                            products={products}
-                        /> :
+                        <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  '>
+                            {products?.map((product, i) =>
+                                <Card
+                                    product={product}
+                                />
+                            )
+                            }
+                        </ul>
+
+
+                        :
                         <div className="text-center text-gray-600 h-28">No Products added</div>
                     }
                 </>}

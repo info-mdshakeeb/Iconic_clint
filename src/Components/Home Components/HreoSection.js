@@ -24,13 +24,23 @@ const HeroSection = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src="https://media.e-valy.com/cms/products/images/b8825bb3-9318-43fa-8271-9933e4cdb21e" className="w-full overflow-hidden" alt='' />
+                    <img src="https://i.ibb.co/T20XPbh/Get-your-phone-With-Us-2.png" alt="Get-your-phone-With-Us-2" border="0" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://media.e-valy.com/cms/products/images/bbfcc214-3322-4262-ba04-01d0dc40b23a" className="w-full" alt='' />
+                    <img src="https://i.ibb.co/d2TPdMr/Get-your-phone-With-Us.png" alt="Get-your-phone-With-Us" border="0" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://media.e-valy.com/cms/products/images/3d3fbd76-3e41-4d73-bf3c-aa59858c6f9a" className="w-full" alt='' />
+                    <img src="https://i.ibb.co/9yNQ9Tm/3.png" alt="3" border="0" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src="https://i.ibb.co/DzvxCX2/1.png" alt="1" border="0" className="w-full overflow-hidden" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src="https://i.ibb.co/0sdnbGN/4.png" alt="4" border="0" />
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <img src="https://i.ibb.co/7kypNcv/2.png" alt="2" border="0" />
                 </SwiperSlide>
 
             </Swiper>

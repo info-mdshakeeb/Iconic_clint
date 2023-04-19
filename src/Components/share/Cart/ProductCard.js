@@ -1,32 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { usePagination } from '../../../Context/Pagination/Pagination';
+import PrimaryLoading from '../../LoadingSpin/PrimaryLoading';
 import BodyTemplate from '../Template/BodyTemplate';
-
+import Card from '../Template/Card';
 const ProductCard = ({ products }) => {
+    const { hasMore, fetchData } = usePagination()
+
     return (
-        <>
+        <InfiniteScroll
+            dataLength={products.length}
+            next={fetchData}
+            hasMore={hasMore}
+            loader={<div className="flex justify-center items-center mt-10"><PrimaryLoading /></div>}
+        >
             {products.length > 0 ?
                 <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  '>
                     {products?.map((product, i) =>
-                        <div className="flex flex-col items-center justify-center  rounded-md " key={i}>
-                            <Link to={`/products/${product?._id}`} key={i}>
-                                <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-md">
-                                    <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
-                                        <div className="">
-                                            <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[0]} alt="" />
-                                        </div>
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/50">
-                                        </div>
-                                        <div className="absolute inset-0 flex translate-y-[70%]  xl:translate-y-[67%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0 shadow-sm">
-                                            <h1 className="font-dmserif text-sm xl:text-xl font-bold  text-white group-hover:opacity-0  ">{product?.Names.length > 11 ? product?.Names.slice(0, 11) + '..' : product?.Names}</h1>
-                                            <p className="mb-3 text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 h-[135px]">
-                                                {product?.Names}
-                                            </p>
-                                            {/* <button className=" my-6 px-3.5 font-com text-sm btn btn-sm text-white shadow">See More</button> */}
-                                        </div>
-                                    </div>
-                                </div></Link>
-                        </div>)
+                        <Card
+                            product={product}
+                        />
+                    )
                     }
                 </ul> :
                 <BodyTemplate>
@@ -37,7 +31,7 @@ const ProductCard = ({ products }) => {
 
             }
 
-        </>
+        </InfiniteScroll>
     );
 };
 

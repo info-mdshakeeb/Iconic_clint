@@ -76,7 +76,7 @@ const ProductDetail = () => {
     }
     //add to database :
     const handleAddToWishList = (data) => {
-        fetch('http://localhost:3210/api/v2/cart', {
+        fetch('https://iconic-server-v2.vercel.app/api/v2/cart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const ProductDetail = () => {
     }
     //update 
     const handleUpdateWishList = (data) => {
-        fetch(`http://localhost:3210/api/v2/cart?id=${data?.id}`, {
+        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart?id=${data?.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

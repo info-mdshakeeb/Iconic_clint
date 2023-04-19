@@ -111,12 +111,12 @@ const Navbar = ({ need }) => {
             {need &&
                 <> <hr className='border-gray-100' />
                     <div className="container px-6 m-auto menu menu-compact ">
-                        <ul className="flex overflow-auto hide-scrollbar py-2 items-center">
-                            <li><NavLink to='/home'>Home</NavLink></li>
+                        <ul className="flex  py-2 items-center">
+                            <li><NavLink to='/home' className="hidden md:flex">Home</NavLink></li>
                             <li><NavLink to='/all/shops'>Shops</NavLink></li>
                             <li><NavLink to='/all/products'>Products</NavLink></li>
                             {user && <>
-                                <li><NavLink to='/dashboard/orders'>Orders</NavLink></li>
+                                <li><NavLink to='/dashboard/orders' className="hidden md:flex">Orders</NavLink></li>
                                 <li><NavLink to='/add-address'>Delivery Address</NavLink></li>
                             </>}
                         </ul>

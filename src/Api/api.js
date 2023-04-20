@@ -60,7 +60,7 @@ export const getShoPByIdPagination = async (page, limit) => {
 //product functions :
 //add product :
 export const addProductApi = async (product) => {
-    const res = await fetch(`https://iconic-server-v2.vercel.app/api/v2/products`, {
+    const res = await fetch(`https://iconic-server-v2.vercel.app/api/v2/products/verified/all`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

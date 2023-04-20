@@ -44,7 +44,7 @@ const Footer = () => {
                                 </div>
                                 <div className="flex flex-col lg:items-end mt-5 space-y-2">
                                     <div className=" flex lg:justify-between items-center">
-                                        <a href="https://www.facebook.com/mdshakeebltd" className="mx-2 text-gray-600 transition-colors duration-300  hover:text-blue-500" aria-label="Facebook">
+                                        <a href="https://www.facebook.com/info.mdshakeeb/" className="mx-2 text-gray-600 transition-colors duration-300  hover:text-blue-500" aria-label="Facebook">
                                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -52,7 +52,7 @@ const Footer = () => {
                                                 </path>
                                             </svg>
                                         </a>
-                                        <a href="https://github.com/itzshakeeb" className="mx-2 text-gray-600 transition-colors duration-300  hover:text-blue-500 " aria-label="Github">
+                                        <a href="https://github.com/info-mdshakeeb" className="mx-2 text-gray-600 transition-colors duration-300  hover:text-blue-500 " aria-label="Github">
                                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -69,7 +69,7 @@ const Footer = () => {
 
                     <div className="container m-auto text-center">
                         <p className='flex items-center justify-center  text-gray-400'>
-                            @ 2022 - All rights reserved || Shakeeb
+                            @ 2023 - All rights reserved || Shakeeb
                         </p>
                         {/* <a href="/" className="mx-2 text-gray-600 transition-colors duration-300  hover:text-blue-500" aria-label="Reddit">
                                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"

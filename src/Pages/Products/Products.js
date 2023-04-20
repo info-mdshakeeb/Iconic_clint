@@ -18,12 +18,12 @@ const ProductsAll = () => {
         queryFn: () => getProductsApi()
     })
     useEffect(() => {
-        setPage(2)
+
         setHasMore(true)
         setProducts(true)
         setData(products)
         if (!!search) { setData(allProducts) }
-    }, [setData, setProducts, products, allProducts, setSearchData, search])
+    }, [setData, setProducts, products, allProducts, setSearchData, search, setPage])
 
     return (
         <>

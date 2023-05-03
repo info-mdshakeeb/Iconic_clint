@@ -24,7 +24,7 @@ const AddShopModal = ({ refetch, setShopeModal }) => {
             shopCreated: new Date(),
             Advertisement: false,
         }
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/shops`, {
+        fetch(`http://localhost:3210/api/v2/shops`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

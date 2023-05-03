@@ -3,15 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getVerifiedAdvertisementProductsApi, getVerifiedAdvertisementShopsApi } from '../../Api/api';
-import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const Advertisement = () => {
 
-    const { data: AdProducts = [], isLoading } = useQuery({
+    const { data: AdProducts = [] } = useQuery({
         queryKey: ['AdProducts'],
         queryFn: () => getVerifiedAdvertisementProductsApi()
     })
-    const { data: AdShops = [], isLoading: isLoadingShop } = useQuery({
+    const { data: AdShops = [] } = useQuery({
         queryKey: ['AdShops'],
         queryFn: () => getVerifiedAdvertisementShopsApi()
     })
@@ -128,10 +127,6 @@ const Advertisement = () => {
         ]
     };
 
-    if (isLoading || isLoadingShop) return <div className="flex justify-center items-center w-full md:h-[170px]">
-        <PrimaryLoading />
-    </div>
-
     function SamplePrevArrow(props) {
         const { className, style, onClick } = props;
         return (
@@ -158,7 +153,7 @@ const Advertisement = () => {
                                         <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-md">
                                             <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
                                                 <div className="">
-                                                    <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[0]} alt="" />
+                                                    <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[2]} alt="" />
                                                 </div>
                                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/50">
                                                 </div>

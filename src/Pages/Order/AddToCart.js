@@ -18,7 +18,7 @@ const AddToCart = () => {
     // update o
     const removeItem = (id) => {
         // console.log(id);
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart?id=${id}`, {
+        fetch(`http://localhost:3210/api/v2/cart?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

@@ -25,7 +25,7 @@ const CheckoutForm = ({ product, setProduct }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://iconic-server-v2.vercel.app/create-payment-intent", {
+        fetch("http://localhost:3210/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price }),
@@ -35,7 +35,7 @@ const CheckoutForm = ({ product, setProduct }) => {
     }, [price]);
 
     const handelDelete = (product) => {
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment?email=${user?.email}`, {
+        fetch(`http://localhost:3210/api/v2/cart/payment?email=${user?.email}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const CheckoutForm = ({ product, setProduct }) => {
             })
     }
     const addToDb = (product) => {
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment/confirmed?email=${user?.email}`, {
+        fetch(`http://localhost:3210/api/v2/cart/payment/confirmed?email=${user?.email}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ const AddToCart = ({ children }) => {
         queryKey: ['cartDates'],
         enabled: !!user?.email,
         queryFn: async () => {
-            const response = await fetch(`https://iconic-server-v2.vercel.app/api/v2/cart?email=${user?.email}`);
+            const response = await fetch(`http://localhost:3210/api/v2/cart?email=${user?.email}`);
             const data = await response.json();
             return data.data;
         }

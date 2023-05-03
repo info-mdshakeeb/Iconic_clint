@@ -16,7 +16,7 @@ const AddressAddModal = ({ closeModal, setCloseModal, refetch }) => {
             userEmail: user?.email
         }
         //add to db
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/users/address?email=${user?.email}`, {
+        fetch(`http://localhost:3210/api/v2/users/address?email=${user?.email}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

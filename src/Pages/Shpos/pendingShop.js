@@ -15,7 +15,7 @@ const PendingShop = () => {
     })
     const handelShopUpdate = (id) => {
         const update = { status: "verified" }
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/shops/update/${id}`, {
+        fetch(`http://localhost:3210/api/v2/shops/update/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

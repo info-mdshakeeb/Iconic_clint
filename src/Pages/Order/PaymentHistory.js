@@ -11,7 +11,7 @@ const PaymentHistory = () => {
     const { data: paymentHistory, isFetching, isLoading } = useQuery({
         queryKey: ['paymentHistory'],
         queryFn: async () => {
-            const res = await fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment/confirmed?email=${user?.email}`
+            const res = await fetch(`http://localhost:3210/api/v2/cart/payment/confirmed?email=${user?.email}`
             )
             const data = await res.json()
             return data.data

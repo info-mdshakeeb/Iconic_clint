@@ -14,7 +14,7 @@ const ShopDetails = () => {
         queryFn: () => getShopById(id),
         enabled: !!id
     })
-    const { data: products = [], isFetching } = useQuery({
+    const { data: products = [], isFetching, isLoading: productLoading } = useQuery({
         queryKey: ['products', id],
         queryFn: () => getProductsByShopApi(id),
     })
@@ -42,7 +42,7 @@ const ShopDetails = () => {
             </div>
             <br />
             <div className="mb-4 font-bold text-2xl ">Products</div>
-            {isFetching && load && isLoading ?
+            {isFetching || productLoading || isLoading ?
                 <div className="flex justify-center items-center w-full ">
                     <PrimaryLoading />
                 </div>

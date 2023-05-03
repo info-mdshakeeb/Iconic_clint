@@ -24,7 +24,7 @@ const SignUp = () => {
 
     const { state, dispatch } = useLoading();
     // console.log(state);
-    const url = `http://localhost:3210/api/v2/users`
+    const url = `https://iconic-server-v2.vercel.app/api/v2/users`
 
     const navigate = useNavigate();
     const location = useLocation()

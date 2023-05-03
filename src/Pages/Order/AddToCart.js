@@ -18,7 +18,7 @@ const AddToCart = () => {
     // update o
     const removeItem = (id) => {
         // console.log(id);
-        fetch(`http://localhost:3210/api/v2/cart?id=${id}`, {
+        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ const AddToCart = () => {
                         <div className="">
                             <li className=' rounded-lg my-3 p-2 grid md:grid-cols-4 grid-cols-2 items-center justify-between cursor-pointer'>
                                 <div className="hidden md:flex items-center space-x-2">
-                                    <Link className='btn btn-sm btn-primary mt-2' to={`all/products`}>BacK to Shopping</Link>
+                                    <Link className='btn btn-sm btn-primary mt-2' to={`/all/products`}>BacK to Shopping</Link>
                                 </div>
                                 <p className='hidden md:flex '>Total :{totalQuantity}</p>
                                 <span className='flex lg:-ml-12'>

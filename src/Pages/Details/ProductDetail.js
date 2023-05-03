@@ -21,6 +21,8 @@ const ProductDetail = () => {
         queryFn: () => getProductByIdApi(id),
         enabled: !!id
     })
+
+
     const { data: shop = [], isFetching, isLoading, isInitialLoading } = useQuery({
         queryKey: ['shop' + product?.shopId, product?.shopId],
         queryFn: () => getShopById(product?.shopId),
@@ -105,11 +107,13 @@ const ProductDetail = () => {
                 // console.log(data);
             })
     }
+
     if (isLoading || isInitialLoading || isFetching) {
         return <div className="flex justify-center items-center w-full h-[600px]">
             <PrimaryLoading />
         </div>
     }
+
 
     return (
         <BodyTemplate>
@@ -135,7 +139,6 @@ const ProductDetail = () => {
                                             </li>
                                         )}
                                     </div>
-
                                 </ul>
                             </div>
                         </div>

@@ -6,9 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { getRandomProductsApi } from '../../Api/api';
 import "../../Pages/Home/Home.css";
+import PrimaryLoading from '../LoadingSpin/PrimaryLoading';
 
 const RandomSection = () => {
-    const { data: randomData = [] } = useQuery({
+    const { data: randomData = [], isLoading, isFetching } = useQuery({
         queryKey: ['randomData'],
         queryFn: () => getRandomProductsApi(10)
     })
@@ -77,6 +78,9 @@ const RandomSection = () => {
             />
         );
     }
+    if (isLoading || isFetching) return <div className="flex items-center justify-center h-48">
+        <PrimaryLoading />
+    </div>
 
     return (
         <div className='container px-3 md:px-9 m-auto '>
@@ -91,9 +95,9 @@ const RandomSection = () => {
                                 <Link to={`/products/${product?._id}`} key={i}>
                                     <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-md">
                                         <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
-                                            <div className="">
-                                                <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[2]} alt="" />
-                                            </div>
+                                            {product && <div className="">
+                                                <img className=" h-60 w-52 transition-transform duration-500  object-fill group-hover:rotate-3 group-hover:scale-125" src={product?.ImgUrls[0]} alt="" />
+                                            </div>}
                                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/50">
                                             </div>
                                             <div className="absolute inset-0 flex translate-y-[70%]  xl:translate-y-[67%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0 shadow-sm">

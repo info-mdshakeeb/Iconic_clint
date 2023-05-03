@@ -51,7 +51,6 @@ export const getShopById = async (id) => {
 
 //pagination 
 export const getShoPByIdPagination = async (page, limit) => {
-    console.log(page, limit);
     const res = await fetch(`https://iconic-server-v2.vercel.app/api/v2/shops/type/verified?page=${page}&limit=${limit}`)
     const data = await res.json()
     return data.data

@@ -63,7 +63,7 @@ const AddProducts = () => {
         addProductApi(productData)
             .then(res => {
                 toast.success("added product")
-                console.log(res);
+                // console.log(res);
             })
             .catch(err => console.log(err))
     }

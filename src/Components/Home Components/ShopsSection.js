@@ -16,7 +16,7 @@ const ShopsSection = () => {
             <div className="py-4">
                 <div className="flex justify-between mb-4">
                     <p className=" font-bold text-2xl">Shops</p>
-                    <PrimaryButton><Link to='/shops'>see more</Link></PrimaryButton>
+                    <PrimaryButton><Link to='/all/shops'>see more</Link></PrimaryButton>
                 </div>
                 {isInitialLoading || isLoading ?
                     <div className="flex justify-center items-center w-full h-[200px]">
